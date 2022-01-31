@@ -39,4 +39,6 @@ public final class Constants {
     public static final int CLIMBER_SPEED = 0;
     public static final int CLIMBER_MOTOR_1 = 0;
     public static final int CLIMBER_MOTOR_2 = 0;
+    public static final int CLIMBER_BUTTON = 0;
+    public static final int CLIMBER_BUTTON2 = 0;
 }
