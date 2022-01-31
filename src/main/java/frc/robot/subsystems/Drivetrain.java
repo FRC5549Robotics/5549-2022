@@ -5,7 +5,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -17,7 +18,7 @@ import frc.robot.Constants;
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
   CANSparkMax leftFront, rightFront, leftBack, rightBack;
-  SpeedControllerGroup leftGroup, rightGroup;
+  MotorControllerGroup leftGroup, rightGroup;
   DifferentialDrive drive;
   Solenoid rightGearShift, leftGearShift;
 
@@ -27,8 +28,8 @@ public class Drivetrain extends SubsystemBase {
     rightFront = new CANSparkMax(Constants.RIGHT_MOTOR1, MotorType.kBrushless);
     rightBack = new CANSparkMax(Constants.RIGHT_MOTOR2, MotorType.kBrushless);
 
-    leftGroup = new SpeedControllerGroup(leftFront, leftBack);
-    rightGroup = new SpeedControllerGroup(rightFront, rightBack);
+    leftGroup = new MotorControllerGroup(leftFront, leftBack);
+    rightGroup = new MotorControllerGroup(rightFront, rightBack);
 
     drive = new DifferentialDrive(rightGroup, leftGroup);
 
