@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.XboxController;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Climber extends SubsystemBase {
   CANSparkMax climber_motor_L, climber_motor_R;
-  SpeedControllerGroup climber_motor_group;
+  MotorControllerGroup climber_motor_group;
 
   public XboxController xboxTrigger = new XboxController(0);
   /** Creates a new Climber. */
@@ -25,7 +25,7 @@ public class Climber extends SubsystemBase {
     // turns right motor in opposite direction of left motor
     // allows for motors to rotate towards the center, intaking objects
     // or rotating outwards from the center, ejecting objects
-    climber_motor_group = new SpeedControllerGroup(climber_motor_L, climber_motor_R);
+    climber_motor_group = new MotorControllerGroup(climber_motor_L, climber_motor_R);
   }
   
   // Called just before this Command runs the first time
