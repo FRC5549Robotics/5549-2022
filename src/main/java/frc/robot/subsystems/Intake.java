@@ -5,7 +5,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -16,7 +15,6 @@ public class Intake extends SubsystemBase {
   /* Intake Class */
   CANSparkMax motor_intake_1;
   
-  public XboxController xboxTrigger = new XboxController(0);
   //import/put the correct file
   public Intake() {
     /* Creates a new Intake. */
