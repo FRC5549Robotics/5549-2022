@@ -13,6 +13,9 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Intake;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.ClimberUp;
+import frc.robot.commands.ClimberDown;
+import frc.robot.commands.ClimberStop;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -35,6 +38,9 @@ public class RobotContainer {
   JoystickButton shootButton = new JoystickButton(joystickRight, Constants.SHOOT_BUTTON);
   public XboxController xbox = new XboxController(0);
   JoystickButton intakeButton = new JoystickButton(xbox, Constants.INTAKE_BUTTON);
+  JoystickButton climberButton = new JoystickButton(xbox, Constants.CLIMBER_BUTTON);
+  JoystickButton climberButtonDown = new JoystickButton(xbox, Constants.CLIMBER_BUTTON2);
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -54,6 +60,10 @@ public class RobotContainer {
     shootButton.whenReleased(new InstantCommand(sh::off, sh));
     intakeButton.whenPressed(new InstantCommand(intake::intake_bottom));
     intakeButton.whenReleased(new InstantCommand(intake::intake_stop));
+    climberButton.whenPressed(new ClimberUp(climber));
+    climberButton.whenReleased(new ClimberStop(climber));
+    climberButtonDown.whenPressed(new ClimberDown(climber));
+    climberButtonDown.whenReleased(new ClimberDown(climber));
   }
 
   /**
