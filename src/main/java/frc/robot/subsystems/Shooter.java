@@ -8,8 +8,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.math.controller.PIDController;
 
-import java.security.acl.Group;
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -35,13 +33,16 @@ public class Shooter extends SubsystemBase {
 		return 0.0;
 	}
 
-	public void on() {
-		on(0); // Fill in logic here
+	public void off()
+	{
+		isOn = false;
+		set_point = 0;
 	}
 
-	public void on(double sp) {
+	public void on() {
+		double speed = getDesiredRPM();
 		isOn = true;
-		set_point = sp;
+		set_point = speed;
 	}
 
 	public void stop() {
