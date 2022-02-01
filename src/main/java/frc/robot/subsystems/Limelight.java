@@ -36,7 +36,10 @@ public class Limelight extends SubsystemBase {
     return 0;
   }
 
-
+  public static double getDesiredRPM(){
+    return 0.0;
+    //Add implementation
+  }
 
   @Override
   public void periodic() {

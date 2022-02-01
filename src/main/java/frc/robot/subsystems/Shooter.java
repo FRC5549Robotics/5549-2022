@@ -40,7 +40,7 @@ public class Shooter extends SubsystemBase {
 	}
 
 	public void on() {
-		double speed = getDesiredRPM();
+		double speed = Limelight.getDesiredRPM();
 		isOn = true;
 		set_point = speed;
 	}
