@@ -42,7 +42,7 @@ public final class Constants {
     public static final int CLIMBER_BUTTON = 0;
     public static final int CLIMBER_BUTTON2 = 0;
 
-    public static final int ANGLE_CAMERA = 0;
+    public static final int ANGLE_CAMERA = 45;
     public static final double HEIGHT_TARGET = 101.625;
     public static final int HEIGHT_CAMERA = 38;
 }
