@@ -41,4 +41,7 @@ public final class Constants {
     public static final int CLIMBER_MOTOR_2 = 0;
     public static final int CLIMBER_BUTTON = 0;
     public static final int CLIMBER_BUTTON2 = 0;
+
+    public static final double tP = 1/27;
+    public static final double LIMELIGHT_HIEGHT = 35;
 }

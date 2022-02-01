@@ -16,12 +16,13 @@ import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
+  Limelight m_limelight;
   CANSparkMax leftFront, rightFront, leftBack, rightBack;
   MotorControllerGroup leftGroup, rightGroup;
   DifferentialDrive drive;
   Solenoid rightGearShift, leftGearShift;
 
-  public Drivetrain() {
+  public Drivetrain(Limelight limelight) {
     leftFront =  new CANSparkMax(Constants.LEFT_MOTOR1, MotorType.kBrushless);
     leftBack = new CANSparkMax(Constants.LEFT_MOTOR2, MotorType.kBrushless);
     rightFront = new CANSparkMax(Constants.RIGHT_MOTOR1, MotorType.kBrushless);
@@ -34,11 +35,17 @@ public class Drivetrain extends SubsystemBase {
 
     rightGearShift = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.RIGHTSOLENOID);
     leftGearShift = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.LEFTSOLENOID);
+
+    m_limelight = limelight;
   }
 
   public void tankDriveMethod(double leftJoystickAxis, double rightJoystickAxis) {
     double ScalingFactor = Constants.SCALING_FACTOR;
     drive.tankDrive(leftJoystickAxis * ScalingFactor, -rightJoystickAxis * ScalingFactor);
+  }
+
+  public void arcadeDriveMehtod() {
+    drive.arcadeDrive(0, m_limelight.tx*Constants.tP);
   }
 
   public void changeGear() {

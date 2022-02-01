@@ -5,11 +5,23 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Drivetrain;
 
 public class TurnToAngle extends CommandBase {
   /** Creates a new TurnToAngle. */
-  public TurnToAngle() {
+  Double m_angle;
+  Limelight m_limelight;
+  public TurnToAngle(Limelight limelight) {
+    m_limelight = limelight;
+    m_angle = m_limelight.getAngle();
     // Use addRequirements() here to declare subsystem dependencies.
+  }
+
+  public void Turn() {
+    while (m_limelight.getAngle() > 5 || m_limelight.getAngle() < -5) {
+      Drivetrain.arcadeDriveMehtod();
+    }
   }
 
   // Called when the command is initially scheduled.
