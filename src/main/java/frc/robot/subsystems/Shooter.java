@@ -52,6 +52,7 @@ public class Shooter extends SubsystemBase {
 
 	public void convert(){
     double count = motor1.getEncoder().getCountsPerRevolution()/4;
+	double rpm = (count/4096) * (60);
 	}
 	@Override
 	public void periodic() {
