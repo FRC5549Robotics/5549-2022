@@ -5,7 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.math.controller.PIDController;
 
 import com.revrobotics.CANSparkMax;
@@ -16,7 +16,7 @@ import frc.robot.Constants;
 public class Shooter extends SubsystemBase {
 	/** Creates a new Shooter. */
 	CANSparkMax motor1, motor2;
-	SpeedControllerGroup shooterGroup;
+	MotorControllerGroup shooterGroup;
 	PIDController pid;
 	boolean isOn;
 	double set_point;
@@ -24,7 +24,7 @@ public class Shooter extends SubsystemBase {
 	public Shooter() {
 		motor1 = new CANSparkMax(Constants.SHOOT_MOTOR1, MotorType.kBrushless);
 		motor2 = new CANSparkMax(Constants.SHOOT_MOTOR2, MotorType.kBrushless);
-		shooterGroup = new SpeedControllerGroup(motor1, motor2);
+		shooterGroup = new MotorControllerGroup(motor1, motor2);
 		isOn = false;
 	}
 
@@ -40,7 +40,7 @@ public class Shooter extends SubsystemBase {
 	}
 
 	public void on() {
-		double speed = getDesiredRPM();
+		double speed = Limelight.getDesiredRPM();
 		isOn = true;
 		set_point = speed;
 	}

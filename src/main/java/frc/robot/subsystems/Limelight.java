@@ -17,7 +17,7 @@ public class Limelight extends SubsystemBase {
     limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
     ty = limelightTable.getEntry("ty").getDouble(0);
     tv = limelightTable.getEntry("tv").getDouble(0);
-    tx = limelightTable.getEntry("tv").getDouble(0);
+    tx = limelightTable.getEntry("tx").getDouble(0);
   }
 
   public double getAngle() {
@@ -37,7 +37,10 @@ public class Limelight extends SubsystemBase {
     return 0;
   }
 
-
+  public static double getDesiredRPM(){
+    return 0.0;
+    //Add implementation
+  }
 
   @Override
   public void periodic() {

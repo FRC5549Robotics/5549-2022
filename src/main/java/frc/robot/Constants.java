@@ -42,6 +42,13 @@ public final class Constants {
     public static final int CLIMBER_BUTTON = 0;
     public static final int CLIMBER_BUTTON2 = 0;
 
+<<<<<<< HEAD
     public static final double tP = 1/27;
     public static final double LIMELIGHT_HIEGHT = 35;
 }
+=======
+    public static final int ANGLE_CAMERA = 0;
+    public static final double HEIGHT_TARGET = 101.625;
+    public static final int HEIGHT_CAMERA = 38;
+}
+>>>>>>> 21eec1121460b5e97dfb261de5e8371ebce34438
