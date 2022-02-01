@@ -22,7 +22,7 @@ public class Drivetrain extends SubsystemBase {
   DifferentialDrive drive;
   Solenoid rightGearShift, leftGearShift;
 
-  public Drivetrain(Limelight limelight) {
+  public Drivetrain() {
     leftFront =  new CANSparkMax(Constants.LEFT_MOTOR1, MotorType.kBrushless);
     leftBack = new CANSparkMax(Constants.LEFT_MOTOR2, MotorType.kBrushless);
     rightFront = new CANSparkMax(Constants.RIGHT_MOTOR1, MotorType.kBrushless);
@@ -36,7 +36,6 @@ public class Drivetrain extends SubsystemBase {
     rightGearShift = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.RIGHTSOLENOID);
     leftGearShift = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.LEFTSOLENOID);
 
-    m_limelight = limelight;
   }
 
   public void tankDriveMethod(double leftJoystickAxis, double rightJoystickAxis) {
@@ -44,8 +43,8 @@ public class Drivetrain extends SubsystemBase {
     drive.tankDrive(leftJoystickAxis * ScalingFactor, -rightJoystickAxis * ScalingFactor);
   }
 
-  public void arcadeDriveMehtod() {
-    drive.arcadeDrive(0, m_limelight.tx*Constants.tP);
+  public void arcadeDriveMethod(double limelight_angletx) {
+    drive.arcadeDrive(0, limelight_angletx*Constants.tP);
   }
 
   public void changeGear() {

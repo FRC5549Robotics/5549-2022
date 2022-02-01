@@ -51,15 +51,14 @@ public class Shooter extends SubsystemBase {
 	}
 
 	public void convert(){
-	motor1.getEncoder().getVelocity();
-    
+    double count = motor1.getEncoder().getCountsPerRevolution()/4;
 	}
 	@Override
 	public void periodic() {
 		if (isOn) {
 			if (pid == null)
 				pid = new PIDController(Constants.kP, Constants.kI, Constants.kD);
-			shooterGroup.set(pid.calculate( ,set_point));
+			shooterGroup.set(pid.calculate(,set_point));
 		} else
 			shooterGroup.set(0);
 	}

@@ -12,25 +12,24 @@ public class TurnToAngle extends CommandBase {
   /** Creates a new TurnToAngle. */
   Double m_angle;
   Limelight m_limelight;
-  public TurnToAngle(Limelight limelight) {
+  Drivetrain m_drivetrain;
+  public TurnToAngle(Limelight limelight, Drivetrain drivetrain) {
     m_limelight = limelight;
     m_angle = m_limelight.getAngle();
+    m_drivetrain = drivetrain;
     // Use addRequirements() here to declare subsystem dependencies.
   }
-
-  public void Turn() {
-    while (m_limelight.getAngle() > 5 || m_limelight.getAngle() < -5) {
-      Drivetrain.arcadeDriveMehtod();
-    }
-  }
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    while (m_limelight.getAngle() > 5 || m_limelight.getAngle() < -5) {
+      m_drivetrain.arcadeDriveMethod(m_angle);
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
