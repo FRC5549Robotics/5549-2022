@@ -16,7 +16,6 @@ import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
-  Limelight m_limelight;
   CANSparkMax leftFront, rightFront, leftBack, rightBack;
   MotorControllerGroup leftGroup, rightGroup;
   DifferentialDrive drive;

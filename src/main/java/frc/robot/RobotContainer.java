@@ -12,6 +12,7 @@ import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Indexer;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.ClimberUp;
 import frc.robot.commands.ClimberDown;
@@ -32,6 +33,7 @@ public class RobotContainer {
   public final Shooter sh = new Shooter();
   public final Intake intake = new Intake();
   public final Climber climber = new Climber();
+  public final Indexer indexer = new Indexer();
 
   public static Joystick joystickLeft = new Joystick(Constants.JOYSTICK_LEFT);
   public static Joystick joystickRight = new Joystick(Constants.JOYSTICK_RIGHT);
@@ -40,6 +42,8 @@ public class RobotContainer {
   JoystickButton intakeButton = new JoystickButton(xbox, Constants.INTAKE_BUTTON);
   JoystickButton climberButton = new JoystickButton(xbox, Constants.CLIMBER_BUTTON);
   JoystickButton climberButtonDown = new JoystickButton(xbox, Constants.CLIMBER_BUTTON2);
+  JoystickButton indexerButton = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
+  JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON2);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -60,6 +64,10 @@ public class RobotContainer {
     shootButton.whenReleased(new InstantCommand(sh::off, sh));
     intakeButton.whenPressed(new InstantCommand(intake::intake_bottom));
     intakeButton.whenReleased(new InstantCommand(intake::intake_stop));
+    indexerButton.whenPressed(new InstantCommand(indexer::indexer_run));
+    indexerButton2.whenPressed(new InstantCommand(indexer::indexer_back));
+    indexerButton.whenPressed(new InstantCommand(indexer::indexer_stop));
+    indexerButton2.whenPressed(new InstantCommand(indexer::indexer_stop));
     climberButton.whenPressed(new ClimberUp(climber));
     climberButton.whenReleased(new ClimberStop(climber));
     climberButtonDown.whenPressed(new ClimberDown(climber));

@@ -46,4 +46,9 @@ public final class Constants {
     public static final int ANGLE_CAMERA = 45;
     public static final double HEIGHT_TARGET = 101.625;
     public static final int HEIGHT_CAMERA = 38;
+
+    public static final int INDEXER_MOTOR_1 = 0;
+    public static final double INDEXER_SPEED = 0;
+    public static final int INDEXER_BUTTON = 0;
+    public static final int INDEXER_BUTTON2 = 0;
 }
