@@ -26,6 +26,7 @@ public class Shooter extends SubsystemBase {
 		motor2 = new CANSparkMax(Constants.SHOOT_MOTOR2, MotorType.kBrushless);
 		shooterGroup = new MotorControllerGroup(motor1, motor2);
 		isOn = false;
+		
 	}
 
 	public static double getSpeed(double distance) {
@@ -40,7 +41,7 @@ public class Shooter extends SubsystemBase {
 	}
 
 	public void on() {
-		double speed = getDesiredRPM();
+		double speed = Limelight.getDesiredRPM();
 		isOn = true;
 		set_point = speed;
 	}
@@ -49,12 +50,17 @@ public class Shooter extends SubsystemBase {
 		isOn = false;
 	}
 
+	public void convert(){
+    double count = motor1.getEncoder().getCountsPerRevolution()/4;
+	double currentRPM = (count/4096) * (60);
+
+	}
 	@Override
 	public void periodic() {
 		if (isOn) {
 			if (pid == null)
 				pid = new PIDController(Constants.kP, Constants.kI, Constants.kD);
-			shooterGroup.set(pid.calculate(motor1.getEncoder().getVelocity(), set_point));
+			shooterGroup.set(pid.calculate(set_point));
 		} else
 			shooterGroup.set(0);
 	}

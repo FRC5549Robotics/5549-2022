@@ -21,11 +21,12 @@ public class Limelight extends SubsystemBase {
   }
 
   public double getAngle() {
-    if (ty != 0) {
-      return ty;
+    if (tx != 0) {
+      return tx;
     }
     return 0;
   }
+
 
   public double getDistance() {
     if (tv != 0) {
@@ -36,7 +37,10 @@ public class Limelight extends SubsystemBase {
     return 0;
   }
 
-
+  public static double getDesiredRPM(){
+    return 0.0;
+    //Add implementation
+  }
 
   @Override
   public void periodic() {

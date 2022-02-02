@@ -25,6 +25,7 @@ public final class Constants {
     public static final double kP = 0;
     public static final double kI = 0;
     public static final double kD = 0;
+    public static final double tP = 1/27;
 
     public static final int JOYSTICK_LEFT = 1;
     public static final int JOYSTICK_RIGHT = 2;
@@ -43,4 +44,6 @@ public final class Constants {
     public static final int CLIMBER_BUTTON2 = 0;
 
     public static final int ANGLE_CAMERA = 45;
+    public static final double HEIGHT_TARGET = 101.625;
+    public static final int HEIGHT_CAMERA = 38;
 }
