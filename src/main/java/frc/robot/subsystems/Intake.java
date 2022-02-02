@@ -14,6 +14,7 @@ public class Intake extends SubsystemBase {
   /* Intake Class */
   CANSparkMax motor_intake_1;
   
+  
   //import/put the correct file
   public Intake() {
     /* Creates a new Intake. */
@@ -25,6 +26,7 @@ public class Intake extends SubsystemBase {
   }
 
   public void intake_bottom(){
+
     motor_intake_1.set(Constants.INTAKE_SPEED);
   }
 

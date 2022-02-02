@@ -18,7 +18,9 @@ public class Indexer extends SubsystemBase {
   }
 
   public void indexer_run(){
-    motor_indexer_1.set(Constants.INDEXER_SPEED);
+    while((System.currentTimeMillis() - startTime) / 1000){
+      motor_indexer_1.set(Constants.INDEXER_SPEED);
+    }
   }
 
   public void indexer_back(){

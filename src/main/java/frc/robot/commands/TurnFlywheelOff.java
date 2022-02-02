@@ -5,15 +5,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Shooter;
 
-public class ClimberUp extends CommandBase {
-  /** Creates a new ClimberUp. */
-  Climber m_climber;
-  public ClimberUp(Climber climber) {
+public class TurnFlywheelOff extends CommandBase {
+  /** Creates a new TurnFlywheelOff. */
+  Shooter m_shooter;
+  public TurnFlywheelOff(Shooter shooter) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_climber = climber;
-    addRequirements(m_climber);
+    m_shooter = shooter;
+    addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -23,7 +23,7 @@ public class ClimberUp extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_climber.up();
+    m_shooter.off();
   }
 
   // Called once the command ends or is interrupted.

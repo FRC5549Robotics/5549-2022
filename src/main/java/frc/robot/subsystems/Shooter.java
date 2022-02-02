@@ -17,16 +17,13 @@ public class Shooter extends SubsystemBase {
 	/** Creates a new Shooter. */
 	CANSparkMax motor1, motor2;
 	MotorControllerGroup shooterGroup;
-	PIDController pid;
 	boolean isOn;
-	double set_point;
+	PIDController pid;
 
 	public Shooter() {
 		motor1 = new CANSparkMax(Constants.SHOOT_MOTOR1, MotorType.kBrushless);
 		motor2 = new CANSparkMax(Constants.SHOOT_MOTOR2, MotorType.kBrushless);
 		shooterGroup = new MotorControllerGroup(motor1, motor2);
-		isOn = false;
-		
 	}
 
 	public static double getSpeed(double distance) {
@@ -34,34 +31,22 @@ public class Shooter extends SubsystemBase {
 		return 0.0;
 	}
 
-	public void off()
-	{
-		isOn = false;
-		set_point = 0;
+	public void off(){
+		shooterGroup.set(0);
 	}
 
 	public void on() {
 		double speed = Limelight.getDesiredRPM();
-		isOn = true;
-		set_point = speed;
+		pid = new PIDController(Constants.kP, Constants.kI, Constants.kD);
+		shooterGroup.set(pid.calculate(getCurrentRPM(),speed));
 	}
 
-	public void stop() {
-		isOn = false;
-	}
-
-	public void convert(){
+	public double getCurrentRPM() {
     double count = motor1.getEncoder().getCountsPerRevolution()/4;
 	double currentRPM = (count/4096) * (60);
-
+	return currentRPM;
 	}
+	
 	@Override
-	public void periodic() {
-		if (isOn) {
-			if (pid == null)
-				pid = new PIDController(Constants.kP, Constants.kI, Constants.kD);
-			shooterGroup.set(pid.calculate(set_point));
-		} else
-			shooterGroup.set(0);
-	}
+	public void periodic(){}
 }

@@ -13,7 +13,11 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Limelight;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.TurnFlywheelOff;
+import frc.robot.commands.GetFlywheelUpToSpeed;
+import frc.robot.commands.TurnToAngle;
 import frc.robot.commands.ClimberUp;
 import frc.robot.commands.ClimberDown;
 import frc.robot.commands.ClimberStop;
@@ -30,9 +34,10 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final Drivetrain drivetrain = new Drivetrain();
-  public final Shooter sh = new Shooter();
+  public final Shooter shooter = new Shooter();
   public final Intake intake = new Intake();
   public final Climber climber = new Climber();
+  public final Limelight limelight = new Limelight();
   public final Indexer indexer = new Indexer();
 
   public static Joystick joystickLeft = new Joystick(Constants.JOYSTICK_LEFT);
@@ -60,8 +65,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     drivetrain.setDefaultCommand(new TankDrive(drivetrain, joystickLeft, joystickRight));
-    shootButton.whenPressed(new InstantCommand(sh::on, sh));
-    shootButton.whenReleased(new InstantCommand(sh::off, sh));
+    shootButton.whenPressed(new SequentialCommandGroup(new TurnToAngle(limelight, drivetrain), 
+    new GetFlywheelUpToSpeed(shooter), new InstantCommand(indexer::indexer_run), new TurnFlywheelOff(shooter)));
     intakeButton.whenPressed(new InstantCommand(intake::intake_bottom));
     intakeButton.whenReleased(new InstantCommand(intake::intake_stop));
     indexerButton.whenPressed(new InstantCommand(indexer::indexer_run));
