@@ -17,6 +17,7 @@ import frc.robot.subsystems.Limelight;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.TurnFlywheelOff;
 import frc.robot.commands.GetFlywheelUpToSpeed;
+import frc.robot.commands.IndexerRunForSpecificTime;
 import frc.robot.commands.TurnToAngle;
 import frc.robot.commands.ClimberUp;
 import frc.robot.commands.ClimberDown;
@@ -66,10 +67,10 @@ public class RobotContainer {
   private void configureButtonBindings() {
     drivetrain.setDefaultCommand(new TankDrive(drivetrain, joystickLeft, joystickRight));
     shootButton.whenPressed(new SequentialCommandGroup(new TurnToAngle(limelight, drivetrain), 
-    new GetFlywheelUpToSpeed(shooter), new InstantCommand(indexer::indexer_run), new TurnFlywheelOff(shooter)));
+    new GetFlywheelUpToSpeed(shooter), new IndexerRunForSpecificTime(indexer, 2), new TurnFlywheelOff(shooter)));
     intakeButton.whenPressed(new InstantCommand(intake::intake_bottom));
     intakeButton.whenReleased(new InstantCommand(intake::intake_stop));
-    indexerButton.whenPressed(new InstantCommand(indexer::indexer_run));
+    indexerButton.whenPressed(new InstantCommand(indexer::indexer_up));
     indexerButton2.whenPressed(new InstantCommand(indexer::indexer_back));
     indexerButton.whenPressed(new InstantCommand(indexer::indexer_stop));
     indexerButton2.whenPressed(new InstantCommand(indexer::indexer_stop));

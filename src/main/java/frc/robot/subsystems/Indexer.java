@@ -17,10 +17,12 @@ public class Indexer extends SubsystemBase {
     motor_indexer_1 = new CANSparkMax(Constants.INDEXER_MOTOR_1, MotorType.kBrushless);
   }
 
-  public void indexer_run(){
-    while((System.currentTimeMillis() - startTime) / 1000){
-      motor_indexer_1.set(Constants.INDEXER_SPEED);
+  public void indexer_run(double speed){
+      motor_indexer_1.set(speed);
     }
+
+  public void indexer_up(){
+    motor_indexer_1.set(Constants.INDEXER_SPEED);
   }
 
   public void indexer_back(){
