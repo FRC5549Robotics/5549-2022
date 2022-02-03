@@ -31,7 +31,7 @@ public class Limelight extends SubsystemBase {
   public double getDistance() {
     if (tv != 0) {
       angle = (Constants.ANGLE_CAMERA + ty) * Math.PI / 180;
-      distance = (Constants.ANGLE_CAMERA - Constants.JOYSTICK_LEFT) / Math.tan(angle);
+      distance = (Constants.HEIGHT_TARGET - Constants.HEIGHT_CAMERA) / Math.tan(angle);
       return distance;
     }
     return 0;

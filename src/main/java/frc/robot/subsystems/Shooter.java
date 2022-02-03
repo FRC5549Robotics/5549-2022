@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -22,6 +23,9 @@ public class Shooter extends SubsystemBase {
 	MotorControllerGroup shooterGroup;
 	boolean isOn;
 	SparkMaxPIDController M1pid, M2pid;
+	double kP = Constants.kP;
+	double kI = Constants.kI;
+	double kD = Constants.kD;
 
 	public Shooter() {
 		motor1 = new CANSparkMax(Constants.SHOOT_MOTOR1, MotorType.kBrushless);
@@ -32,15 +36,26 @@ public class Shooter extends SubsystemBase {
 
 		motor1_encoder = motor1.getEncoder();
 		motor2_encoder = motor2.getEncoder();
-		shooterGroup = new MotorControllerGroup(motor1, motor2);
 
 		//setting PID values for motors
 		M1pid.setP(Constants.kP);
 		M1pid.setI(Constants.kI);
 		M1pid.setD(Constants.kD);
-		M2pid.setP(Constants.kP);
-		M2pid.setI(Constants.kI);
-		M2pid.setD(Constants.kD);
+
+		SmartDashboard.putNumber("P1 Gain", Constants.kP);
+		SmartDashboard.putNumber("I1 Gain", Constants.kI);
+		SmartDashboard.putNumber("D1 Gain", Constants.kD);
+
+		double p = SmartDashboard.getNumber("P Gain", 0);
+		double i = SmartDashboard.getNumber("I Gain", 0);
+		double d = SmartDashboard.getNumber("D Gain", 0);
+
+		if((p != Constants.kP)) { M1pid.setP(p); kP = p; }
+		if((i != Constants.kI)) { M1pid.setI(i); kI = i; }
+		if((d != Constants.kD)) { M1pid.setD(d); kD = d; }
+	
+    SmartDashboard.putNumber("motor 1 velocity", motor1_encoder.getVelocity());
+	SmartDashboard.putNumber("motor 1 velocity", motor1_encoder.getVelocity());
 	}
 
 	public static double getSpeed(double distance) {
@@ -53,9 +68,10 @@ public class Shooter extends SubsystemBase {
 	}
 
 	public void on() {
-		double speed = Limelight.getDesiredRPM();
-		pid = new PIDController(Constants.kP, Constants.kI, Constants.kD);
-		shooterGroup.set(pid.calculate(getCurrentRPM(),speed));
+		double setPoint = Limelight.getDesiredRPM();
+		SmartDashboard.putNumber("SetPoint", setPoint);
+		M1pid.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
+		M2pid.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
 	}
 
 	public double getCurrentRPM() {
