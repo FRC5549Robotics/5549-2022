@@ -51,4 +51,6 @@ public final class Constants {
     public static final double INDEXER_SPEED = 0;
     public static final int INDEXER_BUTTON = 0;
     public static final int INDEXER_BUTTON2 = 0;
+
+    public static final double DRIVE_AUTO_SPEED = 0.5;
 }
