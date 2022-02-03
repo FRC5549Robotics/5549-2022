@@ -7,8 +7,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -19,7 +19,8 @@ public class Drivetrain extends SubsystemBase {
   CANSparkMax leftFront, rightFront, leftBack, rightBack;
   MotorControllerGroup leftGroup, rightGroup;
   DifferentialDrive drive;
-  Solenoid rightGearShift, leftGearShift;
+
+  DoubleSolenoid rightGearShift, leftGearShift;
 
   public Drivetrain() {
     leftFront =  new CANSparkMax(Constants.LEFT_MOTOR1, MotorType.kBrushless);
@@ -32,8 +33,9 @@ public class Drivetrain extends SubsystemBase {
 
     drive = new DifferentialDrive(rightGroup, leftGroup);
 
-    rightGearShift = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.RIGHTSOLENOID);
-    leftGearShift = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.LEFTSOLENOID);
+
+    rightGearShift = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.RIGHTSOLENOID ,2);
+    leftGearShift = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.LEFTSOLENOID, 2);
 
   }
 
@@ -47,14 +49,8 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void changeGear() {
-    if(rightGearShift.get() == true){
-      rightGearShift.set(false);
-      leftGearShift.set(false);
-    }
-    else{
-      rightGearShift.set(true);
-      leftGearShift.set(true);
-    }
+    rightGearShift.toggle();
+    leftGearShift.toggle();
   }
   @Override
   public void periodic() {
