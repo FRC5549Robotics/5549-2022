@@ -26,11 +26,6 @@ public class Shooter extends SubsystemBase {
 		shooterGroup = new MotorControllerGroup(motor1, motor2);
 	}
 
-	public static double getSpeed(double distance) {
-		// Add implementation
-		return 0.0;
-	}
-
 	public void off(){
 		shooterGroup.set(0);
 	}
