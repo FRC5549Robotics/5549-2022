@@ -14,7 +14,7 @@ public class IndexerRunForSpecificTime extends CommandBase {
   private final Indexer m_indexer;
   private double m_time;
   private double startTime;
-  boolean myAutoFinished = false;
+  private boolean isIndexerDone = false;
   private double m_maxTime;
   public IndexerRunForSpecificTime(Indexer indexer, double time) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -38,7 +38,7 @@ public class IndexerRunForSpecificTime extends CommandBase {
       m_indexer.indexer_run(Constants.INDEXER_SPEED);
     }
     if ((m_time >= m_maxTime)){
-      myAutoFinished = true;
+      isIndexerDone = true;
     }
   }
 
@@ -49,6 +49,6 @@ public class IndexerRunForSpecificTime extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return myAutoFinished;
+    return isIndexerDone;
   }
 }

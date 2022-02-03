@@ -72,8 +72,8 @@ public class RobotContainer {
     intakeButton.whenReleased(new InstantCommand(intake::intake_stop));
     indexerButton.whenPressed(new InstantCommand(indexer::indexer_up));
     indexerButton2.whenPressed(new InstantCommand(indexer::indexer_back));
-    indexerButton.whenPressed(new InstantCommand(indexer::indexer_stop));
-    indexerButton2.whenPressed(new InstantCommand(indexer::indexer_stop));
+    indexerButton.whenReleased(new InstantCommand(indexer::indexer_stop));
+    indexerButton2.whenReleased(new InstantCommand(indexer::indexer_stop));
     climberButton.whenPressed(new ClimberUp(climber));
     climberButton.whenReleased(new ClimberStop(climber));
     climberButtonDown.whenPressed(new ClimberDown(climber));
