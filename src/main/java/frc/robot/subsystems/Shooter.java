@@ -10,20 +10,42 @@ import edu.wpi.first.math.controller.PIDController;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.RelativeEncoder;
 
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
 	/** Creates a new Shooter. */
 	CANSparkMax motor1, motor2;
+	RelativeEncoder motor1_encoder, motor2_encoder;
 	MotorControllerGroup shooterGroup;
 	boolean isOn;
-	PIDController pid;
+	SparkMaxPIDController M1pid, M2pid;
 
 	public Shooter() {
 		motor1 = new CANSparkMax(Constants.SHOOT_MOTOR1, MotorType.kBrushless);
 		motor2 = new CANSparkMax(Constants.SHOOT_MOTOR2, MotorType.kBrushless);
+
+		M1pid = motor1.getPIDController();
+		M2pid = motor2.getPIDController();
+
+		motor1_encoder = motor1.getEncoder();
+		motor2_encoder = motor2.getEncoder();
 		shooterGroup = new MotorControllerGroup(motor1, motor2);
+
+		//setting PID values for motors
+		M1pid.setP(Constants.kP);
+		M1pid.setI(Constants.kI);
+		M1pid.setD(Constants.kD);
+		M2pid.setP(Constants.kP);
+		M2pid.setI(Constants.kI);
+		M2pid.setD(Constants.kD);
+	}
+
+	public static double getSpeed(double distance) {
+		// Add implementation
+		return 0.0;
 	}
 
 	public void off(){
