@@ -56,6 +56,9 @@ public class Drivetrain extends SubsystemBase {
       leftGearShift.set(true);
     }
   }
+   public void autoDrive(double speed1, double speed2) {
+     drive.tankDrive(-speed1, -speed2);
+   }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
