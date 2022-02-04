@@ -56,4 +56,5 @@ public final class Constants {
     public static final double DRIVE_AUTO_SPEED = 0.5;
     public static final double BACK_TIME = 1;
     public static final double SHOOT_TIME = 1;
+    public static final int CHANGE_GEAR_BUTTON = 0;
 }
