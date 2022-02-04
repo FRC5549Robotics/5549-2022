@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Shooter;
@@ -22,6 +23,8 @@ import frc.robot.commands.TurnToAngle;
 import frc.robot.commands.ClimberUp;
 import frc.robot.commands.ClimberDown;
 import frc.robot.commands.ClimberStop;
+import frc.robot.commands.AutoMove;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -87,6 +90,10 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return new SequentialCommandGroup(
+      new AutoMove(m_drivetrain, Constants.BACK_TIME),
+      new TurnToAngle(m_limelight, m_drivetrain),
+      new IndexerRunForSpecificTime(m_indexer, Constants.SHOOT_TIME)
+    );
   }
 }
