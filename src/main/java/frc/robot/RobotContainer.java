@@ -77,7 +77,7 @@ public class RobotContainer {
     climberButton.whenPressed(new ClimberUp(climber));
     climberButton.whenReleased(new ClimberStop(climber));
     climberButtonDown.whenPressed(new ClimberDown(climber));
-    climberButtonDown.whenReleased(new ClimberDown(climber));
+    climberButtonDown.whenReleased(new ClimberStop(climber));
   }
 
   /**
