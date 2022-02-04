@@ -93,9 +93,9 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return new SequentialCommandGroup(
-      new AutoMove(m_drivetrain, Constants.BACK_TIME),
-      new TurnToAngle(m_limelight, m_drivetrain),
-      new IndexerRunForSpecificTime(m_indexer, Constants.SHOOT_TIME)
+      new AutoMove(drivetrain, Constants.BACK_TIME),
+      new TurnToAngle(limelight, drivetrain),
+      new IndexerRunForSpecificTime(indexer, Constants.SHOOT_TIME)
     );
   }
 }
