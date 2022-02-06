@@ -26,7 +26,11 @@ public class AutoMove extends CommandBase {
             m_drivetrain.autoDrive(Constants.DRIVE_AUTO_SPEED, Constants.DRIVE_AUTO_SPEED);
     }
     @Override
-    public void end(boolean interrupted) { done = true; }
+    public void end(boolean interrupted) { 
+        done = true; 
+    }
     @Override
-    public boolean isFinished() { return done; }
+    public boolean isFinished() { 
+        return done; 
+    }
 }
