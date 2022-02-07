@@ -19,7 +19,9 @@ public class AutoMove extends CommandBase {
     }
 
     @Override
-    public void initialize() { t.start(); }
+    public void initialize() { 
+        t.start(); 
+    }
     @Override
     public void execute() {
         while (!t.advanceIfElapsed(max_time))

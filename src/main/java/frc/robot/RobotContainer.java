@@ -95,7 +95,9 @@ public class RobotContainer {
     return new SequentialCommandGroup(
       new AutoMove(drivetrain, Constants.BACK_TIME),
       new TurnToAngle(limelight, drivetrain),
-      new IndexerRunForSpecificTime(indexer, Constants.SHOOT_TIME)
+      new GetFlywheelUpToSpeed(shooter),
+      new IndexerRunForSpecificTime(indexer, Constants.SHOOT_TIME),
+      new TurnFlywheelOff(shooter)
     );
   }
 }
