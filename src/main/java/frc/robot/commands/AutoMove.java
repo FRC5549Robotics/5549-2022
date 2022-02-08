@@ -24,8 +24,9 @@ public class AutoMove extends CommandBase {
     }
     @Override
     public void execute() {
-        while (!t.advanceIfElapsed(max_time))
+        if (!t.advanceIfElapsed(max_time)){
             m_drivetrain.autoDrive(Constants.DRIVE_AUTO_SPEED, Constants.DRIVE_AUTO_SPEED);
+        }
     }
     @Override
     public void end(boolean interrupted) { 

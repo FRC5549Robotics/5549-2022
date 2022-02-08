@@ -54,7 +54,7 @@ public class Shooter extends SubsystemBase {
 		if((d != Constants.kD)) { M1pid.setD(d); kD = d; }
 	
     SmartDashboard.putNumber("motor 1 velocity", motor1_encoder.getVelocity());
-	SmartDashboard.putNumber("motor 1 velocity", motor1_encoder.getVelocity());
+	SmartDashboard.putNumber("motor 2 velocity", motor2_encoder.getVelocity());
 	}
 
 	public static double getSpeed(double distance) {
@@ -80,5 +80,7 @@ public class Shooter extends SubsystemBase {
 	}
 	
 	@Override
-	public void periodic(){}
+	public void periodic(){
+
+	}
 }
