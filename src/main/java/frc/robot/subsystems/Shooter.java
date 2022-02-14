@@ -64,12 +64,6 @@ public class Shooter extends SubsystemBase {
 		M1pid.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
 		M2pid.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
 	}
-
-	public double getCurrentRPM() {
-    double count = motor1.getEncoder().getCountsPerRevolution()/4;
-	double currentRPM = (count/4096) * (60);
-	return currentRPM;
-	}
 	
 	@Override
 	public void periodic(){
