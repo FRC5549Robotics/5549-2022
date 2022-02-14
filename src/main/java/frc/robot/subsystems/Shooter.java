@@ -44,14 +44,6 @@ public class Shooter extends SubsystemBase {
 		SmartDashboard.putNumber("P1 Gain", Constants.kP);
 		SmartDashboard.putNumber("I1 Gain", Constants.kI);
 		SmartDashboard.putNumber("D1 Gain", Constants.kD);
-
-		double p = SmartDashboard.getNumber("P Gain", 0);
-		double i = SmartDashboard.getNumber("I Gain", 0);
-		double d = SmartDashboard.getNumber("D Gain", 0);
-
-		if((p != Constants.kP)) { M1pid.setP(p); kP = p; }
-		if((i != Constants.kI)) { M1pid.setI(i); kI = i; }
-		if((d != Constants.kD)) { M1pid.setD(d); kD = d; }
 	
     SmartDashboard.putNumber("motor 1 velocity", motor1_encoder.getVelocity());
 	SmartDashboard.putNumber("motor 2 velocity", motor2_encoder.getVelocity());
