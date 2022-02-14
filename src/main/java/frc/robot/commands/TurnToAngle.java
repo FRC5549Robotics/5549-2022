@@ -29,8 +29,8 @@ public class TurnToAngle extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(m_limelight.getAngle > 5 && m_limelight.getAngle < -5){
-      m_drivetrain.arcadeDriveMethod(m_limelight.getAngle);
+    if(m_limelight.getAngle() > 5 && m_limelight.getAngle() < -5){
+      m_drivetrain.arcadeDriveMethod(m_limelight.getAngle());
       SmartDashboard.putNumber("Horizontal Angle:", m_limelight.getAngle());
     }
 
