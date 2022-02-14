@@ -4,6 +4,9 @@
 
 package frc.robot.commands;
 
+import javax.lang.model.util.ElementScanner6;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Drivetrain;
@@ -26,9 +29,11 @@ public class TurnToAngle extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    while (m_limelight.getAngle() > 5 || m_limelight.getAngle() < -5) {
-      m_drivetrain.arcadeDriveMethod(m_angle);
+    if(m_limelight.getAngle > 5 && m_limelight.getAngle < -5){
+      m_drivetrain.arcadeDriveMethod(m_limelight.getAngle);
+      SmartDashboard.putNumber("Horizontal Angle:", m_limelight.getAngle());
     }
+
   }
 
   // Called once the command ends or is interrupted.

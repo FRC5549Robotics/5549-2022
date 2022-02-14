@@ -18,7 +18,7 @@ public class Intake extends SubsystemBase {
   //import/put the correct file
   public Intake() {
     /* Creates a new Intake. */
-    motor_intake_1 = new CANSparkMax(Constants.MOTOR_INTAKE, MotorType.kBrushless);
+    motor_intake_1 = new CANSparkMax(Constants.MOTOR_INTAKE, MotorType.kBrushed);
    
     // turns right motor in opposite direction of left motor
     // allows for motors to rotate towards the center, intaking objects
