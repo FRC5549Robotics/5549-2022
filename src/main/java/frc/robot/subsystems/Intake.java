@@ -7,18 +7,19 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
   /* Intake Class */
-  CANSparkMax motor_intake_1;
+  WPI_TalonSRX motor_intake_1;
   
   
   //import/put the correct file
   public Intake() {
     /* Creates a new Intake. */
-    motor_intake_1 = new CANSparkMax(Constants.MOTOR_INTAKE, MotorType.kBrushed);
+    motor_intake_1 = new WPI_TalonSRX(Constants.MOTOR_INTAKE);
    
     // turns right motor in opposite direction of left motor
     // allows for motors to rotate towards the center, intaking objects
