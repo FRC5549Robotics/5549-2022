@@ -46,14 +46,14 @@ public class RobotContainer {
 
   public static Joystick joystickLeft = new Joystick(Constants.JOYSTICK_LEFT);
   public static Joystick joystickRight = new Joystick(Constants.JOYSTICK_RIGHT);
-  JoystickButton shootButton = new JoystickButton(joystickRight, Constants.SHOOT_BUTTON);
   public XboxController xbox = new XboxController(Constants.XBOX_CONTROLLER);
+  JoystickButton shootButton = new JoystickButton(xbox, Constants.SHOOT_BUTTON);
   JoystickButton intakeButton = new JoystickButton(xbox, Constants.INTAKE_BUTTON);
   JoystickButton climberButton = new JoystickButton(xbox, Constants.CLIMBER_BUTTON);
   JoystickButton climberButtonDown = new JoystickButton(xbox, Constants.CLIMBER_BUTTON2);
   JoystickButton indexerButton = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
   JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON2);
-  JoystickButton changeGear = new JoystickButton(xbox, Constants.CHANGE_GEAR_BUTTON);
+  JoystickButton changeGear = new JoystickButton(joystickRight, Constants.CHANGE_GEAR_BUTTON);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */

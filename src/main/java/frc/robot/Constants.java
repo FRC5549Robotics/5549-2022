@@ -21,7 +21,7 @@ public final class Constants {
 
     public static final int SHOOT_MOTOR1 = 4;
     public static final int SHOOT_MOTOR2 = 5;
-    public static final int SHOOT_BUTTON = 10;
+    public static final int SHOOT_BUTTON = 4;
     public static final double kP = 0;
     public static final double kI = 0;
     public static final double kD = 0;
@@ -35,13 +35,13 @@ public final class Constants {
 
     public static final int MOTOR_INTAKE = 0;
     public static final int INTAKE_SPEED = 0;
-    public static final int INTAKE_BUTTON = 0;
+    public static final int INTAKE_BUTTON = 3;
 
     public static final int CLIMBER_SPEED = 0;
     public static final int CLIMBER_MOTOR_1 = 0;
     public static final int CLIMBER_MOTOR_2 = 0;
-    public static final int CLIMBER_BUTTON = 0;
-    public static final int CLIMBER_BUTTON2 = 0;
+    public static final int CLIMBER_BUTTON = 6;
+    public static final int CLIMBER_BUTTON2 = 5;
 
     public static final int ANGLE_CAMERA = 45;
     public static final double HEIGHT_TARGET = 101.625;
@@ -49,13 +49,13 @@ public final class Constants {
 
     public static final int INDEXER_MOTOR_1 = 0;
     public static final double INDEXER_SPEED = 0;
-    public static final int INDEXER_BUTTON = 0;
-    public static final int INDEXER_BUTTON2 = 0;
+    public static final int INDEXER_BUTTON = 2;
+    public static final int INDEXER_BUTTON2 = 1;
     public static final int INDEXER_PERIOD = 1;
 
     public static final double DRIVE_AUTO_SPEED = 0.5;
     public static final double BACK_TIME = 1;
     public static final double SHOOT_TIME = 1;
-    public static final int CHANGE_GEAR_BUTTON = 0;
+    public static final int CHANGE_GEAR_BUTTON = 1;
     public static final int XBOX_CONTROLLER = 0;
 }
