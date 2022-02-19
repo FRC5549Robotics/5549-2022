@@ -47,7 +47,7 @@ public final class Constants {
     public static final double HEIGHT_TARGET = 101.625;
     public static final int HEIGHT_CAMERA = 38;
 
-    public static final int INDEXER_MOTOR_1 = 0;
+    public static final int INDEXER_MOTOR = 5;
     public static final double INDEXER_SPEED = 0;
     public static final int INDEXER_BUTTON = 2;
     public static final int INDEXER_BUTTON2 = 1;
