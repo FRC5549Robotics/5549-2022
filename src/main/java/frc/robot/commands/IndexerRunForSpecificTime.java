@@ -8,18 +8,21 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
 
 public class IndexerRunForSpecificTime extends CommandBase {
   /** Creates a new IndexerRunForSpecificTime. */
   private final Indexer m_indexer;
+  private final Intake m_intake;
   private double m_time;
   private double startTime;
   private boolean isIndexerDone = false;
   private double m_maxTime;
-  public IndexerRunForSpecificTime(Indexer indexer, double time) {
+  public IndexerRunForSpecificTime(Indexer indexer, Intake intake, double time) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_indexer = indexer;
     m_maxTime = time;
+    m_intake = intake;
     addRequirements(indexer);
   }
 
@@ -36,6 +39,7 @@ public class IndexerRunForSpecificTime extends CommandBase {
     m_time = (System.currentTimeMillis() - startTime) / 1000;
     if ((m_time >= 0.0) && (m_time < m_maxTime)){
       m_indexer.indexer_run(Constants.INDEXER_SPEED);
+      m_intake.intake_bottom();
     }
     if ((m_time >= m_maxTime)){
       isIndexerDone = true;
