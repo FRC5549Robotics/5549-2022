@@ -34,7 +34,7 @@ public final class Constants {
     public static final int LEFTSOLENOID = 0;
 
     public static final int MOTOR_INTAKE = 11;
-    public static final int INTAKE_SPEED = 0;
+    public static final double INTAKE_SPEED = 0.5;
     public static final int INTAKE_BUTTON = 3;
 
     public static final int CLIMBER_SPEED = 0;
@@ -48,7 +48,7 @@ public final class Constants {
     public static final int HEIGHT_CAMERA = 38;
 
     public static final int INDEXER_MOTOR = 5;
-    public static final double INDEXER_SPEED = 0;
+    public static final double INDEXER_SPEED = 0.5;
     public static final int INDEXER_BUTTON = 2;
     public static final int INDEXER_BUTTON2 = 1;
     public static final int INDEXER_PERIOD = 1;
