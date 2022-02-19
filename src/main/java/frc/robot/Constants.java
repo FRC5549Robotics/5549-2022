@@ -33,7 +33,7 @@ public final class Constants {
     public static final int RIGHTSOLENOID = 0;
     public static final int LEFTSOLENOID = 0;
 
-    public static final int MOTOR_INTAKE = 0;
+    public static final int MOTOR_INTAKE = 11;
     public static final int INTAKE_SPEED = 0;
     public static final int INTAKE_BUTTON = 3;
 
