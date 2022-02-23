@@ -13,14 +13,14 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int LEFT_MOTOR1 = 0;
-    public static final int LEFT_MOTOR2 = 1;
-    public static final int RIGHT_MOTOR1 = 2;
-    public static final int RIGHT_MOTOR2 = 3;
-    public static final double SCALING_FACTOR = -1;
+    public static final int LEFT_MOTOR1 = 6;
+    public static final int LEFT_MOTOR2 = 7;
+    public static final int RIGHT_MOTOR1 = 1;
+    public static final int RIGHT_MOTOR2 = 2;
+    public static final double SCALING_FACTOR = -0.5;
 
-    public static final int SHOOT_MOTOR1 = 4;
-    public static final int SHOOT_MOTOR2 = 5;
+    public static final int SHOOT_MOTOR1 = 8;
+    public static final int SHOOT_MOTOR2 = 9;
     public static final int SHOOT_BUTTON = 4;
     public static final double kP = 0;
     public static final double kI = 0;
@@ -38,8 +38,8 @@ public final class Constants {
     public static final int INTAKE_BUTTON = 3;
 
     public static final int CLIMBER_SPEED = 0;
-    public static final int CLIMBER_MOTOR_1 = 0;
-    public static final int CLIMBER_MOTOR_2 = 0;
+    public static final int CLIMBER_MOTOR_1 = 3;
+    public static final int CLIMBER_MOTOR_2 = 4;
     public static final int CLIMBER_BUTTON = 6;
     public static final int CLIMBER_BUTTON2 = 5;
 
