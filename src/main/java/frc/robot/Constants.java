@@ -17,7 +17,7 @@ public final class Constants {
     public static final int LEFT_MOTOR2 = 7;
     public static final int RIGHT_MOTOR1 = 1;
     public static final int RIGHT_MOTOR2 = 2;
-    public static final double SCALING_FACTOR = -0.5;
+    public static final double SCALING_FACTOR = 0.5;
 
     public static final int SHOOT_MOTOR1 = 8;
     public static final int SHOOT_MOTOR2 = 9;
@@ -30,8 +30,10 @@ public final class Constants {
     public static final int JOYSTICK_LEFT = 2;
     public static final int JOYSTICK_RIGHT = 1;
 
-    public static final int RIGHTSOLENOID = 0;
-    public static final int LEFTSOLENOID = 0;
+    public static final int RIGHTSOLENOID_FORWARD = 0;
+    public static final int LEFTSOLENOID_FORWARD = 1;
+    public static final int RIGHTSOLENOID_REVERSE = 2;
+    public static final int LEFTSOLENOID_REVERSE = 3;
 
     public static final int MOTOR_INTAKE = 11;
     public static final double INTAKE_SPEED = 0.4;
