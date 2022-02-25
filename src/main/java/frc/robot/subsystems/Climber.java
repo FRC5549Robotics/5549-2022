@@ -21,7 +21,7 @@ public class Climber extends SubsystemBase {
   public Climber() {
     climber_motor_L = new CANSparkMax(Constants.CLIMBER_MOTOR_1, MotorType.kBrushless);
     climber_motor_R = new CANSparkMax(Constants.CLIMBER_MOTOR_2, MotorType.kBrushless);
-    climber_motor_L.setInverted(true);
+    //climber_motor_L.setInverted(true);
     // turns right motor in opposite direction of left motor
     // allows for motors to rotate towards the center, intaking objects
     // or rotating outwards from the center, ejecting objects
@@ -30,11 +30,13 @@ public class Climber extends SubsystemBase {
   
   // Called just before this Command runs the first time
   public void up() {
-    climber_motor_group.set(Constants.CLIMBER_SPEED);
+    climber_motor_L.set(-Constants.CLIMBER_SPEED);
+    climber_motor_R.set(Constants.CLIMBER_SPEED);
   }
   // Called repeatedly when this Command is scheduled to run
   public void down() {
-    climber_motor_group.set(-Constants.CLIMBER_SPEED);
+    climber_motor_L.set(Constants.CLIMBER_SPEED);
+    climber_motor_R.set(-Constants.CLIMBER_SPEED);
   }
   public void stop() {
     climber_motor_group.set(0);

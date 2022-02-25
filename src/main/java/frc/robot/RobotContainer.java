@@ -46,10 +46,11 @@ public class RobotContainer {
   public static Joystick joystickLeft = new Joystick(Constants.JOYSTICK_LEFT);
   public static Joystick joystickRight = new Joystick(Constants.JOYSTICK_RIGHT);
   public XboxController xbox = new XboxController(Constants.XBOX_CONTROLLER);
-  JoystickButton shootButton = new JoystickButton(xbox, Constants.SHOOT_BUTTON);
+  //JoystickButton shootButton = new JoystickButton(xbox, Constants.SHOOT_BUTTON);
   JoystickButton intakeButton = new JoystickButton(xbox, Constants.INTAKE_BUTTON);
-  JoystickButton climberButton = new JoystickButton(xbox, Constants.CLIMBER_BUTTON);
-  JoystickButton climberButtonDown = new JoystickButton(xbox, Constants.CLIMBER_BUTTON2);
+  JoystickButton intakeButton2 = new JoystickButton(xbox, Constants.SHOOT_BUTTON);
+  JoystickButton climberButton = new JoystickButton(xbox, Constants.CLIMBER_BUTTON2);
+  JoystickButton climberButtonDown = new JoystickButton(xbox, Constants.CLIMBER_BUTTON);
   JoystickButton indexerButton = new JoystickButton(xbox, Constants.INDEXER_BUTTON2);
   JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
   public final Shooter shooter = new Shooter(xbox);
@@ -70,18 +71,20 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     drivetrain.setDefaultCommand(new TankDrive(drivetrain, joystickLeft, joystickRight));
-    shootButton.whenPressed(new SequentialCommandGroup(new TurnToAngle(limelight, drivetrain), 
-    new GetFlywheelUpToSpeed(shooter), new IndexerRunForSpecificTime(indexer, intake, 2), new TurnFlywheelOff(shooter)));
-    intakeButton.whenPressed(new InstantCommand(intake::intake_bottom));
+    //shootButton.whenPressed(new SequentialCommandGroup(new TurnToAngle(limelight, drivetrain), 
+    //new GetFlywheelUpToSpeed(shooter), new IndexerRunForSpecificTime(indexer, intake, 2), new TurnFlywheelOff(shooter)));
+    intakeButton.whenPressed(new InstantCommand(intake::intake_up));
+    intakeButton2.whenPressed(new InstantCommand(intake::intake_bottom));
     intakeButton.whenReleased(new InstantCommand(intake::intake_stop));
+    intakeButton2.whenReleased(new InstantCommand(intake::intake_stop));
     indexerButton.whenPressed(new InstantCommand(indexer::indexer_up));
     indexerButton2.whenPressed(new InstantCommand(indexer::indexer_back));
     indexerButton.whenReleased(new InstantCommand(indexer::indexer_stop));
     indexerButton2.whenReleased(new InstantCommand(indexer::indexer_stop));
-    climberButton.whenPressed(new ClimberUp(climber));
-    climberButton.whenReleased(new ClimberStop(climber));
-    climberButtonDown.whenPressed(new ClimberDown(climber));
-    climberButtonDown.whenReleased(new ClimberDown(climber));
+    climberButton.whenPressed(new InstantCommand(climber::up));
+    climberButton.whenReleased(new InstantCommand(climber::stop));
+    climberButtonDown.whenPressed(new InstantCommand(climber::down));
+    climberButtonDown.whenReleased(new InstantCommand(climber::stop));
     changeGear.whenPressed(new InstantCommand(drivetrain::changeGear));
   }
     

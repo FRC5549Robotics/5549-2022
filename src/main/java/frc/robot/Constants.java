@@ -17,7 +17,7 @@ public final class Constants {
     public static final int LEFT_MOTOR2 = 7;
     public static final int RIGHT_MOTOR1 = 1;
     public static final int RIGHT_MOTOR2 = 2;
-    public static final double SCALING_FACTOR = 0.5;
+    public static final double SCALING_FACTOR = 1;
 
     public static final int SHOOT_MOTOR1 = 8;
     public static final int SHOOT_MOTOR2 = 9;
@@ -36,7 +36,7 @@ public final class Constants {
     public static final int LEFTSOLENOID_REVERSE = 3;
 
     public static final int MOTOR_INTAKE = 11;
-    public static final double INTAKE_SPEED = 0.4;
+    public static final double INTAKE_SPEED = 0.3;
     public static final int INTAKE_BUTTON = 3;
 
     public static final double CLIMBER_SPEED = 0.25;
@@ -50,7 +50,7 @@ public final class Constants {
     public static final int HEIGHT_CAMERA = 38;
 
     public static final int INDEXER_MOTOR = 5;
-    public static final double INDEXER_SPEED = 0.3;
+    public static final double INDEXER_SPEED = 0.75;
     public static final int INDEXER_BUTTON = 2;
     public static final int INDEXER_BUTTON2 = 1;
     public static final int INDEXER_PERIOD = 1;

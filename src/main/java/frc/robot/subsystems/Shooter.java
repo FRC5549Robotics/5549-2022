@@ -35,6 +35,8 @@ public class Shooter extends SubsystemBase {
 
 		shooterGroup = new MotorControllerGroup(motor1, motor2);
 
+		
+
 		M1pid = motor1.getPIDController();
 		M2pid = motor2.getPIDController();
 

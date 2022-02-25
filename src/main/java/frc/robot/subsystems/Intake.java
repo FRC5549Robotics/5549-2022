@@ -24,9 +24,13 @@ public class Intake extends SubsystemBase {
     // or rotating outwards from the center, ejecting objects
   }
 
-  public void intake_bottom(){
+  public void intake_up(){
 
     motor_intake_1.set(Constants.INTAKE_SPEED);
+  }
+
+  public void intake_bottom(){
+    motor_intake_1.set(-Constants.INTAKE_SPEED);
   }
 
   public void intake_stop(){
