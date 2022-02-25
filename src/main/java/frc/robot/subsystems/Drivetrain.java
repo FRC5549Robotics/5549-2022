@@ -25,6 +25,7 @@ public class Drivetrain extends SubsystemBase {
   public Drivetrain() {
     leftFront =  new CANSparkMax(Constants.LEFT_MOTOR1, MotorType.kBrushless);
     leftBack = new CANSparkMax(Constants.LEFT_MOTOR2, MotorType.kBrushless);
+
     rightFront = new CANSparkMax(Constants.RIGHT_MOTOR1, MotorType.kBrushless);
     rightBack = new CANSparkMax(Constants.RIGHT_MOTOR2, MotorType.kBrushless);
 
@@ -32,7 +33,6 @@ public class Drivetrain extends SubsystemBase {
     rightGroup = new MotorControllerGroup(rightFront, rightBack);
 
     drive = new DifferentialDrive(rightGroup, leftGroup);
-
 
     rightGearShift = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.RIGHTSOLENOID_FORWARD, Constants.RIGHTSOLENOID_REVERSE);
     leftGearShift = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.LEFTSOLENOID_REVERSE, Constants.LEFTSOLENOID_REVERSE);
