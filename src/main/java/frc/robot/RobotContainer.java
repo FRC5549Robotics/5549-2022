@@ -38,7 +38,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final Drivetrain drivetrain = new Drivetrain();
-  public final Shooter shooter = new Shooter();
   public final Intake intake = new Intake();
   public final Climber climber = new Climber();
   public final Limelight limelight = new Limelight();
@@ -53,6 +52,7 @@ public class RobotContainer {
   JoystickButton climberButtonDown = new JoystickButton(xbox, Constants.CLIMBER_BUTTON2);
   JoystickButton indexerButton = new JoystickButton(xbox, Constants.INDEXER_BUTTON2);
   JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
+  public final Shooter shooter = new Shooter(xbox);
   JoystickButton changeGear = new JoystickButton(joystickRight, Constants.CHANGE_GEAR_BUTTON);
 
 
@@ -84,6 +84,7 @@ public class RobotContainer {
     climberButtonDown.whenReleased(new ClimberDown(climber));
     changeGear.whenPressed(new InstantCommand(drivetrain::changeGear));
   }
+    
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -26,9 +27,13 @@ public class Shooter extends SubsystemBase {
 	double kI = Constants.kI;
 	double kD = Constants.kD;
 
-	public Shooter() {
+	XboxController xboxTrigger;
+
+	public Shooter(XboxController xbox) {
 		motor1 = new CANSparkMax(Constants.SHOOT_MOTOR1, MotorType.kBrushless);
 		motor2 = new CANSparkMax(Constants.SHOOT_MOTOR2, MotorType.kBrushless);
+
+		shooterGroup = new MotorControllerGroup(motor1, motor2);
 
 		M1pid = motor1.getPIDController();
 		M2pid = motor2.getPIDController();
@@ -44,6 +49,7 @@ public class Shooter extends SubsystemBase {
 		SmartDashboard.putNumber("P1 Gain", Constants.kP);
 		SmartDashboard.putNumber("I1 Gain", Constants.kI);
 		SmartDashboard.putNumber("D1 Gain", Constants.kD);
+		xboxTrigger = xbox;
 	
     SmartDashboard.putNumber("motor 1 velocity", motor1_encoder.getVelocity());
 	SmartDashboard.putNumber("motor 2 velocity", motor2_encoder.getVelocity());
@@ -52,6 +58,10 @@ public class Shooter extends SubsystemBase {
 	public static double getSpeed(double distance) {
 		// Add implementation
 		return 0.0;
+	}
+
+	public void runShooter(double speed){
+		shooterGroup.set(speed);
 	}
 
 	public void off(){
@@ -67,6 +77,11 @@ public class Shooter extends SubsystemBase {
 	
 	@Override
 	public void periodic(){
-
+		if(xboxTrigger.getRawAxis(2) > 0.1) {
+    		shooterGroup.set(xboxTrigger.getRawAxis(2));
+    	}
+		else {
+			shooterGroup.set(0);
+		}
 	}
 }
