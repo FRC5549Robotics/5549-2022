@@ -20,9 +20,6 @@ import frc.robot.commands.TurnFlywheelOff;
 import frc.robot.commands.GetFlywheelUpToSpeed;
 import frc.robot.commands.IndexerRunForSpecificTime;
 import frc.robot.commands.TurnToAngle;
-import frc.robot.commands.ClimberUp;
-import frc.robot.commands.ClimberDown;
-import frc.robot.commands.ClimberStop;
 import frc.robot.commands.AutoMove;
 
 import edu.wpi.first.wpilibj2.command.Command;
