@@ -15,6 +15,7 @@ public class TurnToAngle extends CommandBase {
   Double m_angle;
   Limelight m_limelight;
   Drivetrain m_drivetrain;
+  boolean isDone = false;
   public TurnToAngle(Limelight limelight, Drivetrain drivetrain) {
     m_limelight = limelight;
     m_angle = m_limelight.getAngle();
@@ -31,6 +32,9 @@ public class TurnToAngle extends CommandBase {
     if(m_limelight.getAngle() > 5 && m_limelight.getAngle() < -5){
       m_drivetrain.arcadeDriveMethod(m_limelight.getAngle());
       SmartDashboard.putNumber("Horizontal Angle:", m_limelight.getAngle());
+    }
+    else{
+      isDone = true;
     }
 
   }

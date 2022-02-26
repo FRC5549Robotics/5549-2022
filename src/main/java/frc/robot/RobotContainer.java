@@ -52,6 +52,7 @@ public class RobotContainer {
   JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
   public final Shooter shooter = new Shooter(xbox);
   JoystickButton changeGear = new JoystickButton(joystickRight, Constants.CHANGE_GEAR_BUTTON);
+  JoystickButton turnButton = new JoystickButton(joystickRight, 4);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -83,6 +84,7 @@ public class RobotContainer {
     climberButtonDown.whenPressed(new InstantCommand(climber::down));
     climberButtonDown.whenReleased(new InstantCommand(climber::stop));
     changeGear.whenPressed(new InstantCommand(drivetrain::changeGear));
+    turnButton.whenPressed(new TurnToAngle(limelight, drivetrain));
   }
     
 
