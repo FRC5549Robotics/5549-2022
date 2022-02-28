@@ -27,8 +27,8 @@ public final class Constants {
     public static final double kD = 0;
     public static final double tP = 1/27;
 
-    public static final int JOYSTICK_LEFT = 2;
-    public static final int JOYSTICK_RIGHT = 1;
+    public static final int JOYSTICK_LEFT = 1;
+    public static final int JOYSTICK_RIGHT = 2;
 
     public static final int RIGHTSOLENOID_FORWARD = 0;
     public static final int LEFTSOLENOID_FORWARD = 1;
@@ -50,7 +50,7 @@ public final class Constants {
     public static final int HEIGHT_CAMERA = 38;
 
     public static final int INDEXER_MOTOR = 5;
-    public static final double INDEXER_SPEED = 0.75;
+    public static final double INDEXER_SPEED = 0.9;
     public static final int INDEXER_BUTTON = 2;
     public static final int INDEXER_BUTTON2 = 1;
     public static final int INDEXER_PERIOD = 1;

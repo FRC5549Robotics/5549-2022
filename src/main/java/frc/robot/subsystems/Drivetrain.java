@@ -44,7 +44,7 @@ public class Drivetrain extends SubsystemBase {
 
   public void tankDriveMethod(double leftJoystickAxis, double rightJoystickAxis) {
     double ScalingFactor = Constants.SCALING_FACTOR;
-    drive.tankDrive(-leftJoystickAxis * ScalingFactor, rightJoystickAxis * ScalingFactor);
+    drive.tankDrive(leftJoystickAxis * ScalingFactor, rightJoystickAxis * ScalingFactor);
   }
 
   public void arcadeDriveMethod(double limelight_angletx) {
