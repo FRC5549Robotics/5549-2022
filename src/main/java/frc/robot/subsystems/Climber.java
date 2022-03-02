@@ -40,6 +40,7 @@ public class Climber extends SubsystemBase {
   }
   public void stop() {
     climber_motor_group.set(0);
+    //climber_motor_L.set(0);
   }
   @Override
   public void periodic() {

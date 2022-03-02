@@ -16,6 +16,8 @@ import com.revrobotics.RelativeEncoder;
 
 import frc.robot.Constants;
 
+import r3.Record;
+
 public class Shooter extends SubsystemBase {
 	/** Creates a new Shooter. */
 	CANSparkMax motor1, motor2;
@@ -34,8 +36,6 @@ public class Shooter extends SubsystemBase {
 		motor2 = new CANSparkMax(Constants.SHOOT_MOTOR2, MotorType.kBrushless);
 
 		shooterGroup = new MotorControllerGroup(motor1, motor2);
-
-		
 
 		M1pid = motor1.getPIDController();
 		M2pid = motor2.getPIDController();
@@ -63,10 +63,12 @@ public class Shooter extends SubsystemBase {
 	}
 
 	public void runShooter(double speed){
+		Record.recordCall(this, speed);
 		shooterGroup.set(speed);
 	}
 
 	public void off(){
+		Record.recordCall(this);
 		shooterGroup.set(0);
 	}
 
@@ -80,10 +82,9 @@ public class Shooter extends SubsystemBase {
 	@Override
 	public void periodic(){
 		if(xboxTrigger.getRawAxis(2) > 0.1) {
-    		shooterGroup.set(xboxTrigger.getRawAxis(2));
-    	}
-		else {
-			shooterGroup.set(0);
+    		runShooter(xboxTrigger.getRawAxis(2));
+    	} else {
+			off();
 		}
 	}
 }

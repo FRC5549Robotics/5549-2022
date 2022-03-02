@@ -21,6 +21,7 @@ public class Limelight extends SubsystemBase {
   }
 
   public double getAngle() {
+    update();    // Executive decision by Pradhyum
     if (tx != 0) {
       return tx;
     }
@@ -29,6 +30,7 @@ public class Limelight extends SubsystemBase {
 
 
   public double getDistance() {
+    update();   // Executive decision by Pradhyum
     if (tv != 0) {
       angle = (Constants.ANGLE_CAMERA + ty) * Math.PI / 180;
       distance = (Constants.HEIGHT_TARGET - Constants.HEIGHT_CAMERA) / Math.tan(angle);
@@ -42,8 +44,13 @@ public class Limelight extends SubsystemBase {
     //Add implementation
   }
 
+  private void update() {     // Executive decision by Pradhyum
+    ty = limelightTable.getEntry("ty").getDouble(0);
+    tv = limelightTable.getEntry("tv").getDouble(0);
+    tx = limelightTable.getEntry("tx").getDouble(0);
+  }
+
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
   }
 }

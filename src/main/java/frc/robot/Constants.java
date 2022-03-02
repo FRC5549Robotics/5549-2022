@@ -50,7 +50,7 @@ public final class Constants {
     public static final int HEIGHT_CAMERA = 38;
 
     public static final int INDEXER_MOTOR = 5;
-    public static final double INDEXER_SPEED = 0.9;
+    public static final double INDEXER_SPEED = 1;//0.9 normally
     public static final int INDEXER_BUTTON = 2;
     public static final int INDEXER_BUTTON2 = 1;
     public static final int INDEXER_PERIOD = 1;

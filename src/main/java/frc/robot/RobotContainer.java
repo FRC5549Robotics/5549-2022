@@ -26,6 +26,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
+import r3.Record;
+import r3.Replay;
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -54,6 +57,9 @@ public class RobotContainer {
   JoystickButton changeGear = new JoystickButton(joystickRight, Constants.CHANGE_GEAR_BUTTON);
   JoystickButton turnButton = new JoystickButton(joystickRight, 4);
 
+  JoystickButton recordButton = new JoystickButton(joystickLeft, 8);
+
+  
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -85,6 +91,7 @@ public class RobotContainer {
     climberButtonDown.whenReleased(new InstantCommand(climber::stop));
     changeGear.whenPressed(new InstantCommand(drivetrain::changeGear));
     turnButton.whenPressed(new TurnToAngle(limelight, drivetrain));
+    recordButton.whenPressed(new InstantCommand(Record::toggle));
   }
     
 
@@ -95,12 +102,13 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new SequentialCommandGroup(
-      new AutoMove(drivetrain, Constants.BACK_TIME),
-      new TurnToAngle(limelight, drivetrain),
-      new GetFlywheelUpToSpeed(shooter),
-      new IndexerRunForSpecificTime(indexer, intake, Constants.SHOOT_TIME),
-      new TurnFlywheelOff(shooter)
-    );
+    return new InstantCommand(() -> Replay.replay("recording.bin"));
+    // return new SequentialCommandGroup(
+    //   new AutoMove(drivetrain, Constants.BACK_TIME),
+    //   new TurnToAngle(limelight, drivetrain),
+    //   new GetFlywheelUpToSpeed(shooter),
+    //   new IndexerRunForSpecificTime(indexer, intake, Constants.SHOOT_TIME),
+    //   new TurnFlywheelOff(shooter)
+    // );
   }
 }

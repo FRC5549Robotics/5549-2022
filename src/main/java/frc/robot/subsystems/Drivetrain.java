@@ -14,6 +14,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants;
 
+import r3.Record;
+
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
   CANSparkMax leftFront, rightFront, leftBack, rightBack;
@@ -43,6 +45,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void tankDriveMethod(double leftJoystickAxis, double rightJoystickAxis) {
+    Record.recordCall(this, leftJoystickAxis, rightJoystickAxis);
     double ScalingFactor = Constants.SCALING_FACTOR;
     drive.tankDrive(leftJoystickAxis * ScalingFactor, rightJoystickAxis * ScalingFactor);
   }
@@ -51,15 +54,25 @@ public class Drivetrain extends SubsystemBase {
     drive.arcadeDrive(0, limelight_angletx*Constants.tP);
   }
 
+  public void align(Limelight l) {
+    Record.recordCall(this, l);
+    arcadeDriveMethod(l.getAngle());
+  }
+
   public void changeGear() {
     rightGearShift.toggle();
     leftGearShift.toggle();
   }
-   public void autoDrive(double speed1, double speed2) {
+  
+  public void autoDrive(double speed1, double speed2) {
      drive.tankDrive(-speed1, -speed2);
    }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public static Drivetrain getInstance() {
+    return new Drivetrain();
   }
 }
