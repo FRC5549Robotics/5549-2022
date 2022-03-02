@@ -55,10 +55,8 @@ public class RobotContainer {
   JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
   public final Shooter shooter = new Shooter(xbox);
   JoystickButton changeGear = new JoystickButton(joystickRight, Constants.CHANGE_GEAR_BUTTON);
-  JoystickButton turnButton = new JoystickButton(joystickRight, 4);
-
+  JoystickButton turnButton = new JoystickButton(xbox, 8);
   JoystickButton recordButton = new JoystickButton(joystickLeft, 8);
-
   
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
