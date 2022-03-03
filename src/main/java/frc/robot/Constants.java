@@ -17,7 +17,7 @@ public final class Constants {
     public static final int RIGHT_MOTOR2 = 7;
     public static final int LEFT_MOTOR1 = 1;
     public static final int LEFT_MOTOR2 = 2;
-    public static final double SCALING_FACTOR = 1;
+    public static final double SCALING_FACTOR = 0.75;
 
     public static final int SHOOT_MOTOR1 = 8;
     public static final int SHOOT_MOTOR2 = 9;
