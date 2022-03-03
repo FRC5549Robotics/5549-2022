@@ -8,6 +8,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Limelight extends SubsystemBase {
   /** Creates a new Limelight. */
@@ -22,6 +23,7 @@ public class Limelight extends SubsystemBase {
 
   public double getAngle() {
     update();    // Executive decision by Pradhyum
+    SmartDashboard.putNumber("Horizontal Angle:", tx);
     if (tx != 0) {
       return tx;
     }
