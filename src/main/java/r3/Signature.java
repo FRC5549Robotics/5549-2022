@@ -62,13 +62,14 @@ public class Signature implements Serializable {
 		try {
 			if (useGetInstance) {
 				// Can't use getOrDefault because of eager evaluation. Think about it further.
-				instance = classToObj.containsKey(parentClass)
-					? classToObj.get(parentClass)
-					: parentClass.getMethod("getInstance").invoke(null);
-				classToObj.putIfAbsent(parentClass, instance);
+				instance = classToObj.get(parentClass);
+				if (instance == null) {
+					instance = parentClass.getMethod("getInstance").invoke(null);
+					classToObj.put(parentClass, instance);
+				}
 			}
 		} catch (NoSuchMethodException e) {
-			System.out.println("getInstance was not defined.");
+			System.out.println("getInstance for " + parentClass.toString() + " was not defined.");
 			valid = false;
 		} catch (IllegalAccessException e) {
 			System.out.println("getInstance is private or protected.");
@@ -92,15 +93,21 @@ public class Signature implements Serializable {
 	public void invoke(Object... args) {
 		try {
 			configureInstance();
+			System.out.println("asldjfhlakjraepalghlerghlaeuirhguialehrguahelriagheliugh");
+			System.out.println(instance == null);
 			if (!valid) throw new UnsupportedOperationException();
-			instance.getClass().getMethod(method, params).invoke(instance, args);
+			System.out.println(params[0].toString());
+			System.out.println(params[1].toString());
+			System.out.println(args[0].getClass().toString());
+			System.out.println(args[1].getClass().toString());
+			parentClass.getMethod(method, params).invoke(instance, 0.5, 0.5);
 		} catch (IllegalAccessException e) {
 			System.out.println("Method is private or protected. Could not run method.");
 			valid = false;
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
-			System.out.println("Methodname is invalid. Could not run method.");
+			System.out.println("Methodname " + parentClass.toString() + "." + method + " is invalid. Could not run method.");
 			valid = false;
 		} catch (UnsupportedOperationException e) {
 			System.out.println("Method was not valid for a past reason.");

@@ -3,6 +3,8 @@ package r3;
 import java.io.*;
 import java.lang.*;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * Allows users to record and control the recording of function calls.
  *
@@ -13,10 +15,6 @@ import java.lang.*;
  */
 public class Record {
 	private static Record instance = null;
-	/**
-	 * The default name of a recording. Can be modified.
-	 */
-	public static String defaultName = "";
 	/**
 	 * Specifies whether the recording file is corrupted or not.
 	 */
@@ -44,7 +42,7 @@ public class Record {
 	 * times are recorded.
 	 */
 	public static void start() {
-		Record.getInstance()._start(defaultName);
+		Record.getInstance()._start("/home/lvuser/recording.bin");
 	}
 
 	/**
@@ -112,7 +110,7 @@ public class Record {
 	private void _stop() {
 		try {
 			out.flush();
-		} catch (IOException e) {}
+		} catch (IOException e) { System.out.println("IOException when finishing."); }
 		recording = false;
 	}
 
@@ -127,6 +125,7 @@ public class Record {
 	}
 
 	public static void toggle() {
+		Logging.log("asdfasdfasdfasdfkljhawirluawaglegaeruiaeuillaeuighaeiluhawruighaierhaeuiaeihaeuiae");
 		if (Record.isRecording())
 			Record.stop();
 		else

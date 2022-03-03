@@ -3,6 +3,11 @@ package r3;
 import java.lang.reflect.*;
 import java.io.*;
 
+import com.revrobotics.CANSparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+
 /**
  * Allows recording made using {@link Record} to be replayed in real time.
  * <p>
@@ -29,25 +34,33 @@ public class Replay {
 	 * changed when replaying, meaning different results could occur.
 	 *
 	 * @param logfile the file to which a recording was made
+	 * @throws IOException if an unrecoverable error occurs when reading from the file stream
 	 */
 	public static void replay(String logfile) {
+		// CANSparkMax motor1 = new CANSparkMax(8, MotorType.kBrushless);
+		// CANSparkMax motor2 = new CANSparkMax(9, MotorType.kBrushless);
+
+		// MotorControllerGroup shooterGroup = new MotorControllerGroup(motor1, motor2);
+		// shooterGroup.set(0.5);
+		// try {Thread.sleep(5000);} catch (InterruptedException e) {}
+		System.out.println("asdfasdfasdfasdfkljhawirluawaglegaeruiaeuillaeuighaeiluhawruighaierhaeuiaeihaeuiae");
 		replaying = true;
 		long start = System.currentTimeMillis();
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(logfile));
-			while (true) {
-				try {
-					MethodCall mc = (MethodCall)in.readObject();
-					long millis = start + mc.getTime() - System.currentTimeMillis();
-					if (millis < 0) millis = 0;
-					Thread.sleep(millis);
-					mc.run();
-				} catch (ClassNotFoundException e)    { System.out.println("Error: ClassNotFound"); }
-				  catch (InterruptedException e)      { System.out.println("Error: Interrupted"); }
-				  catch (IOException e)               {}
-			}
-		} catch (EOFException e) {}
-		  catch (IOException e) {}
+			try {
+				while (true) {
+					try {
+						MethodCall mc = (MethodCall)in.readObject();
+						long millis = start + mc.getTime() - System.currentTimeMillis();
+						if (millis < 0) millis = 0;
+						Thread.sleep(millis);
+						mc.run();
+					} catch (ClassNotFoundException e)    { System.out.println("Error: ClassNotFound"); }
+					catch (InterruptedException e)      { System.out.println("Error: Interrupted"); }
+				}
+			} catch (EOFException e) { in.close(); }
+		} catch (IOException e) { System.out.println("IOException occured"); }
 		replaying = false;
 	}
 

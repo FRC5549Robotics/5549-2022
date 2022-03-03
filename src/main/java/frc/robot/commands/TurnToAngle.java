@@ -31,11 +31,10 @@ public class TurnToAngle extends CommandBase {
   @Override
   public void execute() {
     SmartDashboard.putNumber("Test2 TX angle:", m_limelight.getAngle());
-    if(m_limelight.getAngle() > 5 || m_limelight.getAngle() < -5){
+    if (m_limelight.getAngle() > 5 || m_limelight.getAngle() < -5){
       m_drivetrain.arcadeDriveMethod(m_limelight.getAngle());
       SmartDashboard.putNumber("Horizontal Angle:", m_limelight.getAngle());
-    }
-    else{
+    } else{
       isDone = true;
     }
 

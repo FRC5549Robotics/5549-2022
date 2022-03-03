@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
 import r3.Replay;
+import java.io.*;
 
 public class AutoCommand extends CommandBase {
   boolean done = false;
@@ -24,7 +25,7 @@ public class AutoCommand extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    Replay.replay("recording.bin");
+    Replay.replay("/home/lvuser/recording.bin");
     done = true;
   }
 

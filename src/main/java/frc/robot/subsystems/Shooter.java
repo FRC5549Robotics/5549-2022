@@ -17,8 +17,10 @@ import com.revrobotics.RelativeEncoder;
 import frc.robot.Constants;
 
 import r3.Record;
+import r3.Signature;
 
 public class Shooter extends SubsystemBase {
+	private static Shooter instance = null;
 	/** Creates a new Shooter. */
 	CANSparkMax motor1, motor2;
 	RelativeEncoder motor1_encoder, motor2_encoder;
@@ -55,6 +57,7 @@ public class Shooter extends SubsystemBase {
 	
     SmartDashboard.putNumber("motor 1 velocity", motor1_encoder.getVelocity());
 	SmartDashboard.putNumber("motor 2 velocity", motor2_encoder.getVelocity());
+	instance = this;
 	}
 
 	public static double getSpeed(double distance) {
@@ -62,17 +65,17 @@ public class Shooter extends SubsystemBase {
 		return 0.0;
 	}
 
-	public void runShooter(double speed){
+	public void runShooter(java.lang.Double speed){
 		Record.recordCall(this, speed);
 		shooterGroup.set(speed);
 	}
 
 	public void off(){
-		Record.recordCall(this);
-		shooterGroup.set(0);
+		runShooter(0.0);
 	}
 
 	public void on() {
+		Record.recordCall(this);
 		double setPoint = Limelight.getDesiredRPM();
 		SmartDashboard.putNumber("SetPoint", setPoint);
 		M1pid.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
@@ -86,5 +89,9 @@ public class Shooter extends SubsystemBase {
     	} else {
 			off();
 		}
+	}
+
+	public Shooter getInstance() {
+		return instance;
 	}
 }
