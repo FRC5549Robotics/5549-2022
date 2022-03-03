@@ -15,12 +15,7 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Limelight;
-import frc.robot.commands.TankDrive;
-import frc.robot.commands.TurnFlywheelOff;
-import frc.robot.commands.GetFlywheelUpToSpeed;
-import frc.robot.commands.IndexerRunForSpecificTime;
-import frc.robot.commands.TurnToAngle;
-import frc.robot.commands.AutoMove;
+import frc.robot.commands.*;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -100,7 +95,8 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new InstantCommand(() -> Replay.replay("recording.bin"));
+    // return new InstantCommand(() -> Replay.replay("recording.bin"));
+    return new AutoCommand(drivetrain, shooter);
     // return new SequentialCommandGroup(
     //   new AutoMove(drivetrain, Constants.BACK_TIME),
     //   new TurnToAngle(limelight, drivetrain),

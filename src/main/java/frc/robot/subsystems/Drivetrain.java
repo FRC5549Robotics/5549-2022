@@ -18,6 +18,8 @@ import r3.Record;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
+  private static Drivetrain instance = null;
+
   CANSparkMax leftFront, rightFront, leftBack, rightBack;
   MotorControllerGroup leftGroup, rightGroup;
   DifferentialDrive drive;
@@ -41,7 +43,7 @@ public class Drivetrain extends SubsystemBase {
 
     rightGearShift = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.RIGHTSOLENOID_FORWARD, Constants.RIGHTSOLENOID_REVERSE);
     leftGearShift = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.LEFTSOLENOID_REVERSE, Constants.LEFTSOLENOID_REVERSE);
-
+    instance = this;
   }
 
   public void tankDriveMethod(double leftJoystickAxis, double rightJoystickAxis) {
@@ -73,6 +75,6 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public static Drivetrain getInstance() {
-    return new Drivetrain();
+    return instance;
   }
 }
