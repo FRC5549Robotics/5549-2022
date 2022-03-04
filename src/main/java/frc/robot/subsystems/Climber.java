@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import org.opencv.core.Mat;
+
 public class Climber extends SubsystemBase {
   CANSparkMax climber_motor_L, climber_motor_R;
   MotorControllerGroup climber_motor_group;
@@ -45,7 +47,19 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    climber_motor_R.set(xboxTrigger.getLeftY()/2);
-    climber_motor_L.set(xboxTrigger.getRightY()/2);
+    if(Math.abs(xboxTrigger.getLeftY()) > 0.2)
+    {
+      climber_motor_L.set(xboxTrigger.getLeftY()/2.5);
+    }
+    if(Math.abs(xboxTrigger.getRightY()) > 0.2f)
+    {
+      climber_motor_R.set(xboxTrigger.getRightY()/2.5);
+    }
+    if(Math.abs(xboxTrigger.getLeftY()) <= 0.2){
+      climber_motor_L.set(0);
+    }
+    if (Math.abs(xboxTrigger.getRightY()) <= 0.2){
+      climber_motor_R.set(0);
+    }
   }
 }
