@@ -44,8 +44,8 @@ public class RobotContainer {
   //JoystickButton shootButton = new JoystickButton(xbox, Constants.SHOOT_BUTTON);
   JoystickButton intakeButton = new JoystickButton(xbox, Constants.INTAKE_BUTTON);
   JoystickButton intakeButton2 = new JoystickButton(xbox, Constants.SHOOT_BUTTON);
-  JoystickButton climberButton = new JoystickButton(joystickLeft, 1);
-  JoystickButton climberButtonDown = new JoystickButton(joystickRight, 1);
+  JoystickButton climberButton = new JoystickButton(xbox, Constants.CLIMBER_BUTTON2);
+  JoystickButton climberButtonDown = new JoystickButton(xbox, Constants.CLIMBER_BUTTON);
   JoystickButton indexerButton = new JoystickButton(xbox, Constants.INDEXER_BUTTON2);
   JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
   public final Shooter shooter = new Shooter(xbox);
