@@ -69,8 +69,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     drivetrain.setDefaultCommand(new TankDrive(drivetrain, joystickLeft, joystickRight));
-    // shootButton.whenPressed(new SequentialCommandGroup(new TurnToAngle(limelight, drivetrain), 
-    // new GetFlywheelUpToSpeed(shooter), new IndexerRunForSpecificTime(indexer, intake, 2), new TurnFlywheelOff(shooter)));
+    //shootButton.whenPressed(new SequentialCommandGroup(new TurnToAngle(limelight, drivetrain), 
+    //new InstantCommand(shooter::runAtMax), new IndexerRunForSpecificTime(indexer, intake, 2), new InstantCommand(shooter::off)));
     intakeButton.whenPressed(new InstantCommand(intake::intake_up));
     intakeButton2.whenPressed(new InstantCommand(intake::intake_bottom));
     intakeButton.whenReleased(new InstantCommand(intake::intake_stop));

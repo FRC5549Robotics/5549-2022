@@ -39,7 +39,7 @@ public final class Constants {
     public static final double INTAKE_SPEED = 0.3;
     public static final int INTAKE_BUTTON = 3;
 
-    public static final double CLIMBER_SPEED = 0.25;
+    public static final double CLIMBER_SPEED = 0.5;
     public static final int CLIMBER_MOTOR_1 = 3;
     public static final int CLIMBER_MOTOR_2 = 4;
     public static final int CLIMBER_BUTTON = 6;

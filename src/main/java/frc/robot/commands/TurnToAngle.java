@@ -38,12 +38,13 @@ public class TurnToAngle extends CommandBase {
     //   isDone = true;
     // }
 
-    while(m_limelight.getAngle() > 5 || m_limelight.getAngle() < -5)
+    if(m_limelight.getAngle() > 5 || m_limelight.getAngle() < -5)
     {
       m_drivetrain.arcadeDriveMethod(m_limelight.getAngle());
 
+    } else { 
+      isDone = true;
     }
-    isDone = true;
   }
 
   // Called once the command ends or is interrupted.

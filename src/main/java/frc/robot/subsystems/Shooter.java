@@ -65,13 +65,16 @@ public class Shooter extends SubsystemBase {
 		return 0.0;
 	}
 
+	public void runAtMax(){
+		shooterGroup.set(1);
+	}
 	public void runShooter(java.lang.Double speed){
 		Record.recordCall(this, speed);
 		shooterGroup.set(speed);
 	}
 
 	public void off(){
-		runShooter(0.0);
+		shooterGroup.set(0);
 	}
 
 	public void on() {

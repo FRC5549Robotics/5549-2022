@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.cscore.UsbCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -18,6 +19,7 @@ import edu.wpi.first.wpilibj.PowerDistribution;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+  public UsbCamera se;
 
   private RobotContainer m_robotContainer;
   public PowerDistribution pdp = new PowerDistribution();
@@ -32,7 +34,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     
-    pdp.clearStickyFaults();
+    //pdp.clearStickyFaults();
   }
 
   /**

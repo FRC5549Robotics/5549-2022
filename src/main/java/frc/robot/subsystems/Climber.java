@@ -45,5 +45,7 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    climber_motor_R.set(xboxTrigger.getLeftY()/2);
+    climber_motor_L.set(xboxTrigger.getRightY()/2);
   }
 }
