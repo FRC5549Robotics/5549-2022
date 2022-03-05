@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import org.opencv.core.Mat;
 
 public class Climber extends SubsystemBase {
   CANSparkMax climber_motor_L, climber_motor_R;

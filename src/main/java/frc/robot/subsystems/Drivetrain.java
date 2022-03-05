@@ -54,7 +54,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void arcadeDriveMethod(double limelight_angletx) {
-    drive.arcadeDrive(0, -limelight_angletx/27);
+    drive.arcadeDrive(0, -1);
   }
 
   public void align(Limelight l) {

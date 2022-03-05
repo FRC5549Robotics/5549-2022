@@ -24,8 +24,6 @@ public class TurnToAngle extends CommandBase {
     m_drivetrain = drivetrain;
     SmartDashboard.putNumber("Test TX angle:", m_angle);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(limelight);
-    addRequirements(drivetrain);
   }
   // Called when the command is initially scheduled.
   @Override
@@ -41,11 +39,11 @@ public class TurnToAngle extends CommandBase {
     // } else{
     //   isDone = true;
     // }
-    
+
     System.out.println(m_limelight.getAngle());
     if(m_limelight.getAngle() > 4 || m_limelight.getAngle() < -5)
     {
-      m_drivetrain.arcadeDriveMethod(27);
+      m_drivetrain.arcadeDriveMethod(m_limelight.getAngle());
      // SmartDashboard.putNumber("sfhdf", m_limelight.getAngle());
 
     } 

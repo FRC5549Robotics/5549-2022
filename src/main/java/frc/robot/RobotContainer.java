@@ -20,7 +20,7 @@ import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import r3.Record;
 import r3.Replay;
 
@@ -35,7 +35,6 @@ public class RobotContainer {
   public final Drivetrain drivetrain = new Drivetrain();
   public final Intake intake = new Intake();
   public final Climber climber = new Climber();
-  public final Limelight limelight = new Limelight();
   public final Indexer indexer = new Indexer();
 
   public static Joystick joystickLeft = new Joystick(Constants.JOYSTICK_LEFT);
@@ -49,8 +48,9 @@ public class RobotContainer {
   JoystickButton indexerButton = new JoystickButton(xbox, Constants.INDEXER_BUTTON2);
   JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
   public final Shooter shooter = new Shooter(xbox);
+  public final Limelight limelight = new Limelight(xbox);
   JoystickButton changeGear = new JoystickButton(joystickRight, Constants.CHANGE_GEAR_BUTTON);
-  JoystickButton turnButton = new JoystickButton(xbox, 8);
+  //JoystickButton turnButton = new JoystickButton(xbox, 8);
   JoystickButton recordButton = new JoystickButton(joystickRight, 8);
   
   
@@ -68,7 +68,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    drivetrain.setDefaultCommand(new TankDrive(drivetrain, joystickLeft, joystickRight));
+    drivetrain.setDefaultCommand(new TankDrive(drivetrain, joystickLeft, joystickRight,xbox));
     //shootButton.whenPressed(new SequentialCommandGroup(new TurnToAngle(limelight, drivetrain), 
     //new InstantCommand(shooter::runAtMax), new IndexerRunForSpecificTime(indexer, intake, 2), new InstantCommand(shooter::off)));
     intakeButton.whenPressed(new InstantCommand(intake::intake_up));
@@ -84,7 +84,7 @@ public class RobotContainer {
     climberButtonDown.whenPressed(new InstantCommand(climber::down));
     climberButtonDown.whenReleased(new InstantCommand(climber::stop));
     changeGear.whenPressed(new InstantCommand(drivetrain::changeGear));
-    turnButton.whenPressed(new TurnToAngle(limelight, drivetrain));
+    //turnButton.whenPressed(new TurnToAngle(limelight, drivetrain));
     recordButton.whenPressed(new InstantCommand(Record::toggle));
   }
     
@@ -101,9 +101,10 @@ public class RobotContainer {
     return new SequentialCommandGroup(
      new AutoMove(drivetrain, Constants.BACK_TIME),
      // new TurnToAngle(limelight, drivetrain),
-      //new GetFlywheelUpToSpeed(shooter),
-      new IndexerRunForSpecificTime(indexer, intake, Constants.SHOOT_TIME)
+      //new GetFlywheelUpToSpeed(shooter, 2),
+      new IndexerRunForSpecificTime(indexer, intake, Constants.SHOOT_TIME, shooter)
       //new TurnFlywheelOff(shooter)
      );
+     
   }
 }

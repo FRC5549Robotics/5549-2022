@@ -7,20 +7,23 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 
 public class TankDrive extends CommandBase {
   /** Creates a new TankDrive. */
   private final Drivetrain m_drivetrain;
   private final Joystick m_axis1;
   private final Joystick m_axis2;
+  private final XboxController xbox1;
 
   private double slide;
 
-  public TankDrive(Drivetrain drivetrain, Joystick joystickLeft, Joystick joystickRight) {
+  public TankDrive(Drivetrain drivetrain, Joystick joystickLeft, Joystick joystickRight, XboxController xbox) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_drivetrain = drivetrain;
     m_axis1 = joystickLeft;
     m_axis2 = joystickRight;
+    xbox1 = xbox;
     addRequirements(drivetrain);
   }
 
@@ -32,7 +35,9 @@ public class TankDrive extends CommandBase {
   @Override
   public void execute() {
     //slide = Math.abs(m_axis1.getRawAxis(3));
-    m_drivetrain.tankDriveMethod(m_axis2.getY(), m_axis1.getY());
+    if(!xbox1.getRawButton(8)){
+      m_drivetrain.tankDriveMethod(m_axis2.getY(), m_axis1.getY());
+    }
   }
 
   // Called once the command ends or is interrupted.

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 
 public class IndexerRunForSpecificTime extends CommandBase {
   /** Creates a new IndexerRunForSpecificTime. */
@@ -18,13 +19,16 @@ public class IndexerRunForSpecificTime extends CommandBase {
   private double startTime;
   boolean isIndexerDone = false;
   private double m_maxTime;
-  public IndexerRunForSpecificTime(Indexer indexer, Intake intake, double time) {
+  private final Shooter m_shooter;
+  public IndexerRunForSpecificTime(Indexer indexer, Intake intake, double time, Shooter shooter) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_indexer = indexer;
     m_maxTime = time;
     m_intake = intake;
+    m_shooter = shooter;
     addRequirements(indexer);
     addRequirements(intake);
+    addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -38,13 +42,14 @@ public class IndexerRunForSpecificTime extends CommandBase {
   @Override
   public void execute() {
     m_time = (System.currentTimeMillis() - startTime) / 1000;
-    if ((m_time >= 0.0) && (m_time < m_maxTime)){
-      m_indexer.indexer_run();
-      m_intake.intake_bottom();
+    if ((m_time >= 0.0) && (m_time < 3)){
+      m_shooter.runAtMax();
     }
-    if ((m_time >= m_maxTime)){
-      m_indexer.indexer_stop();
-      m_intake.intake_stop();
+    if ((m_time >= 4) && (m_time < m_maxTime)){
+      m_indexer.indexer_back();
+      m_intake.intake_up();
+    }
+    if (m_time >= m_maxTime){
       isIndexerDone = true;
     }
   }

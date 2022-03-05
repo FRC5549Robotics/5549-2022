@@ -10,20 +10,34 @@ import frc.robot.subsystems.Shooter;
 public class GetFlywheelUpToSpeed extends CommandBase {
   /** Creates a new GetFlywheelUpToSpeed. */
   Shooter m_shooter;
-  public GetFlywheelUpToSpeed(Shooter shooter) {
+  private double m_time;
+  private double startTime;
+  boolean isShooterUpToSpeed = false;
+  private double m_maxTime;
+  public GetFlywheelUpToSpeed(Shooter shooter, double time) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_shooter = shooter;
+    m_maxTime = time;
     addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    startTime = System.currentTimeMillis();
+    m_time = 0.0;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_shooter.runAtMax();
+    m_time = (System.currentTimeMillis() - startTime) / 1000;
+    if ((m_time >= 0.0) && (m_time < m_maxTime)){
+      m_shooter.runAtMax();
+    } else {
+      m_shooter.runAtMax();
+      isShooterUpToSpeed = true;
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -33,6 +47,6 @@ public class GetFlywheelUpToSpeed extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return isShooterUpToSpeed;
   }
 }
