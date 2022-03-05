@@ -12,11 +12,13 @@ public class AutoMove extends CommandBase {
   private double startTime;
   boolean myAutoFinished = false;
   private double m_maxTime;
+  private double direction;
 
-  public AutoMove(Drivetrain drivetrain, double time) {
+  public AutoMove(Drivetrain drivetrain, double time, double direction1) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_drivetrain = drivetrain;
     m_maxTime = time;
+    direction = direction1;
     addRequirements(drivetrain);
   }
 
@@ -32,7 +34,7 @@ public class AutoMove extends CommandBase {
   public void execute() {
     m_time = (System.currentTimeMillis() - startTime) / 1000;
     if ((m_time >= 0.0) && (m_time < m_maxTime)) {
-      m_drivetrain.autoDrive(-Constants.DRIVE_AUTO_SPEED, -Constants.DRIVE_AUTO_SPEED);
+      m_drivetrain.autoDrive(-Constants.DRIVE_AUTO_SPEED * direction, -Constants.DRIVE_AUTO_SPEED * direction);
     } 
     if ((m_time >= m_maxTime)){
       myAutoFinished = true;

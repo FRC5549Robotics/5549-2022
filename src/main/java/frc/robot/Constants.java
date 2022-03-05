@@ -61,4 +61,6 @@ public final class Constants {
     public static final double SHOOT_TIME = 6;
     public static final int CHANGE_GEAR_BUTTON = 1;
     public static final int XBOX_CONTROLLER = 0;
+    public static final double BACK_TIME1 = 2;
+    public static final double INTAKE_RUN_TIME = 1;
 }

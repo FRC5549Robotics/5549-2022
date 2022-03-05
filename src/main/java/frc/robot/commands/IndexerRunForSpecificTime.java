@@ -50,6 +50,9 @@ public class IndexerRunForSpecificTime extends CommandBase {
       m_intake.intake_up();
     }
     if (m_time >= m_maxTime){
+      m_shooter.off();
+      m_indexer.indexer_stop();
+      m_intake.intake_stop();
       isIndexerDone = true;
     }
   }
