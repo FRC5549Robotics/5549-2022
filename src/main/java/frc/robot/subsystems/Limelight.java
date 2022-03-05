@@ -11,7 +11,6 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.Joystick;
 
 public class Limelight extends SubsystemBase {
   /** Creates a new Limelight. */

@@ -17,7 +17,6 @@ import com.revrobotics.RelativeEncoder;
 import frc.robot.Constants;
 
 import r3.Record;
-import r3.Signature;
 
 public class Shooter extends SubsystemBase {
 	private static Shooter instance = null;

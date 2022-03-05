@@ -16,7 +16,6 @@ public class TankDrive extends CommandBase {
   private final Joystick m_axis2;
   private final XboxController xbox1;
 
-  private double slide;
 
   public TankDrive(Drivetrain drivetrain, Joystick joystickLeft, Joystick joystickRight, XboxController xbox) {
     // Use addRequirements() here to declare subsystem dependencies.
