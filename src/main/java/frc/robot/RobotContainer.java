@@ -98,7 +98,7 @@ public class RobotContainer {
     //return new AutoCommand(drivetrain, shooter);
     return new SequentialCommandGroup(
      //new AutoMove(drivetrain, Constants.BACK_TIME1, -1),
-     new IntakeRunForSpecificTime(drivetrain, Constants.BACK_TIME, -1, intake),
+     new IntakeRunForSpecificTime(drivetrain, Constants.BACK_TIME1, -1, intake),
      new AutoMove(drivetrain, Constants.BACK_TIME, 1),
      // new TurnToAngle(limelight, drivetrain),
       //new GetFlywheelUpToSpeed(shooter, 2),

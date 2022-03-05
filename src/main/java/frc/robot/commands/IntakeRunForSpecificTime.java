@@ -37,7 +37,7 @@ public class IntakeRunForSpecificTime extends CommandBase {
     m_time = (System.currentTimeMillis() - startTime) / 1000;
     if ((m_time >= 0.0) && (m_time < m_maxTime)) {
       m_drivetrain.autoDrive(-Constants.DRIVE_AUTO_SPEED * direction, -Constants.DRIVE_AUTO_SPEED * direction);
-      m_intake.intake_up();
+      m_intake.intake_run_during_auto();
     } 
     if ((m_time >= m_maxTime)){
       m_intake.intake_stop();

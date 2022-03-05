@@ -37,6 +37,10 @@ public class Intake extends SubsystemBase {
     motor_intake_1.set(0);
   }
 
+  public void intake_run_during_auto(){
+    motor_intake_1.set(0.3);
+  }
+
   @Override
   public void periodic() {
   }
