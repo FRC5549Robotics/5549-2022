@@ -25,8 +25,9 @@ public class Limelight extends SubsystemBase {
     SmartDashboard.putNumber("Horizontal Angle:", tx);
     if (tx != 0) {
       return tx;
-    }
+    } else {
     return 0;
+    }
   }
 
 
@@ -46,5 +47,7 @@ public class Limelight extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Horizontal", tx);
+    SmartDashboard.putNumber("Vertical:", ty);
   }
 }

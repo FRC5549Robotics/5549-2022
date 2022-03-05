@@ -6,34 +6,46 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Constants;
 
 public class AutoMove extends CommandBase {
-    Drivetrain m_drivetrain;
-    double max_time;
-    boolean done;
-    Timer t;
-    
-    public AutoMove(Drivetrain dt, double mt) {
-        m_drivetrain = dt;
-        max_time = mt;
-        done = false;
-        t = new Timer();
-    }
+  /** Creates a new Auto. */
+  private final Drivetrain m_drivetrain;
+  private double m_time;
+  private double startTime;
+  boolean myAutoFinished = false;
+  private double m_maxTime;
 
-    @Override
-    public void initialize() { 
-        t.start(); 
+  public AutoMove(Drivetrain drivetrain, double time) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    m_drivetrain = drivetrain;
+    m_maxTime = time;
+    addRequirements(drivetrain);
+  }
+
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+    startTime = System.currentTimeMillis();
+    m_time = 0.0;
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    m_time = (System.currentTimeMillis() - startTime) / 1000;
+    if ((m_time >= 0.0) && (m_time < m_maxTime)) {
+      m_drivetrain.autoDrive(-Constants.DRIVE_AUTO_SPEED, -Constants.DRIVE_AUTO_SPEED);
+    } 
+    if ((m_time >= m_maxTime)){
+      myAutoFinished = true;
     }
-    @Override
-    public void execute() {
-        if (t.advanceIfElapsed(max_time) == true){
-            m_drivetrain.autoDrive(Constants.DRIVE_AUTO_SPEED, Constants.DRIVE_AUTO_SPEED);
-        }
-    }
-    @Override
-    public void end(boolean interrupted) { 
-        done = true; 
-    }
-    @Override
-    public boolean isFinished() { 
-        return done; 
-    }
+  }
+
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {}
+
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return myAutoFinished;
+  }
 }

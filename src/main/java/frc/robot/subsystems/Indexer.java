@@ -16,8 +16,8 @@ public class Indexer extends SubsystemBase {
     motor_indexer_1 = new WPI_TalonSRX(Constants.INDEXER_MOTOR);
   }
 
-  public void indexer_run(double speed){
-    motor_indexer_1.set(speed);
+  public void indexer_run(){
+    motor_indexer_1.set(Constants.INDEXER_SPEED);
   }
 
   public void indexer_up(){

@@ -97,13 +97,13 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     // return new InstantCommand(() -> Replay.replay("recording.bin"));
-    return new AutoCommand(drivetrain, shooter);
-    // return new SequentialCommandGroup(
-    //   new AutoMove(drivetrain, Constants.BACK_TIME),
-    //   new TurnToAngle(limelight, drivetrain),
-    //   new GetFlywheelUpToSpeed(shooter),
-    //   new IndexerRunForSpecificTime(indexer, intake, Constants.SHOOT_TIME),
-    //   new TurnFlywheelOff(shooter)
-    // );
+    //return new AutoCommand(drivetrain, shooter);
+    return new SequentialCommandGroup(
+     new AutoMove(drivetrain, Constants.BACK_TIME),
+     // new TurnToAngle(limelight, drivetrain),
+      //new GetFlywheelUpToSpeed(shooter),
+      new IndexerRunForSpecificTime(indexer, intake, Constants.SHOOT_TIME)
+      //new TurnFlywheelOff(shooter)
+     );
   }
 }

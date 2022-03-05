@@ -23,7 +23,7 @@ public class GetFlywheelUpToSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_shooter.on();
+    m_shooter.runAtMax();
   }
 
   // Called once the command ends or is interrupted.

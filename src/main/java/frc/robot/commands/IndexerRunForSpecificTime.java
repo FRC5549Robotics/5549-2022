@@ -16,7 +16,7 @@ public class IndexerRunForSpecificTime extends CommandBase {
   private final Intake m_intake;
   private double m_time;
   private double startTime;
-  private boolean isIndexerDone = false;
+  boolean isIndexerDone = false;
   private double m_maxTime;
   public IndexerRunForSpecificTime(Indexer indexer, Intake intake, double time) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -24,6 +24,7 @@ public class IndexerRunForSpecificTime extends CommandBase {
     m_maxTime = time;
     m_intake = intake;
     addRequirements(indexer);
+    addRequirements(intake);
   }
 
   // Called when the command is initially scheduled.
@@ -38,10 +39,12 @@ public class IndexerRunForSpecificTime extends CommandBase {
   public void execute() {
     m_time = (System.currentTimeMillis() - startTime) / 1000;
     if ((m_time >= 0.0) && (m_time < m_maxTime)){
-      m_indexer.indexer_run(Constants.INDEXER_SPEED);
+      m_indexer.indexer_run();
       m_intake.intake_bottom();
     }
     if ((m_time >= m_maxTime)){
+      m_indexer.indexer_stop();
+      m_intake.intake_stop();
       isIndexerDone = true;
     }
   }

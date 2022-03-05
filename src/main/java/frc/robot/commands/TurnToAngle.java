@@ -5,6 +5,8 @@
 package frc.robot.commands;
 
 
+import javax.sound.midi.SysexMessage;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Limelight;
@@ -22,6 +24,8 @@ public class TurnToAngle extends CommandBase {
     m_drivetrain = drivetrain;
     SmartDashboard.putNumber("Test TX angle:", m_angle);
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(limelight);
+    addRequirements(drivetrain);
   }
   // Called when the command is initially scheduled.
   @Override
@@ -37,14 +41,18 @@ public class TurnToAngle extends CommandBase {
     // } else{
     //   isDone = true;
     // }
-
-    if(m_limelight.getAngle() > 5 || m_limelight.getAngle() < -5)
+    
+    System.out.println(m_limelight.getAngle());
+    if(m_limelight.getAngle() > 4 || m_limelight.getAngle() < -5)
     {
-      m_drivetrain.arcadeDriveMethod(m_limelight.getAngle());
+      m_drivetrain.arcadeDriveMethod(27);
+     // SmartDashboard.putNumber("sfhdf", m_limelight.getAngle());
 
-    } else { 
-      isDone = true;
-    }
+    } 
+    else 
+    {
+    isDone = true;
+  }
   }
 
   // Called once the command ends or is interrupted.
