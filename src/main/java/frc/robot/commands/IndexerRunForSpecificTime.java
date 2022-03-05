@@ -42,7 +42,7 @@ public class IndexerRunForSpecificTime extends CommandBase {
   public void execute() {
     m_time = (System.currentTimeMillis() - startTime) / 1000;
     m_shooter.runAtMax();
-    if ((m_time >= 3) && (m_time < m_maxTime)){
+    if ((m_time >= 2) && (m_time < m_maxTime)){
       m_indexer.indexer_back();
       m_intake.intake_up();
     }
