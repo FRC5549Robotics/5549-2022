@@ -46,7 +46,7 @@ public class RobotContainer {
   JoystickButton indexerButton = new JoystickButton(xbox, Constants.INDEXER_BUTTON2);
   JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
   public final Shooter shooter = new Shooter(xbox);
-  public final Limelight limelight = new Limelight(xbox);
+  public final Limelight limelight = new Limelight(xbox, joystickLeft);
   JoystickButton changeGear = new JoystickButton(joystickRight, Constants.CHANGE_GEAR_BUTTON);
   //JoystickButton turnButton = new JoystickButton(xbox, 8);
   JoystickButton recordButton = new JoystickButton(joystickRight, 8);
