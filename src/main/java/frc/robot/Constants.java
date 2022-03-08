@@ -63,4 +63,6 @@ public final class Constants {
     public static final int XBOX_CONTROLLER = 0;
     public static final double BACK_TIME1 = 4.5;
     public static final double INTAKE_RUN_TIME = 1;
+    public static final double INTAKE_AUTON_SPEED = 0.3;
+    public static final double SHOOTER_AUTON_SPEED = 1;
 }

@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.PowerDistribution;
 
 import edu.wpi.first.cameraserver.*;
 import edu.wpi.first.cscore.UsbCamera;
-import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 /**

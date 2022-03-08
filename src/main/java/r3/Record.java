@@ -1,9 +1,6 @@
 package r3;
 
 import java.io.*;
-import java.lang.*;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Allows users to record and control the recording of function calls.

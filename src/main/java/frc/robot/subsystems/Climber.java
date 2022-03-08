@@ -17,9 +17,9 @@ public class Climber extends SubsystemBase {
   CANSparkMax climber_motor_L, climber_motor_R;
   MotorControllerGroup climber_motor_group;
 
-  public XboxController xboxTrigger = new XboxController(0);
+  public XboxController xboxTrigger;
   /** Creates a new Climber. */
-  public Climber() {
+  public Climber(XboxController xbox) {
     climber_motor_L = new CANSparkMax(Constants.CLIMBER_MOTOR_1, MotorType.kBrushless);
     climber_motor_R = new CANSparkMax(Constants.CLIMBER_MOTOR_2, MotorType.kBrushless);
     //climber_motor_L.setInverted(true);
@@ -27,6 +27,7 @@ public class Climber extends SubsystemBase {
     // allows for motors to rotate towards the center, intaking objects
     // or rotating outwards from the center, ejecting objects
     climber_motor_group = new MotorControllerGroup(climber_motor_L, climber_motor_R);
+    xboxTrigger = xbox;
   }
   
   // Called just before this Command runs the first time

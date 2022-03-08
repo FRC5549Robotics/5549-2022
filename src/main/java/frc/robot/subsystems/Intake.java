@@ -38,7 +38,7 @@ public class Intake extends SubsystemBase {
   }
 
   public void intake_auto(){
-    motor_intake_1.set(0.3);
+    motor_intake_1.set(Constants.INTAKE_AUTON_SPEED);
   }
 
   @Override

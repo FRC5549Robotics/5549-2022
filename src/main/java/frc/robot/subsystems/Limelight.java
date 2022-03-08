@@ -8,25 +8,25 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 
 public class Limelight extends SubsystemBase {
   /** Creates a new Limelight. */
-  double Kp =  1/27;
+  double Kp;
   NetworkTable limelightTable;
   double ty, tv, tx, angle, distance;
   double min_command = 0.05;
   XboxController xbox1;
 
 
-  public Limelight(XboxController xbox) {
+  public Limelight(XboxController xbox, double inputkP) {
     limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
     ty = limelightTable.getEntry("ty").getDouble(0);
     tv = limelightTable.getEntry("tv").getDouble(0);
     tx = limelightTable.getEntry("tx").getDouble(0);
     xbox1 = xbox;
+    Kp = inputkP;
   }
 
   public double getAngle() {

@@ -32,7 +32,6 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final Drivetrain drivetrain = new Drivetrain();
   public final Intake intake = new Intake();
-  public final Climber climber = new Climber();
   public final Indexer indexer = new Indexer();
 
   public static Joystick joystickLeft = new Joystick(Constants.JOYSTICK_LEFT);
@@ -46,7 +45,8 @@ public class RobotContainer {
   JoystickButton indexerButton = new JoystickButton(xbox, Constants.INDEXER_BUTTON2);
   JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
   public final Shooter shooter = new Shooter(xbox);
-  public final Limelight limelight = new Limelight(xbox);
+  public final Limelight limelight = new Limelight(xbox, Constants.tP);
+  public final Climber climber = new Climber(xbox);
   JoystickButton changeGear = new JoystickButton(joystickRight, Constants.CHANGE_GEAR_BUTTON);
   //JoystickButton turnButton = new JoystickButton(xbox, 8);
   JoystickButton recordButton = new JoystickButton(joystickRight, 8);
