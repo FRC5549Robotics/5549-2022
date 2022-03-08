@@ -29,6 +29,7 @@ public class Robot extends TimedRobot {
   public PowerDistribution pdp = new PowerDistribution();
   CameraServer cameraServer;
   UsbCamera cam;
+
   NetworkTableEntry cameraNet;
 
   /**
@@ -38,6 +39,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     cam = CameraServer.startAutomaticCapture(0);
+
     cameraNet = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
     //cameraServer.startAutomaticCapture(1);
    // cam.

@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.XboxController;
 
 public class Limelight extends SubsystemBase {
   /** Creates a new Limelight. */
-  double Kp =  1/75f;
+  double Kp =  1/27;
   NetworkTable limelightTable;
   double ty, tv, tx, angle, distance;
   double min_command = 0.05;
@@ -71,8 +71,8 @@ public class Limelight extends SubsystemBase {
         //left_command += steering_adjust;
         //right_command -= steering_adjust;
         System.out.print(steering_adjust);
-        Drivetrain.getInstance().leftGroup.set(steering_adjust/2);
-        Drivetrain.getInstance().rightGroup.set(-steering_adjust/2);
+        Drivetrain.getInstance().leftGroup.set(steering_adjust);
+        Drivetrain.getInstance().rightGroup.set(-steering_adjust);
         
         
 }
