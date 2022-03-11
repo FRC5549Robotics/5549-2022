@@ -42,7 +42,7 @@ public class Drivetrain extends SubsystemBase {
     drive = new DifferentialDrive(rightGroup, leftGroup);
 
     rightGearShift = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.RIGHTSOLENOID_FORWARD, Constants.RIGHTSOLENOID_REVERSE);
-    leftGearShift = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.LEFTSOLENOID_REVERSE, Constants.LEFTSOLENOID_REVERSE);
+    leftGearShift = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.LEFTSOLENOID_FORWARD, Constants.LEFTSOLENOID_REVERSE);
     instance = this;
   }
 
