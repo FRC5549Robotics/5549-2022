@@ -13,20 +13,18 @@ import edu.wpi.first.wpilibj.XboxController;
 
 public class Limelight extends SubsystemBase {
   /** Creates a new Limelight. */
-  double Kp;
+  double Kp = 1/27;
   NetworkTable limelightTable;
   double ty, tv, tx, angle, distance;
   double min_command = 0.05;
   XboxController xbox1;
+  double steering_adjust = 0.0;
 
 
   public Limelight(XboxController xbox, double inputkP) {
     limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
-    ty = limelightTable.getEntry("ty").getDouble(0);
-    tv = limelightTable.getEntry("tv").getDouble(0);
-    tx = limelightTable.getEntry("tx").getDouble(0);
     xbox1 = xbox;
-    Kp = inputkP;
+    //Kp = inputkP;
   }
 
   public double getAngle() {
@@ -55,33 +53,22 @@ public class Limelight extends SubsystemBase {
 
   @Override
   public void periodic() {
-    
-    if (xbox1.getRawButton(8) == true)
-{
-        double heading_error = -tx;
-        double steering_adjust = 0.0;
-        if (tx > 1.0)
-        {
-                steering_adjust = Kp*heading_error;
-        }
-        else if (tx < 1.0)
-        {
-                steering_adjust = Kp*heading_error; //+ min_command;
-        }
-        //left_command += steering_adjust;
-        //right_command -= steering_adjust;
-        System.out.print(steering_adjust);
-        Drivetrain.getInstance().leftGroup.set(steering_adjust);
-        Drivetrain.getInstance().rightGroup.set(-steering_adjust);
-        
-        
-}
-
-
-    SmartDashboard.putNumber("Horizontal", tx);
-    SmartDashboard.putNumber("Vertical:", ty);
     ty = limelightTable.getEntry("ty").getDouble(0);
     tv = limelightTable.getEntry("tv").getDouble(0);
     tx = limelightTable.getEntry("tx").getDouble(0);
+
+    if (xbox1.getRawButton(8) == true)
+    {
+      double heading_error = -tx;
+     
+      if (tx > 1.0 || tx < -1.0)
+      {
+        Drivetrain.getInstance().rightGroup.set(-heading_error/54);
+        Drivetrain.getInstance().leftGroup.set(heading_error/54);
+      }
+    }
+    
+    SmartDashboard.putNumber("Horizontal", tx);
+    SmartDashboard.putNumber("Vertical:", ty);
   }
 }
