@@ -23,9 +23,12 @@ public final class Constants {
     public static final int SHOOT_MOTOR1 = 8;
     public static final int SHOOT_MOTOR2 = 9;
     public static final int SHOOT_BUTTON = 4;
-    public static final double kP = 0;
+    public static final double kP = 0.32459;
     public static final double kI = 0;
     public static final double kD = 0;
+    public static final double kS = 0.020963;
+    public static final double kV = 0.18825;
+    public static final double kA = 0.013596;
     public static final double tP = 1/27;
 
     public static final int JOYSTICK_LEFT = 2;
@@ -43,8 +46,6 @@ public final class Constants {
     public static final double CLIMBER_SPEED = 0.5;
     public static final int CLIMBER_MOTOR_1 = 3;
     public static final int CLIMBER_MOTOR_2 = 4;
-    public static final int CLIMBER_BUTTON = 6;
-    public static final int CLIMBER_BUTTON2 = 5;
 
     public static final int ANGLE_CAMERA = 45;
     public static final double HEIGHT_TARGET = 101.625;
@@ -65,4 +66,5 @@ public final class Constants {
     public static final double INTAKE_RUN_TIME = 1;
     public static final double INTAKE_AUTON_SPEED = 0.3;
     public static final double SHOOTER_AUTON_SPEED = 1;
+    public static final int PID_SHOOTER = 6;
 }

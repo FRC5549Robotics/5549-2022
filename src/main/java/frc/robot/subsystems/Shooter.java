@@ -8,11 +8,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.RelativeEncoder;
+//import com.revrobotics.SparkMaxPIDController;
 
 import frc.robot.Constants;
 
@@ -25,11 +26,8 @@ public class Shooter extends SubsystemBase {
 	RelativeEncoder motor1_encoder, motor2_encoder;
 	MotorControllerGroup shooterGroup;
 	boolean isOn;
-	SparkMaxPIDController M1pid, M2pid;
-	double kP = Constants.kP;
-	double kI = Constants.kI;
-	double kD = Constants.kD;
-
+	PIDController pid = new PIDController(Constants.kP, Constants.kI, Constants.kD);
+	SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.kS, Constants.kV, Constants.kA);
 	XboxController xboxTrigger;
 
 	public Shooter(XboxController xbox) {
@@ -38,16 +36,12 @@ public class Shooter extends SubsystemBase {
 
 		shooterGroup = new MotorControllerGroup(motor1, motor2);
 
-		M1pid = motor1.getPIDController();
-		M2pid = motor2.getPIDController();
+		// M1pid = motor1.getPIDController();
+		// M2pid = motor2.getPIDController();
 
 		motor1_encoder = motor1.getEncoder();
 		motor2_encoder = motor2.getEncoder();
 
-		//setting PID values for motors
-		M1pid.setP(Constants.kP);
-		M1pid.setI(Constants.kI);
-		M1pid.setD(Constants.kD);
 
 		SmartDashboard.putNumber("P1 Gain", Constants.kP);
 		SmartDashboard.putNumber("I1 Gain", Constants.kI);
@@ -80,8 +74,9 @@ public class Shooter extends SubsystemBase {
 		Record.recordCall(this);
 		double setPoint = Limelight.getDesiredRPM();
 		SmartDashboard.putNumber("SetPoint", setPoint);
-		M1pid.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
-		M2pid.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
+		shooterGroup.setVoltage(pid.calculate(motor1_encoder.getVelocity(), setPoint) + feedforward.calculate(setPoint));
+		// M1pid.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
+		// M2pid.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
 	}
 	
 	@Override

@@ -40,8 +40,6 @@ public class RobotContainer {
   //JoystickButton shootButton = new JoystickButton(xbox, Constants.SHOOT_BUTTON);
   JoystickButton intakeButton = new JoystickButton(xbox, Constants.INTAKE_BUTTON);
   JoystickButton intakeButton2 = new JoystickButton(xbox, Constants.SHOOT_BUTTON);
-  JoystickButton climberButton = new JoystickButton(xbox, Constants.CLIMBER_BUTTON2);
-  JoystickButton climberButtonDown = new JoystickButton(xbox, Constants.CLIMBER_BUTTON);
   JoystickButton indexerButton = new JoystickButton(xbox, Constants.INDEXER_BUTTON2);
   JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
   public final Shooter shooter = new Shooter(xbox);
@@ -50,6 +48,7 @@ public class RobotContainer {
   JoystickButton changeGear = new JoystickButton(joystickRight, Constants.CHANGE_GEAR_BUTTON);
   //JoystickButton turnButton = new JoystickButton(xbox, 8);
   JoystickButton recordButton = new JoystickButton(joystickRight, 8);
+  JoystickButton pidShoot = new JoystickButton(xbox, Constants.PID_SHOOTER);
   
   
 
@@ -77,13 +76,11 @@ public class RobotContainer {
     indexerButton2.whenPressed(new InstantCommand(indexer::indexer_back));
     indexerButton.whenReleased(new InstantCommand(indexer::indexer_stop));
     indexerButton2.whenReleased(new InstantCommand(indexer::indexer_stop));
-    climberButton.whenPressed(new InstantCommand(climber::up));
-    climberButton.whenReleased(new InstantCommand(climber::stop));
-    climberButtonDown.whenPressed(new InstantCommand(climber::down));
-    climberButtonDown.whenReleased(new InstantCommand(climber::stop));
     changeGear.whenPressed(new InstantCommand(drivetrain::changeGear));
     //turnButton.whenPressed(new TurnToAngle(limelight, drivetrain));
     recordButton.whenPressed(new InstantCommand(Record::toggle));
+    pidShoot.whenPressed(new InstantCommand(shooter::on));
+    
   }
     
 
