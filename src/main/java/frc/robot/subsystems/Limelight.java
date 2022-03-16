@@ -47,7 +47,7 @@ public class Limelight extends SubsystemBase {
   }
 
   public static double getDesiredRPM(){
-    return 0.0;
+    return 500.0;
     //Add implementation
   }
 
