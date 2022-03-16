@@ -23,7 +23,7 @@ public final class Constants {
     public static final int SHOOT_MOTOR1 = 8;
     public static final int SHOOT_MOTOR2 = 9;
     public static final int SHOOT_BUTTON = 4;
-    public static final double kP = 0.32459;
+    public static final double kP = 0.46416;
     public static final double kI = 0;
     public static final double kD = 0;
     public static final double kS = 0.020963;
