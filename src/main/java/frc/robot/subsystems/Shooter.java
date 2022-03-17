@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.controller.PIDController;
@@ -29,6 +30,9 @@ public class Shooter extends SubsystemBase {
 	PIDController pid = new PIDController(Constants.kP, Constants.kI, Constants.kD);
 	SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.kS, Constants.kV, Constants.kA);
 	XboxController xboxTrigger;
+	private double m_time;
+	private double m_maxTime;
+	private double m_startTime;
 
 	public Shooter(XboxController xbox) {
 		motor1 = new CANSparkMax(Constants.SHOOT_MOTOR1, MotorType.kBrushless);
@@ -51,6 +55,9 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("motor 1 velocity", motor1_encoder.getVelocity());
 	SmartDashboard.putNumber("motor 2 velocity", motor2_encoder.getVelocity());
 	instance = this;
+	m_startTime = System.currentTimeMillis();
+    m_time = 0.0;
+	m_maxTime = 1.5;
 	}
 
 	public static double getSpeed(double distance) {
@@ -68,6 +75,8 @@ public class Shooter extends SubsystemBase {
 
 	public void off(){
 		shooterGroup.set(0);
+		xboxTrigger.setRumble(RumbleType.kLeftRumble, 0);
+		xboxTrigger.setRumble(RumbleType.kRightRumble, 0);
 	}
 
 	public void on(double setPoint) {
@@ -83,12 +92,19 @@ public class Shooter extends SubsystemBase {
 	
 	@Override
 	public void periodic(){
+		m_time = (System.currentTimeMillis() - m_startTime) / 1000;
 		if(xboxTrigger.getRawAxis(2) > 0.1) {
     		runShooter(xboxTrigger.getRawAxis(2));
     	} else if(xboxTrigger.getRawAxis(3) > 0.2){
 			runShooter(xboxTrigger.getRawAxis(3)/3.5);
 		} else {
 			off();
+		}
+
+		if(xboxTrigger.getRawAxis(2) > 0.1 || xboxTrigger.getRawAxis(3) > 0.1)
+		{
+			xboxTrigger.setRumble(RumbleType.kLeftRumble, 1);
+			xboxTrigger.setRumble(RumbleType.kRightRumble, 1);
 		}
 	}
 

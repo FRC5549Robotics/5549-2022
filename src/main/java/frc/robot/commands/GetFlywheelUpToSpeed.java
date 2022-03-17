@@ -11,7 +11,7 @@ public class GetFlywheelUpToSpeed extends CommandBase {
   /** Creates a new GetFlywheelUpToSpeed. */
   Shooter m_shooter;
   private double m_time;
-  private double startTime;
+  private double m_startTime;
   boolean isShooterUpToSpeed = false;
   private double m_maxTime;
   public GetFlywheelUpToSpeed(Shooter shooter, double time) {
@@ -24,14 +24,14 @@ public class GetFlywheelUpToSpeed extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    startTime = System.currentTimeMillis();
+    m_startTime = System.currentTimeMillis();
     m_time = 0.0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_time = (System.currentTimeMillis() - startTime) / 1000;
+    m_time = (System.currentTimeMillis() - m_startTime) / 1000;
     if ((m_time >= 0.0) && (m_time < m_maxTime)){
       m_shooter.autonSpeed();
     } else {
