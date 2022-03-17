@@ -70,9 +70,8 @@ public class Shooter extends SubsystemBase {
 		shooterGroup.set(0);
 	}
 
-	public void on() {
+	public void on(double setPoint) {
 		Record.recordCall(this);
-		double setPoint = Limelight.getDesiredRPM();
 		SmartDashboard.putNumber("SetPoint", setPoint);
 		motor1.setVoltage(pid.calculate(motor1_encoder.getVelocity(), setPoint) + feedforward.calculate(setPoint));
 		motor2.setVoltage(pid.calculate(motor2_encoder.getVelocity(), setPoint) + feedforward.calculate(setPoint));
