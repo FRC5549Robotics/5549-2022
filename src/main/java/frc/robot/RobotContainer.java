@@ -49,6 +49,8 @@ public class RobotContainer {
   //JoystickButton turnButton = new JoystickButton(xbox, 8);
   JoystickButton recordButton = new JoystickButton(joystickRight, 8);
   JoystickButton pidShoot = new JoystickButton(xbox, Constants.PID_SHOOTER);
+  JoystickButton highShoot = new JoystickButton(xbox, 2);
+  JoystickButton lowShoot = new JoystickButton(xbox, 3);
   
   
 
@@ -80,7 +82,8 @@ public class RobotContainer {
     //turnButton.whenPressed(new TurnToAngle(limelight, drivetrain));
     recordButton.whenPressed(new InstantCommand(Record::toggle));
     pidShoot.whenHeld(new PIDShooter(shooter));
-    
+    highShoot.whenHeld(new ShootHigh(shooter, xbox));
+    lowShoot.whenHeld(new ShootLow(shooter, xbox));
   }
     
 

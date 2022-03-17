@@ -5,20 +5,45 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Shooter;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 public class ShootHigh extends CommandBase {
   /** Creates a new ShootHigh. */
-  public ShootHigh() {
+  Shooter m_shooter;
+  private double m_time;
+	private double m_maxTime = 1.5;
+	private double m_startTime;
+  XboxController xboxTrigger;
+
+  public ShootHigh(Shooter shooter, XboxController xbox) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_shooter = shooter;
+    xboxTrigger = xbox;
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_startTime = System.currentTimeMillis();
+    m_time = 0.0;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_time = (System.currentTimeMillis() - m_startTime) / 1000;
+    if ((m_time >= 0.0) && (m_time < m_maxTime)){
+      xboxTrigger.setRumble(RumbleType.kLeftRumble, 1);
+      xboxTrigger.setRumble(RumbleType.kRightRumble, 1);
+    }
+    else{
+      xboxTrigger.setRumble(RumbleType.kLeftRumble, 0);
+      xboxTrigger.setRumble(RumbleType.kRightRumble, 0);
+    }
+    m_shooter.ShootHigh();
+  }
 
   // Called once the command ends or is interrupted.
   @Override
