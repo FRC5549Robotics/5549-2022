@@ -82,8 +82,6 @@ public class RobotContainer {
     //turnButton.whenPressed(new TurnToAngle(limelight, drivetrain));
     recordButton.whenPressed(new InstantCommand(Record::toggle));
     pidShoot.whenHeld(new PIDShooter(shooter));
-    highShoot.whileActiveContinuous(new ShootHigh(shooter, xbox));
-    lowShoot.whileActiveContinuous(new ShootLow(shooter, xbox));
   }
     
 
