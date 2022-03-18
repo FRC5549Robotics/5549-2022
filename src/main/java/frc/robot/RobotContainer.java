@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Shooter;
@@ -49,8 +49,8 @@ public class RobotContainer {
   //JoystickButton turnButton = new JoystickButton(xbox, 8);
   JoystickButton recordButton = new JoystickButton(joystickRight, 8);
   JoystickButton pidShoot = new JoystickButton(xbox, Constants.PID_SHOOTER);
-  JoystickButton highShoot = new JoystickButton(xbox, 2);
-  JoystickButton lowShoot = new JoystickButton(xbox, 3);
+  Trigger highShoot = new JoystickButton(xbox, 2);
+  Trigger lowShoot = new JoystickButton(xbox, 3);
   
   
 
@@ -82,8 +82,8 @@ public class RobotContainer {
     //turnButton.whenPressed(new TurnToAngle(limelight, drivetrain));
     recordButton.whenPressed(new InstantCommand(Record::toggle));
     pidShoot.whenHeld(new PIDShooter(shooter));
-    highShoot.whileActiveContinuous(new ShootHigh(shooter, xbox), false);
-    lowShoot.whileActiveContinuous(new ShootLow(shooter, xbox), false);
+    highShoot.whileActiveContinuous(new ShootHigh(shooter, xbox));
+    lowShoot.whileActiveContinuous(new ShootLow(shooter, xbox));
   }
     
 
