@@ -48,8 +48,9 @@ public class ShootLow extends CommandBase {
       xboxTrigger.setRumble(RumbleType.kLeftRumble, 1);
       xboxTrigger.setRumble(RumbleType.kRightRumble, 1);
     }
-    m_shooter.ShootLow();
-  }
+    if(xboxTrigger.getRawAxis(3) > 0.2){
+      m_shooter.ShootLow();
+		}
   }
 
   // Returns true when the command should end.

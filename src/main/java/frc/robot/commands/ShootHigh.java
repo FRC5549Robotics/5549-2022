@@ -41,8 +41,10 @@ public class ShootHigh extends CommandBase {
     else{
       xboxTrigger.setRumble(RumbleType.kLeftRumble, 1);
       xboxTrigger.setRumble(RumbleType.kRightRumble, 1);
+    }		
+    if(xboxTrigger.getRawAxis(2) > 0.1) {
+      m_shooter.ShootHigh();
     }
-    m_shooter.ShootHigh();
   }
 
   // Called once the command ends or is interrupted.

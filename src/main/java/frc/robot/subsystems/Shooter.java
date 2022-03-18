@@ -85,15 +85,6 @@ public class Shooter extends SubsystemBase {
 	
 	@Override
 	public void periodic(){
-		m_time = (System.currentTimeMillis() - m_startTime) / 1000;
-		if(xboxTrigger.getRawAxis(2) > 0.1) {
-    		runShooter(xboxTrigger.getRawAxis(2));
-    	} else if(xboxTrigger.getRawAxis(3) > 0.2){
-			runShooter(xboxTrigger.getRawAxis(3)/3.5);
-		} else {
-			off();
-		}
-
 	}
 
 	public void ShootHigh(){
