@@ -6,7 +6,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.controller.PIDController;
@@ -63,8 +62,7 @@ public class Shooter extends SubsystemBase {
 	public void autonSpeed(){
 		shooterGroup.set(Constants.SHOOTER_AUTON_SPEED);
 	}
-	public void runShooter(java.lang.Double speed){
-		Record.recordCall(this, speed);
+	public void runShooter(double speed){
 		shooterGroup.set(speed);
 	}
 
@@ -84,14 +82,18 @@ public class Shooter extends SubsystemBase {
 	}
 	
 	@Override
-	public void periodic(){
-	}
+	public void periodic(){}
 
 	public void ShootHigh(){
 		runShooter(xboxTrigger.getRawAxis(2));
+		System.out.println("RPM" + motor1_encoder.getVelocity());
+		System.out.println("RPM2" + motor2_encoder.getVelocity());
+		
 	}
 	public void ShootLow(){
 		runShooter(xboxTrigger.getRawAxis(3)/3.5);
+		System.out.println("RPM" + motor1_encoder.getVelocity());
+		System.out.println("RPM2" + motor2_encoder.getVelocity());
 	}
 
 	public Shooter getInstance() {

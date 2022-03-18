@@ -13,7 +13,7 @@ public class ShootHigh extends CommandBase {
   /** Creates a new ShootHigh. */
   Shooter m_shooter;
   private double m_time;
-	private double m_maxTime = 1.5;
+	private double m_maxTime = 1.0;
 	private double m_startTime;
   XboxController xboxTrigger;
 
@@ -21,6 +21,7 @@ public class ShootHigh extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     m_shooter = shooter;
     xboxTrigger = xbox;
+    addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -41,10 +42,9 @@ public class ShootHigh extends CommandBase {
     else{
       xboxTrigger.setRumble(RumbleType.kLeftRumble, 1);
       xboxTrigger.setRumble(RumbleType.kRightRumble, 1);
-    }		
-    if(xboxTrigger.getRawAxis(2) > 0.1) {
-      m_shooter.ShootHigh();
-    }
+    }	
+    m_shooter.ShootHigh();
+    System.out.println("Shoot High");
   }
 
   // Called once the command ends or is interrupted.
