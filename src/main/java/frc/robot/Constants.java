@@ -34,9 +34,9 @@ public final class Constants {
     public static final int JOYSTICK_LEFT = 2;
     public static final int JOYSTICK_RIGHT = 1;
 
-    public static final int RIGHTSOLENOID_FORWARD = 0;
+    public static final int RIGHTSOLENOID_FORWARD = 1;
     public static final int LEFTSOLENOID_FORWARD = 6;
-    public static final int RIGHTSOLENOID_REVERSE = 1;
+    public static final int RIGHTSOLENOID_REVERSE = 0;
     public static final int LEFTSOLENOID_REVERSE = 7;
 
     public static final int MOTOR_INTAKE = 11;
