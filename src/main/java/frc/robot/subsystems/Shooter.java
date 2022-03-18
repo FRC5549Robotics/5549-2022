@@ -82,7 +82,19 @@ public class Shooter extends SubsystemBase {
 	}
 	
 	@Override
-	public void periodic(){}
+	public void periodic(){
+		if (xboxTrigger.getRawAxis(2) > 0.1)
+		{
+			runShooter(xboxTrigger.getRawAxis(2));
+		}
+		else if (xboxTrigger.getRawAxis(3) > 0.2)
+		{
+			runShooter(xboxTrigger.getRawAxis(3)/3.5);
+		}
+		else{
+			off();
+		}
+	}
 
 	public void ShootHigh(){
 		runShooter(xboxTrigger.getRawAxis(2));
