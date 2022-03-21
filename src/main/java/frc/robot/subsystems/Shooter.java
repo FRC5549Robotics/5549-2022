@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,9 +30,11 @@ public class Shooter extends SubsystemBase {
 	PIDController pid = new PIDController(Constants.kP, Constants.kI, Constants.kD);
 	SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.kS, Constants.kV, Constants.kA);
 	XboxController xboxTrigger;
+	Joystick JoystickRight;
+	Limelight limelight;
 
 
-	public Shooter(XboxController xbox) {
+	public Shooter(XboxController xbox, Joystick joystickRight) {
 		motor1 = new CANSparkMax(Constants.SHOOT_MOTOR1, MotorType.kBrushless);
 		motor2 = new CANSparkMax(Constants.SHOOT_MOTOR2, MotorType.kBrushless);
 
@@ -48,10 +51,12 @@ public class Shooter extends SubsystemBase {
 		SmartDashboard.putNumber("I1 Gain", Constants.kI);
 		SmartDashboard.putNumber("D1 Gain", Constants.kD);
 		xboxTrigger = xbox;
+		JoystickRight = joystickRight;
 	
-    SmartDashboard.putNumber("motor 1 velocity", motor1_encoder.getVelocity());
-	SmartDashboard.putNumber("motor 2 velocity", motor2_encoder.getVelocity());
-	instance = this;
+		SmartDashboard.putNumber("motor 1 velocity", motor1_encoder.getVelocity());
+		SmartDashboard.putNumber("motor 2 velocity", motor2_encoder.getVelocity());
+		instance = this;
+		limelight = Limelight.getInstance();
 	}
 
 	public static double getSpeed(double distance) {
@@ -83,18 +88,19 @@ public class Shooter extends SubsystemBase {
 	
 	@Override
 	public void periodic(){
-		if (xboxTrigger.getRawAxis(2) > 0.1)
+		if (JoystickRight.getRawAxis(3) > 0.1)
 		{
-			runShooter(0.7);
+			runShooter(1);
 			System.out.println("RPM" + motor1_encoder.getVelocity());
 			System.out.println("RPM2" + motor2_encoder.getVelocity());
+			//System.out.println("Distance" + limelight.getDistance());
 		}
-		else if (xboxTrigger.getRawAxis(3) > 0.2)
-		{
-			runShooter(xboxTrigger.getRawAxis(3)/3.5);
-			System.out.println("RPM" + motor1_encoder.getVelocity());
-			System.out.println("RPM2" + motor2_encoder.getVelocity());
-		}
+		// else if (xboxTrigger.getRawAxis(3) > 0.2)
+		// {
+		// 	runShooter(xboxTrigger.getRawAxis(3)/3.5);
+		// 	System.out.println("RPM" + motor1_encoder.getVelocity());
+		// 	System.out.println("RPM2" + motor2_encoder.getVelocity());
+		// }
 		else{
 			off();
 		}

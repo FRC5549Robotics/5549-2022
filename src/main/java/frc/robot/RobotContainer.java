@@ -42,13 +42,13 @@ public class RobotContainer {
   JoystickButton intakeButton2 = new JoystickButton(xbox, Constants.SHOOT_BUTTON);
   JoystickButton indexerButton = new JoystickButton(xbox, Constants.INDEXER_BUTTON2);
   JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
-  public final Shooter shooter = new Shooter(xbox);
+  public final Shooter shooter = new Shooter(xbox, joystickRight);
   public final Limelight limelight = new Limelight(xbox, Constants.tP);
   public final Climber climber = new Climber(xbox);
   JoystickButton changeGear = new JoystickButton(joystickRight, Constants.CHANGE_GEAR_BUTTON);
   //JoystickButton turnButton = new JoystickButton(xbox, 8);
   JoystickButton recordButton = new JoystickButton(joystickRight, 8);
-  JoystickButton pidShoot = new JoystickButton(xbox, Constants.PID_SHOOTER);
+  JoystickButton PIDButton = new JoystickButton(xbox, Constants.PID_SHOOTER);
   Trigger highShoot = new JoystickButton(xbox, 2);
   Trigger lowShoot = new JoystickButton(xbox, 3);
   
@@ -81,7 +81,7 @@ public class RobotContainer {
     changeGear.whenPressed(new InstantCommand(drivetrain::changeGear));
     //turnButton.whenPressed(new TurnToAngle(limelight, drivetrain));
     recordButton.whenPressed(new InstantCommand(Record::toggle));
-    pidShoot.whenHeld(new PIDShooter(shooter));
+    PIDButton.whenHeld(new PIDShooter(shooter, limelight));
   }
     
 

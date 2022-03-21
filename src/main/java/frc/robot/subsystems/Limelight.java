@@ -19,12 +19,14 @@ public class Limelight extends SubsystemBase {
   double min_command = 0.05;
   XboxController xbox1;
   double steering_adjust = 0.0;
+  private static Limelight limelight;
 
 
   public Limelight(XboxController xbox, double inputkP) {
     limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
     xbox1 = xbox;
     //Kp = inputkP;
+    limelight = this;
   }
 
   public double getAngle() {
@@ -40,10 +42,13 @@ public class Limelight extends SubsystemBase {
   public double getDistance() {
     if (tv != 0) {
       angle = (Constants.ANGLE_CAMERA + ty) * Math.PI / 180;
-      distance = (Constants.HEIGHT_TARGET - Constants.HEIGHT_CAMERA) / Math.tan(angle);
-      return distance;
+      return (Constants.HEIGHT_TARGET - Constants.HEIGHT_CAMERA) / Math.tan(angle);
     }
     return 0;
+  }
+
+  public static Limelight getInstance(){
+    return Limelight.limelight;
   }
 
   public static double getDesiredRPM(){

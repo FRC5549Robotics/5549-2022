@@ -51,9 +51,9 @@ public class Drivetrain extends SubsystemBase {
 
   public void tankDriveMethod(double leftJoystickAxis, double rightJoystickAxis) {
     Record.recordCall(this, leftJoystickAxis, rightJoystickAxis);
-    double ScalingFactor = Constants.SCALING_FACTOR;
+    double rightScalingFactor = Constants.RIGHT_SCALING_FACTOR;
     double leftScalingFactor = Constants.LEFT_SCALING_FACTOR;
-    drive.tankDrive(leftJoystickAxis * leftScalingFactor, rightJoystickAxis * ScalingFactor);
+    drive.tankDrive(leftJoystickAxis * leftScalingFactor, rightJoystickAxis * rightScalingFactor);
   }
 
   public void arcadeDriveMethod(double limelight_angletx) {

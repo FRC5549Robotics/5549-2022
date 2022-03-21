@@ -17,8 +17,8 @@ public final class Constants {
     public static final int RIGHT_MOTOR2 = 7;
     public static final int LEFT_MOTOR1 = 1;
     public static final int LEFT_MOTOR2 = 2;
-    public static final double SCALING_FACTOR = 0.75;
-    public static final double LEFT_SCALING_FACTOR = 0.65;
+    public static final double RIGHT_SCALING_FACTOR = 0.75;
+    public static final double LEFT_SCALING_FACTOR = 0.75;
 
     public static final int SHOOT_MOTOR1 = 8;
     public static final int SHOOT_MOTOR2 = 9;
@@ -48,8 +48,8 @@ public final class Constants {
     public static final int CLIMBER_MOTOR_2 = 4;
 
     public static final int ANGLE_CAMERA = 45;
-    public static final double HEIGHT_TARGET = 104;
-    public static final int HEIGHT_CAMERA = 38;
+    public static final double HEIGHT_TARGET = 268;
+    public static final int HEIGHT_CAMERA = 85;
 
     public static final int INDEXER_MOTOR = 5;
     public static final double INDEXER_SPEED = 1;//0.9 normally
@@ -60,7 +60,7 @@ public final class Constants {
     public static final double DRIVE_AUTO_SPEED = 0.3;
     public static final double BACK_TIME = 2.5;
     public static final double SHOOT_TIME = 6;
-    public static final int CHANGE_GEAR_BUTTON = 1;
+    public static final int CHANGE_GEAR_BUTTON = 2;
     public static final int XBOX_CONTROLLER = 0;
     public static final double BACK_TIME1 = 4.5;
     public static final double INTAKE_RUN_TIME = 1;
