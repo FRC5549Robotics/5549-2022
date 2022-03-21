@@ -43,8 +43,10 @@ public class Limelight extends SubsystemBase {
     if (tv != 0) {
       angle = (Constants.ANGLE_CAMERA + ty) * Math.PI / 180;
       return (Constants.HEIGHT_TARGET - Constants.HEIGHT_CAMERA) / Math.tan(angle);
+    } else {
+      return 0;
     }
-    return 0;
+    
   }
 
   public static Limelight getInstance(){

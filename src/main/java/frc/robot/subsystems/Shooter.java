@@ -88,19 +88,19 @@ public class Shooter extends SubsystemBase {
 	
 	@Override
 	public void periodic(){
-		if (JoystickRight.getRawAxis(3) > 0.1)
+		if (xboxTrigger.getRawAxis(3) > 0.1)
 		{
 			runShooter(1);
 			System.out.println("RPM" + motor1_encoder.getVelocity());
 			System.out.println("RPM2" + motor2_encoder.getVelocity());
-			//System.out.println("Distance" + limelight.getDistance());
+			System.out.println("Distance" + limelight.getDistance());
 		}
-		// else if (xboxTrigger.getRawAxis(3) > 0.2)
-		// {
-		// 	runShooter(xboxTrigger.getRawAxis(3)/3.5);
-		// 	System.out.println("RPM" + motor1_encoder.getVelocity());
-		// 	System.out.println("RPM2" + motor2_encoder.getVelocity());
-		// }
+		else if (xboxTrigger.getRawAxis(3) > 0.2)
+		{
+			runShooter(xboxTrigger.getRawAxis(3)/3.5);
+			System.out.println("RPM" + motor1_encoder.getVelocity());
+			System.out.println("RPM2" + motor2_encoder.getVelocity());
+		}
 		else{
 			off();
 		}
