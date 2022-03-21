@@ -78,8 +78,8 @@ public class Shooter extends SubsystemBase {
 	public void on(double setPoint) {
 		Record.recordCall(this);
 		SmartDashboard.putNumber("SetPoint", setPoint);
-		motor1.setVoltage(pid.calculate(motor1_encoder.getVelocity(), setPoint) + feedforward.calculate(setPoint));
-		motor2.setVoltage(pid.calculate(motor2_encoder.getVelocity(), setPoint) + feedforward.calculate(setPoint));
+		motor1.setVoltage(pid.calculate((motor1_encoder.getVelocity() * (1 / (1.43 * 60))), setPoint) + feedforward.calculate(setPoint));
+		motor2.setVoltage(pid.calculate((motor2_encoder.getVelocity() * (1 / (1.43 * 60))), setPoint) + feedforward.calculate(setPoint));
 		// M1pid.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
 		// M2pid.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
 		SmartDashboard.putNumber("RPM", motor1_encoder.getVelocity());
