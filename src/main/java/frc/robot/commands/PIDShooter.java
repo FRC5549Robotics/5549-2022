@@ -23,6 +23,7 @@ public class PIDShooter extends CommandBase {
   @Override
   public void initialize() {
     shootSpeed = m_limelight.getDesiredRPM();
+    System.out.println("asdfhaeruaeuigarig: shootSpeed: " + shootSpeed.toString());
   }
 
   // Called every time the scheduler runs while the command is scheduled.
