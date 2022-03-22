@@ -17,7 +17,6 @@ import com.revrobotics.RelativeEncoder;
 //import com.revrobotics.SparkMaxPIDController;
 
 import frc.robot.Constants;
-
 import r3.Record;
 
 public class Shooter extends SubsystemBase {
