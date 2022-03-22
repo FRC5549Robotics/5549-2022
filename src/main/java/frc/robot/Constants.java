@@ -40,7 +40,7 @@ public final class Constants {
     public static final int LEFTSOLENOID_REVERSE = 7;
 
     public static final int MOTOR_INTAKE = 11;
-    public static final double INTAKE_SPEED = 0.45;
+    public static final double INTAKE_SPEED = 0.60;//Old intake 0.45
     public static final int INTAKE_BUTTON = 3;
 
     public static final double CLIMBER_SPEED = 0.5;

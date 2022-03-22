@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -13,6 +14,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.RelativeEncoder;
 import frc.robot.Constants;
 
 import r3.Record;
@@ -22,6 +24,7 @@ public class Drivetrain extends SubsystemBase {
   private static Drivetrain instance = null;
 
   CANSparkMax leftFront, rightFront, leftBack, rightBack;
+  RelativeEncoder leftFrontE, leftBackE, rightFrontE, rightBackE;
   MotorControllerGroup leftGroup, rightGroup;
   DifferentialDrive drive;
 
@@ -30,9 +33,13 @@ public class Drivetrain extends SubsystemBase {
   public Drivetrain() {
     leftFront =  new CANSparkMax(Constants.LEFT_MOTOR1, MotorType.kBrushless);
     leftBack = new CANSparkMax(Constants.LEFT_MOTOR2, MotorType.kBrushless);
+    leftBackE = leftBack.getEncoder();
+    leftFrontE = leftFront.getEncoder();
 
     rightFront = new CANSparkMax(Constants.RIGHT_MOTOR1, MotorType.kBrushless);
     rightBack = new CANSparkMax(Constants.RIGHT_MOTOR2, MotorType.kBrushless);
+    rightBackE = rightBack.getEncoder();
+    rightFrontE = rightFront.getEncoder();
 
     leftFront.setInverted(true);
     leftBack.setInverted(true);
@@ -76,6 +83,10 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("LeftFront", leftFrontE.getVelocity());
+    SmartDashboard.putNumber("LeftBack", leftBackE.getVelocity());
+    SmartDashboard.putNumber("RightFront", rightFrontE.getVelocity());
+    SmartDashboard.putNumber("RightBack", rightBackE.getVelocity());
   }
 
   public static Drivetrain getInstance() {
