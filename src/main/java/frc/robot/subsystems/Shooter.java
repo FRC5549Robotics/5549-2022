@@ -92,17 +92,6 @@ public class Shooter extends SubsystemBase {
 	
 	@Override
 	public void periodic(){
-		if (targetRPM - motor1_encoder.getVelocity() < 15 && targetRPM - motor1_encoder.getVelocity() > -15)
-		{
-			xboxTrigger.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
-			xboxTrigger.setRumble(GenericHID.RumbleType.kRightRumble, 1);
-		}
-		else
-		{
-			xboxTrigger.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
-			xboxTrigger.setRumble(GenericHID.RumbleType.kRightRumble, 0);
-		}
-
 		if (xboxTrigger.getRawAxis(3) > 0.1)
 		{
 			runShooter(1);

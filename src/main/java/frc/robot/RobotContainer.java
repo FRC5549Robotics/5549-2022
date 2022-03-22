@@ -81,7 +81,7 @@ public class RobotContainer {
     changeGear.whenPressed(new InstantCommand(drivetrain::changeGear));
     //turnButton.whenPressed(new TurnToAngle(limelight, drivetrain));
     recordButton.whenPressed(new InstantCommand(Record::toggle));
-    PIDButton.whenHeld(new PIDShooter(shooter, limelight));
+    PIDButton.whenHeld(new PIDShooter(shooter, limelight, xbox));
   }
     
 
