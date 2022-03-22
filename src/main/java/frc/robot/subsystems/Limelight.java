@@ -42,7 +42,7 @@ public class Limelight extends SubsystemBase {
   public double getDistance() {
     if (tv != 0) {
       angle = (Constants.ANGLE_CAMERA + Math.abs(ty)) * Math.PI / 180;
-      return (Constants.HEIGHT_TARGET - Constants.HEIGHT_CAMERA) / Math.tan(angle);
+      return ((Constants.HEIGHT_TARGET - Constants.HEIGHT_CAMERA) / Math.tan(angle)) / 12;
     } else {
       return 0;
     }
@@ -54,7 +54,10 @@ public class Limelight extends SubsystemBase {
   }
 
   public double getDesiredRPM(){
-    return 0.149827*(Math.pow(1.04964, (4.99985*this.getDistance()) + 29.9996) + 28.4836);
+    double a = 1.004;
+    double b = 24.18;
+    return a*getDistance() + b;
+    // return 0.149827*(Math.pow(1.04964, (4.99985*this.getDistance()) + 29.9996) + 28.4836);
     //Add implementation
   }
 

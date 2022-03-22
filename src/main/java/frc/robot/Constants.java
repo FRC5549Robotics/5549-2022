@@ -48,8 +48,8 @@ public final class Constants {
     public static final int CLIMBER_MOTOR_2 = 4;
 
     public static final int ANGLE_CAMERA = 45;
-    public static final double HEIGHT_TARGET = 268;
-    public static final int HEIGHT_CAMERA = 85;
+    public static final double HEIGHT_TARGET = 100;
+    public static final int HEIGHT_CAMERA = 34;
 
     public static final int INDEXER_MOTOR = 5;
     public static final double INDEXER_SPEED = 1;//0.9 normally
