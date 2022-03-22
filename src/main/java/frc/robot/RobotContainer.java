@@ -29,22 +29,22 @@ import r3.Record;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  public XboxController xbox = new XboxController(Constants.XBOX_CONTROLLER);
+  public static Joystick joystickLeft = new Joystick(Constants.JOYSTICK_LEFT);
+  public static Joystick joystickRight = new Joystick(Constants.JOYSTICK_RIGHT);
   // The robot's subsystems and commands are defined here...
   public final Drivetrain drivetrain = new Drivetrain();
   public final Intake intake = new Intake();
+  public final Limelight limelight = new Limelight(xbox, Constants.tP);
   public final Indexer indexer = new Indexer();
+  public final Shooter shooter = new Shooter(xbox, joystickRight, limelight);
+  public final Climber climber = new Climber(xbox);
 
-  public static Joystick joystickLeft = new Joystick(Constants.JOYSTICK_LEFT);
-  public static Joystick joystickRight = new Joystick(Constants.JOYSTICK_RIGHT);
-  public XboxController xbox = new XboxController(Constants.XBOX_CONTROLLER);
   //JoystickButton shootButton = new JoystickButton(xbox, Constants.SHOOT_BUTTON);
   JoystickButton intakeButton = new JoystickButton(xbox, Constants.INTAKE_BUTTON);
   JoystickButton intakeButton2 = new JoystickButton(xbox, Constants.SHOOT_BUTTON);
   JoystickButton indexerButton = new JoystickButton(xbox, Constants.INDEXER_BUTTON2);
   JoystickButton indexerButton2 = new JoystickButton(xbox, Constants.INDEXER_BUTTON);
-  public final Shooter shooter = new Shooter(xbox, joystickRight);
-  public final Limelight limelight = new Limelight(xbox, Constants.tP);
-  public final Climber climber = new Climber(xbox);
   JoystickButton changeGear = new JoystickButton(joystickRight, Constants.CHANGE_GEAR_BUTTON);
   //JoystickButton turnButton = new JoystickButton(xbox, 8);
   JoystickButton recordButton = new JoystickButton(joystickRight, 8);

@@ -11,8 +11,8 @@ import frc.robot.subsystems.Limelight;
 public class PIDShooter extends CommandBase {
   /** Creates a new PIDShooter. */
   Shooter m_shooter;
-  Limelight m_limelight;
   Double shootSpeed;
+  Limelight m_limelight;
   public PIDShooter(Shooter shooter, Limelight limelight) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_shooter = shooter;

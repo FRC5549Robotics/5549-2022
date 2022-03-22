@@ -8,6 +8,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import java.lang.Math;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController;
 
@@ -19,14 +20,13 @@ public class Limelight extends SubsystemBase {
   double min_command = 0.05;
   XboxController xbox1;
   double steering_adjust = 0.0;
-  private static Limelight limelight;
+  private static Limelight limelight = null;
 
 
   public Limelight(XboxController xbox, double inputkP) {
     limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
     xbox1 = xbox;
     //Kp = inputkP;
-    limelight = this;
   }
 
   public double getAngle() {
@@ -53,8 +53,8 @@ public class Limelight extends SubsystemBase {
     return Limelight.limelight;
   }
 
-  public static double getDesiredRPM(){
-    return 500.0;
+  public double getDesiredRPM(){
+    return 0.149827*(Math.pow(1.04964, (4.99985*limelight.getDistance()) + 29.9996) + 28.4836);
     //Add implementation
   }
 
@@ -70,8 +70,8 @@ public class Limelight extends SubsystemBase {
      
       if (tx > 1.0 || tx < -1.0)
       {
-        Drivetrain.getInstance().rightGroup.set(-heading_error/54);
-        Drivetrain.getInstance().leftGroup.set(heading_error/54);
+        Drivetrain.getInstance().rightGroup.set(-heading_error/70);
+        Drivetrain.getInstance().leftGroup.set(heading_error/70);
       }
     }
     
