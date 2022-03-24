@@ -97,15 +97,12 @@ public class Shooter extends SubsystemBase {
 			System.out.println("RPM2" + motor2_encoder.getVelocity());
 			//System.out.println("Distance" + limelight.getDistance());
 		}
-		else if (xboxTrigger.getRawAxis(3) > 0.2)
+		else if (xboxTrigger.getRawAxis(2) > 0.1)
 		{
-			runShooter(xboxTrigger.getRawAxis(3)/3.5);
+			runShooter(xboxTrigger.getRawAxis(2)/3.5);
 			System.out.println("RPM" + motor1_encoder.getVelocity());
 			System.out.println("RPM2" + motor2_encoder.getVelocity());
-		}
-		else{
-			off();
-		}
+		} 
 	}
 
 	public void ShootHigh(){

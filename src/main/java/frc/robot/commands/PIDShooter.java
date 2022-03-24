@@ -51,7 +51,8 @@ public class PIDShooter extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     xboxTrigger.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
-			xboxTrigger.setRumble(GenericHID.RumbleType.kRightRumble, 0);
+		xboxTrigger.setRumble(GenericHID.RumbleType.kRightRumble, 0);
+    m_shooter.off();
   }
 
   // Returns true when the command should end.

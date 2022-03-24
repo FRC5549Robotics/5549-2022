@@ -19,6 +19,12 @@ public final class Constants {
     public static final int LEFT_MOTOR2 = 2;
     public static final double RIGHT_SCALING_FACTOR = 0.75;
     public static final double LEFT_SCALING_FACTOR = 0.75;
+    public static final double DRIVE_kS = 0.2402;
+    public static final double DRIVE_kV = 0.36579;
+    public static final double DRIVE_kA = 0.072885;
+    public static final double DRIVE_kP = 0.49161;
+    public static final double DRIVE_kI = 0;
+    public static final double DRIVE_kD = 0;
 
     public static final int SHOOT_MOTOR1 = 8;
     public static final int SHOOT_MOTOR2 = 9;
@@ -40,7 +46,7 @@ public final class Constants {
     public static final int LEFTSOLENOID_REVERSE = 7;
 
     public static final int MOTOR_INTAKE = 11;
-    public static final double INTAKE_SPEED = 0.60;//Old intake 0.45
+    public static final double INTAKE_SPEED = 0.45;
     public static final int INTAKE_BUTTON = 3;
 
     public static final double CLIMBER_SPEED = 0.5;

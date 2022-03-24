@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -27,6 +28,7 @@ public class Drivetrain extends SubsystemBase {
   RelativeEncoder leftFrontE, leftBackE, rightFrontE, rightBackE;
   MotorControllerGroup leftGroup, rightGroup;
   DifferentialDrive drive;
+  Compressor pcmCompressor;
 
   DoubleSolenoid rightGearShift, leftGearShift;
 
@@ -54,6 +56,8 @@ public class Drivetrain extends SubsystemBase {
     rightGearShift.set(Value.kForward);
     leftGearShift.set(Value.kForward);
     instance = this;
+
+    pcmCompressor = new Compressor(PneumaticsModuleType.CTREPCM);
   }
 
   public void tankDriveMethod(double leftJoystickAxis, double rightJoystickAxis) {
@@ -87,6 +91,8 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("LeftBack", leftBackE.getVelocity());
     SmartDashboard.putNumber("RightFront", rightFrontE.getVelocity());
     SmartDashboard.putNumber("RightBack", rightBackE.getVelocity());
+    
+    pcmCompressor.getPressure();
   }
 
   public static Drivetrain getInstance() {
