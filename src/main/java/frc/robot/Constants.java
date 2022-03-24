@@ -19,10 +19,10 @@ public final class Constants {
     public static final int LEFT_MOTOR2 = 2;
     public static final double RIGHT_SCALING_FACTOR = 0.75;
     public static final double LEFT_SCALING_FACTOR = 0.75;
-    public static final double DRIVE_kS = 0.2402;
-    public static final double DRIVE_kV = 0.36579;
-    public static final double DRIVE_kA = 0.072885;
-    public static final double DRIVE_kP = 0.49161;
+    public static final double DRIVE_kS = 0.33049;
+    public static final double DRIVE_kV = 0.35435;
+    public static final double DRIVE_kA = 0.23814;
+    public static final double DRIVE_kP = 0.54511;
     public static final double DRIVE_kI = 0;
     public static final double DRIVE_kD = 0;
 
