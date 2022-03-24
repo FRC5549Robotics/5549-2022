@@ -12,6 +12,11 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
+
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -29,6 +34,7 @@ public class Drivetrain extends SubsystemBase {
   MotorControllerGroup leftGroup, rightGroup;
   DifferentialDrive drive;
   Compressor pcmCompressor;
+  AHRS m_NavXMXP = new AHRS(SerialPort.Port.kMXP);
 
   DoubleSolenoid rightGearShift, leftGearShift;
 
@@ -84,6 +90,10 @@ public class Drivetrain extends SubsystemBase {
   public void autoDrive(double speed1, double speed2) {
      drive.tankDrive(-speed1, -speed2);
    }
+  
+  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
+    return new DifferentialDriveWheelSpeeds((rightFrontE.getVelocity()+rightBackE.getVelocity())/2, (leftFrontE.getVelocity()+leftBackE.getVelocity())/2);
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
