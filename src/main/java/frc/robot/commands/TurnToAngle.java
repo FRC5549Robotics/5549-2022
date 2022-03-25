@@ -38,7 +38,6 @@ public class TurnToAngle extends CommandBase {
     //   isDone = true;
     // }
 
-    System.out.println(m_limelight.getAngle());
     if(m_limelight.getAngle() > 4 || m_limelight.getAngle() < -5)
     {
       m_drivetrain.arcadeDriveMethod(m_limelight.getAngle());

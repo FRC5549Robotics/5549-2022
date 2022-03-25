@@ -29,7 +29,6 @@ public class ShootHigh extends CommandBase {
   public void initialize() {
     m_startTime = System.currentTimeMillis();
     m_time = 0.0;
-    System.out.println("Initialized");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -45,7 +44,6 @@ public class ShootHigh extends CommandBase {
       xboxTrigger.setRumble(RumbleType.kRightRumble, 1);
     }	
     m_shooter.ShootHigh();
-    System.out.println("Shoot High");
   }
 
   // Called once the command ends or is interrupted.

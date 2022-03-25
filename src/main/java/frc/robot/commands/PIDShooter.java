@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID;
 
 
@@ -24,13 +25,19 @@ public class PIDShooter extends CommandBase {
     m_shooter = shooter;
     m_limelight = limelight;
     xboxTrigger = xbox;
-  }
+  } 
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     shootSpeed = m_limelight.getDesiredRPM();
-    System.out.println("asdfhaeruaeuigarig: shootSpeed: " + shootSpeed.toString());
+    
+    if( shootSpeed == 0){
+      System.out.println("LimelightValue: false");
+    }
+    else{
+      System.out.println("LimelightValue: true");
+    }
     startTime = System.currentTimeMillis();
     m_time = 0.0;
   }

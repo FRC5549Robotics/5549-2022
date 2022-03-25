@@ -34,7 +34,8 @@ public class Drivetrain extends SubsystemBase {
   MotorControllerGroup leftGroup, rightGroup;
   DifferentialDrive drive;
   Compressor pcmCompressor;
-  AHRS m_NavXMXP = new AHRS(SerialPort.Port.kMXP);
+  AHRS m_NavXMXP;
+  DifferentialDriveOdometry m_odometry;
 
   DoubleSolenoid rightGearShift, leftGearShift;
 
@@ -51,6 +52,8 @@ public class Drivetrain extends SubsystemBase {
 
     leftFront.setInverted(true);
     leftBack.setInverted(true);
+
+    m_NavXMXP = new AHRS(SerialPort.Port.kMXP);
 
     leftGroup = new MotorControllerGroup(leftFront, leftBack);
     rightGroup = new MotorControllerGroup(rightFront, rightBack);
@@ -88,12 +91,19 @@ public class Drivetrain extends SubsystemBase {
   }
   
   public void autoDrive(double speed1, double speed2) {
-     drive.tankDrive(-speed1, -speed2);
+     drive.tankDrive(-speed1 * Constants.RIGHT_SCALING_FACTOR, -speed2 * Constants.LEFT_SCALING_FACTOR);
    }
   
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
     return new DifferentialDriveWheelSpeeds((rightFrontE.getVelocity()+rightBackE.getVelocity())/2, (leftFrontE.getVelocity()+leftBackE.getVelocity())/2);
   }
+
+  // public static double RPMToDistance(RelativeEncoder encoder)
+  // {
+  //   encoder.
+  //   return 0;
+  // }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
@@ -103,6 +113,8 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("RightBack", rightBackE.getVelocity());
     
     pcmCompressor.getPressure();
+    //m_odometry.update(
+    //m_NavXMXP.getRotation2d(), m_leftEncoder.getDistance(), m_rightEncoder.getDistance());
   }
 
   public static Drivetrain getInstance() {

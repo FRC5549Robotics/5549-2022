@@ -63,14 +63,14 @@ public final class Constants {
     public static final int INDEXER_BUTTON2 = 1;
     public static final int INDEXER_PERIOD = 1;
 
-    public static final double DRIVE_AUTO_SPEED = 0.3;
+    public static final double DRIVE_AUTO_SPEED = 0.45;
     public static final double BACK_TIME = 2.5;
     public static final double SHOOT_TIME = 6;
     public static final int CHANGE_GEAR_BUTTON = 2;
     public static final int XBOX_CONTROLLER = 0;
     public static final double BACK_TIME1 = 4.5;
     public static final double INTAKE_RUN_TIME = 1;
-    public static final double INTAKE_AUTON_SPEED = 0.3;
-    public static final double SHOOTER_AUTON_SPEED = 1;
+    public static final double INTAKE_AUTON_SPEED = 0.4;
+    public static final double SHOOTER_AUTON_SPEED = 0.6;
     public static final int PID_SHOOTER = 6;
 }
