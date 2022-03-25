@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
+import frc.robot.Constants;
 import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -45,7 +46,7 @@ public class PIDShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (shootSpeed == 24.18 - 2.9) {
+    if (shootSpeed == 24.18 + Constants.PIDB_CONSTANT) {
 	    xboxTrigger.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
 	    xboxTrigger.setRumble(GenericHID.RumbleType.kRightRumble, 1);
     } else {

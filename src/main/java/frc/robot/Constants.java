@@ -73,4 +73,5 @@ public final class Constants {
     public static final double INTAKE_AUTON_SPEED = 0.4;
     public static final double SHOOTER_AUTON_SPEED = 0.6;
     public static final int PID_SHOOTER = 6;
+    public static final double PIDB_CONSTANT = -2.9;
 }

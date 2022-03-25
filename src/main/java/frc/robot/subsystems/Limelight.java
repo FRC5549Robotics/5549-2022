@@ -56,7 +56,7 @@ public class Limelight extends SubsystemBase {
 
   public double getDesiredRPM(){
     double a = 1.004;
-    double b = 24.18 - 2.9;
+    double b = 24.18 + Constants.PIDB_CONSTANT;
     return a*getDistance() + b;
     // return 0.149827*(Math.pow(1.04964, (4.99985*this.getDistance()) + 29.9996) + 28.4836);
     //Add implementation
