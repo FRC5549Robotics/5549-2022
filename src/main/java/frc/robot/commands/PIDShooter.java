@@ -38,13 +38,18 @@ public class PIDShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_time = (System.currentTimeMillis() - startTime) / 1000;
+    if (shootSpeed = 0) {
+	    xboxTrigger.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
+	    xboxTrigger.setRumble(GenericHID.RumbleType.kRightRumble, 1);
+    } else {
+    //m_time = (System.currentTimeMillis() - startTime) / 1000;
     m_shooter.on(shootSpeed);
-    if (m_time > 1.5) 
-    {
-      xboxTrigger.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
-			xboxTrigger.setRumble(GenericHID.RumbleType.kRightRumble, 1);
-    }
+    }    
+    //if (m_time > 1.5) 
+    //{
+      //xboxTrigger.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
+			//xboxTrigger.setRumble(GenericHID.RumbleType.kRightRumble, 1);
+    //}
   }
 
   // Called once the command ends or is interrupted.
