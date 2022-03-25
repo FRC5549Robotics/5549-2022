@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 
 
@@ -95,7 +96,7 @@ public class Drivetrain extends SubsystemBase {
    }
   
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
-    return new DifferentialDriveWheelSpeeds((rightFrontE.getVelocity()+rightBackE.getVelocity())/2, (leftFrontE.getVelocity()+leftBackE.getVelocity())/2);
+    return new DifferentialDriveWheelSpeeds((((rightFrontE.getVelocity() + leftBackE.getVelocity())/2) * ((0.1524 * Math.PI)/(2.43 * 60))), (((leftFrontE.getVelocity()+leftBackE.getVelocity())/2) * ((0.1524 * Math.PI)/(2.43 * 60))));
   }
 
   // public static double RPMToDistance(RelativeEncoder encoder)
@@ -103,6 +104,19 @@ public class Drivetrain extends SubsystemBase {
   //   encoder.
   //   return 0;
   // }
+
+  public double getHeading(){
+    return m_NavXMXP.getRotation2d().getDegrees();
+  }
+
+  public Pose2d getPose(){
+    return m_odometry.getPoseMeters();
+  }
+
+  public void tankDriveVolts(double leftVolts, double rightVolts){
+    leftGroup.setVoltage(leftVolts);
+    rightGroup.setVoltage(rightVolts);
+  }
 
   @Override
   public void periodic() {
@@ -113,8 +127,7 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("RightBack", rightBackE.getVelocity());
     
     pcmCompressor.getPressure();
-    //m_odometry.update(
-    //m_NavXMXP.getRotation2d(), m_leftEncoder.getDistance(), m_rightEncoder.getDistance());
+    m_odometry.update(m_NavXMXP.getRotation2d(), rightFrontE.getPosition(), leftFrontE.getPosition());
   }
 
   public static Drivetrain getInstance() {

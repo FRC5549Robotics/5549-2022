@@ -92,4 +92,8 @@ public final class Constants {
     public static final double SHOOTER_AUTON_SPEED = 0.6;
     public static final int PID_SHOOTER = 6;
     public static final double PIDB_CONSTANT = -2.9;
+    
+    //Ramsete Constants
+    public static final double kRamseteB = 2;
+    public static final double kRamseteZeta = 0.7;
 }

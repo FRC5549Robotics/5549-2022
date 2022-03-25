@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.RamseteController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
@@ -20,6 +23,7 @@ import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import r3.Record;
 
 /**
@@ -104,6 +108,22 @@ public class RobotContainer {
       new IndexerRunForSpecificTime(indexer, intake, Constants.SHOOT_TIME, shooter)
       //new TurnFlywheelOff(shooter)
      );
+
+    //  RamseteCommand ramseteCommand =
+    //   new RamseteCommand(
+    //     exampleTrajectory,
+    //     drivetrain::getPose,
+    //     new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta),
+    //     new SimpleMotorFeedforward(
+    //       Constants.DRIVE_kS,
+    //       Constants.DRIVE_kV,
+    //       Constants.DRIVE_kA),
+    //     Constants.kDriveKinematics,
+    //     drivetrain::getWheelSpeeds,
+    //     new PIDController(Constants.DRIVE_kP, Constants.DRIVE_kI, Constants.DRIVE_kD),
+    //     new PIDController(Constants.DRIVE_kP, Constants.DRIVE_kI, Constants.DRIVE_kD),
+    //     drivetrain::getWheelSpeeds,
+    //     drivetrain);
 
   }
 }
