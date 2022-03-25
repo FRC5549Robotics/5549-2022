@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Limelight;
 
 public class IntakeRunForSpecificTime extends CommandBase {
   /** Creates a new Auto. */
@@ -13,13 +16,20 @@ public class IntakeRunForSpecificTime extends CommandBase {
   boolean myAutoFinished = false;
   private double m_maxTime;
   private double direction;
+  private Indexer m_indexer;
+  private Shooter m_shooter;
+  private double shootSpeed;
+  private Limelight m_limelight;
   private final Intake m_intake;
 
-  public IntakeRunForSpecificTime(Drivetrain drivetrain, double time, double direction1, Intake intake) {
+  public IntakeRunForSpecificTime(Drivetrain drivetrain, double time, double direction1, Intake intake, Indexer indexer, Limelight limelight, Shooter shooter) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_drivetrain = drivetrain;
     m_intake = intake;
     m_maxTime = time;
+    m_limelight = limelight;
+    m_indexer = indexer;
+    m_shooter = shooter;
     direction = direction1;
     addRequirements(drivetrain);
   }
@@ -29,17 +39,24 @@ public class IntakeRunForSpecificTime extends CommandBase {
   public void initialize() {
     startTime = System.currentTimeMillis();
     m_time = 0.0;
+    shootSpeed = m_limelight.getDesiredRPM();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     m_time = (System.currentTimeMillis() - startTime) / 1000;
-    if ((m_time >= 0.0) && (m_time < m_maxTime)) {
-      m_drivetrain.autoDrive(-Constants.DRIVE_AUTO_SPEED * direction, -Constants.DRIVE_AUTO_SPEED * direction);
+    m_shooter.on(shootSpeed-1.5);
+    if ((m_time >= 0.0) && (m_time < 1)) {
       m_intake.intake_auto();
-      
+      m_indexer.indexer_up();
     } 
+    if(m_time >= 1 && m_time < m_maxTime)
+    {
+      m_drivetrain.autoDrive(-Constants.DRIVE_AUTO_SPEED * direction, -Constants.DRIVE_AUTO_SPEED * direction);
+      m_intake.intake_bottom();
+      m_indexer.indexer_stop();
+    }
     if ((m_time >= m_maxTime)){
       m_intake.intake_stop();
       myAutoFinished = true;
@@ -48,7 +65,9 @@ public class IntakeRunForSpecificTime extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_shooter.off();
+  }
 
   // Returns true when the command should end.
   @Override

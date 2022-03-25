@@ -32,7 +32,7 @@ public class Drivetrain extends SubsystemBase {
 
   CANSparkMax leftFront, rightFront, leftBack, rightBack;
   RelativeEncoder leftFrontE, leftBackE, rightFrontE, rightBackE;
-  MotorControllerGroup leftGroup, rightGroup;
+  public MotorControllerGroup leftGroup, rightGroup;
   DifferentialDrive drive;
   Compressor pcmCompressor;
   AHRS m_NavXMXP;

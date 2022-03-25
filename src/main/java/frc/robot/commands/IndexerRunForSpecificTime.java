@@ -6,25 +6,34 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 
 public class IndexerRunForSpecificTime extends CommandBase {
   /** Creates a new IndexerRunForSpecificTime. */
   private final Indexer m_indexer;
   private final Intake m_intake;
+  private final Limelight m_limelight;
   private double m_time;
   private double startTime;
+  private Double tx;
+  private final Drivetrain m_drivetrain;
   boolean isIndexerDone = false;
   private double m_maxTime;
   private final Shooter m_shooter;
-  public IndexerRunForSpecificTime(Indexer indexer, Intake intake, double time, Shooter shooter) {
+  private double shootSpeed;
+  public IndexerRunForSpecificTime(Indexer indexer, Intake intake, double time, Shooter shooter, Limelight limelight, Drivetrain drivetrain) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_indexer = indexer;
     m_maxTime = time;
     m_intake = intake;
     m_shooter = shooter;
+    m_limelight = limelight;
+    m_drivetrain = drivetrain;
+    tx = m_limelight.getAngle();
     addRequirements(indexer);
     addRequirements(intake);
     addRequirements(shooter);
@@ -35,28 +44,30 @@ public class IndexerRunForSpecificTime extends CommandBase {
   public void initialize() {
     startTime = System.currentTimeMillis();
     m_time = 0.0;
+    shootSpeed = m_limelight.getDesiredRPM();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     m_time = (System.currentTimeMillis() - startTime) / 1000;
-    m_shooter.autonSpeed();
-    if ((m_time >= 2) && (m_time < m_maxTime)){
+    m_shooter.on(shootSpeed-1.5);
+    if ((m_time >= 4.5) && (m_time < m_maxTime)){
       m_indexer.indexer_up();
       m_intake.intake_auto();
     }
     if (m_time >= m_maxTime){
-      m_shooter.off();
-      m_indexer.indexer_stop();
-      m_intake.intake_stop();
       isIndexerDone = true;
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_shooter.off();
+    m_indexer.indexer_stop();
+    m_intake.intake_stop();
+  }
 
   // Returns true when the command should end.
   @Override
