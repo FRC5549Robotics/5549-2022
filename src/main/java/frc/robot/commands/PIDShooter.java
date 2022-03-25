@@ -45,7 +45,7 @@ public class PIDShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (shootSpeed = 0) {
+    if (shootSpeed == 24.18 - 2.9) {
 	    xboxTrigger.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
 	    xboxTrigger.setRumble(GenericHID.RumbleType.kRightRumble, 1);
     } else {
