@@ -32,13 +32,6 @@ public class PIDShooter extends CommandBase {
   @Override
   public void initialize() {
     shootSpeed = m_limelight.getDesiredRPM();
-    
-    if( shootSpeed == 0){
-      System.out.println("LimelightValue: false");
-    }
-    else{
-      System.out.println("LimelightValue: true");
-    }
     startTime = System.currentTimeMillis();
     m_time = 0.0;
   }
