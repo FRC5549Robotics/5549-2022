@@ -127,7 +127,7 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("RightBack", rightBackE.getVelocity());
     
     pcmCompressor.getPressure();
-    m_odometry.update(m_NavXMXP.getRotation2d(), rightFrontE.getPosition(), leftFrontE.getPosition());
+    //m_odometry.update(m_NavXMXP.getRotation2d(), rightFrontE.getPosition(), leftFrontE.getPosition());
   }
 
   public static Drivetrain getInstance() {

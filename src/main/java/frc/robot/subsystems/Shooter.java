@@ -98,7 +98,9 @@ public class Shooter extends SubsystemBase {
 		else if (xboxTrigger.getRawAxis(2) > 0.1)
 		{
 			runShooter(xboxTrigger.getRawAxis(2)/3.5);
-		} 
+		} else {
+			off();
+		}
 	}
 
 	public void ShootHigh(){
