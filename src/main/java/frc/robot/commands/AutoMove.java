@@ -16,7 +16,7 @@ public class AutoMove extends CommandBase {
   public AutoMove(Drivetrain drivetrain, double time, double direction1) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_drivetrain = drivetrain;
-    m_maxTime = time;
+    m_maxTime = time - 1;
     direction = direction1;
     addRequirements(drivetrain);
   }

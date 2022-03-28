@@ -65,7 +65,7 @@ public final class Constants {
 
     //Intake Motor Declaration
     public static final int MOTOR_INTAKE = 11;
-    public static final double INTAKE_SPEED = 0.45;
+    public static final double INTAKE_SPEED = 0.5;
     public static final int INTAKE_BUTTON = 3;
 
     public static final double CLIMBER_SPEED = 0.5;
@@ -84,14 +84,14 @@ public final class Constants {
 
     public static final double DRIVE_AUTO_SPEED = 0.45;
     public static final double BACK_TIME = 2.5;
-    public static final double SHOOT_TIME = 8.5;
+    public static final double SHOOT_TIME = 6;
     public static final int CHANGE_GEAR_BUTTON = 2;
-    public static final double BACK_TIME1 = 4.5;
+    public static final double BACK_TIME1 = 6.5;
     public static final double INTAKE_RUN_TIME = 1;
     public static final double INTAKE_AUTON_SPEED = 0.65;
     public static final double SHOOTER_AUTON_SPEED = 0.6;
     public static final int PID_SHOOTER = 6;
-    public static final double PIDB_CONSTANT = -2.9;
+    public static final double PIDB_CONSTANT = -1.575;
     
     //Ramsete Constants
     public static final double kRamseteB = 2;

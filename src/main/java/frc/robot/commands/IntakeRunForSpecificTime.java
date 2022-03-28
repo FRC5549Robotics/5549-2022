@@ -46,12 +46,15 @@ public class IntakeRunForSpecificTime extends CommandBase {
   @Override
   public void execute() {
     m_time = (System.currentTimeMillis() - startTime) / 1000;
-    m_shooter.on(shootSpeed-1.5);
-    if ((m_time >= 0.0) && (m_time < 1)) {
+    m_shooter.on(shootSpeed+0.9);
+    if ((m_time >= 1) && (m_time < 2)) {
+      m_drivetrain.autoDrive(-Constants.DRIVE_AUTO_SPEED * direction, -Constants.DRIVE_AUTO_SPEED * direction);
+    } 
+    if ((m_time >=2) && (m_time < 4)){
       m_intake.intake_auto();
       m_indexer.indexer_up();
-    } 
-    if(m_time >= 1 && m_time < m_maxTime)
+    }
+    if(m_time >= 4 && m_time < m_maxTime)
     {
       m_drivetrain.autoDrive(-Constants.DRIVE_AUTO_SPEED * direction, -Constants.DRIVE_AUTO_SPEED * direction);
       m_intake.intake_bottom();
