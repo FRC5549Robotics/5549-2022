@@ -117,21 +117,22 @@ public class RobotContainer {
     //   //new TurnFlywheelOff(shooter)
     //  );
 
-     RamseteCommand ramseteCommand =
-      new RamseteCommand(
-        Robot.exampleTrajectory,
-        drivetrain::getPose,
-        new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta),
-        new SimpleMotorFeedforward(
-          Constants.DRIVE_kS,
-          Constants.DRIVE_kV,
-          Constants.DRIVE_kA),
-        Constants.kDriveKinematics,
-        drivetrain::getWheelSpeeds,
-        new PIDController(Constants.DRIVE_kP, Constants.DRIVE_kI, Constants.DRIVE_kD),
-        new PIDController(Constants.DRIVE_kP, Constants.DRIVE_kI, Constants.DRIVE_kD),
-        drivetrain::tankDriveVolts,
-        drivetrain);
+    RamseteCommand ramseteCommand =
+    new RamseteCommand(
+      Robot.exampleTrajectory,
+      drivetrain::getPose,
+      new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta),
+      new SimpleMotorFeedforward(
+        Constants.DRIVE_kS,
+        Constants.DRIVE_kV,
+        Constants.DRIVE_kA),
+      Constants.kDriveKinematics,
+      drivetrain::getWheelSpeeds,
+      new PIDController(Constants.DRIVE_kP, Constants.DRIVE_kI, Constants.DRIVE_kD),
+      new PIDController(Constants.DRIVE_kP, Constants.DRIVE_kI, Constants.DRIVE_kD),
+      drivetrain::tankDriveVolts,
+      drivetrain);
+    drivetrain.resetOdometry(Robot.exampleTrajectory.getInitialPose());
     return ramseteCommand.andThen(() -> drivetrain.tankDriveVolts(0, 0));
   }
 
@@ -165,4 +166,5 @@ public class RobotContainer {
   //       // Pass config
   //       config);
   //}
+  
 }

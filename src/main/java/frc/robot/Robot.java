@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     try {
-      Path trajectory = Filesystem.getDeployDirectory().toPath().resolve("paths/Near.wpilib.json");
+      Path trajectory = Filesystem.getDeployDirectory().toPath().resolve("paths/NearRude.wpilib.json");
       exampleTrajectory = TrajectoryUtil.fromPathweaverJson(trajectory);
      } catch (IOException e) { DriverStation.reportError("couldn't open path", e.getStackTrace()); }
     m_robotContainer = new RobotContainer();

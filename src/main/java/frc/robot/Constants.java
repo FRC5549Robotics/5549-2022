@@ -15,8 +15,8 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final double ROTATION_TO_METERS = ((0.1524 * Math.PI)/(2.43 * 60));   // Not to be trusted.
-    public static final double POSITION_TO_METERS = ((0.1524 * Math.PI)/2.43);
+    public static final double ROTATION_TO_METERS = ((0.1524 * Math.PI)/(7.29 * 60));   // Not to be trusted.
+    public static final double POSITION_TO_METERS = ((0.1524 * Math.PI)/7.29);
     
     //DriveTrain Motor Set Up
     public static final int RIGHT_MOTOR1 = 6;
@@ -34,7 +34,7 @@ public final class Constants {
     public static final double DRIVE_kA = 0.23814;
     
     //Drivetrain PID Values
-    public static final double DRIVE_kP = 0.54511;
+    public static final double DRIVE_kP = 0.1; // 0.54511;
     public static final double DRIVE_kI = 0;
     public static final double DRIVE_kD = 0;
 
