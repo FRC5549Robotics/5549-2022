@@ -15,6 +15,12 @@ import edu.wpi.first.cameraserver.*;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.math.trajectory.*;
+
+import java.nio.file.Path;
+import edu.wpi.first.wpilibj.Filesystem;
+import java.io.IOException;
+import edu.wpi.first.wpilibj.DriverStation;
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -23,6 +29,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+  public static Trajectory exampleTrajectory;
 
   private RobotContainer m_robotContainer;
   public PowerDistribution pdp = new PowerDistribution();
@@ -39,11 +46,15 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     cam = CameraServer.startAutomaticCapture(0);
 
-    cameraNet = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
+    cameraNet = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelec3tion");
     //cameraServer.startAutomaticCapture(1);
    // cam.
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    try {
+      Path trajectory = Filesystem.getDeployDirectory().toPath().resolve("paths/Near.wpilib.json");
+      exampleTrajectory = TrajectoryUtil.fromPathweaverJson(trajectory);
+     } catch (IOException e) { DriverStation.reportError("couldn't open path", e.getStackTrace()); }
     m_robotContainer = new RobotContainer();
     
     pdp.clearStickyFaults();

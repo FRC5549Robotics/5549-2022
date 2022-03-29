@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -13,6 +15,8 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static final double ROTATION_TO_METERS = ((0.1524 * Math.PI)/(2.43 * 60));   // Not to be trusted.
+    public static final double POSITION_TO_METERS = ((0.1524 * Math.PI)/2.43);
     
     //DriveTrain Motor Set Up
     public static final int RIGHT_MOTOR1 = 6;
@@ -58,6 +62,7 @@ public final class Constants {
     public static final int XBOX_CONTROLLER = 0;
     
     //Solenoid Declaration
+    public static final int CHANGE_GEAR_BUTTON = 2;
     public static final int RIGHTSOLENOID_FORWARD = 1;
     public static final int LEFTSOLENOID_FORWARD = 6;
     public static final int RIGHTSOLENOID_REVERSE = 0;
@@ -68,32 +73,44 @@ public final class Constants {
     public static final double INTAKE_SPEED = 0.5;
     public static final int INTAKE_BUTTON = 3;
 
+    //Climber
     public static final double CLIMBER_SPEED = 0.5;
     public static final int CLIMBER_MOTOR_1 = 3;
     public static final int CLIMBER_MOTOR_2 = 4;
 
+    //Limelight
     public static final int ANGLE_CAMERA = 45;
     public static final double HEIGHT_TARGET = 100;
     public static final int HEIGHT_CAMERA = 34;
 
+    //Indexer
     public static final int INDEXER_MOTOR = 5;
     public static final double INDEXER_SPEED = 0.8;//0.9 normally
     public static final int INDEXER_BUTTON = 2;
     public static final int INDEXER_BUTTON2 = 1;
     public static final int INDEXER_PERIOD = 1;
 
+    //Auton
     public static final double DRIVE_AUTO_SPEED = 0.45;
     public static final double BACK_TIME = 2.5;
     public static final double SHOOT_TIME = 6;
-    public static final int CHANGE_GEAR_BUTTON = 2;
     public static final double BACK_TIME1 = 6.5;
     public static final double INTAKE_RUN_TIME = 1;
     public static final double INTAKE_AUTON_SPEED = 0.65;
     public static final double SHOOTER_AUTON_SPEED = 0.6;
+    
+    //PID
     public static final int PID_SHOOTER = 6;
     public static final double PIDB_CONSTANT = -2;
     
     //Ramsete Constants
     public static final double kRamseteB = 2;
     public static final double kRamseteZeta = 0.7;
+
+    // Differential Drive Kinematics
+    public static final double trackwidth = 0.6858;    //In Meters
+    public static final DifferentialDriveKinematics kDriveKinematics =
+        new DifferentialDriveKinematics(trackwidth);
+    public static final double kMaxSpeedMetersPerSecond = 3;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 1.5;
 }

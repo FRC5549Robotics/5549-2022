@@ -68,6 +68,21 @@ public class Drivetrain extends SubsystemBase {
     instance = this;
 
     pcmCompressor = new Compressor(PneumaticsModuleType.CTREPCM);
+
+    resetEncoders();
+    m_odometry = new DifferentialDriveOdometry(m_NavXMXP.getRotation2d());
+    rightBackE.setPositionConversionFactor(Constants.POSITION_TO_METERS);
+    rightFrontE.setPositionConversionFactor(Constants.POSITION_TO_METERS);
+    leftFrontE.setPositionConversionFactor(Constants.POSITION_TO_METERS);
+    leftBackE.setPositionConversionFactor(Constants.POSITION_TO_METERS);
+    // getPosition now returns distance.
+  }
+
+  public void resetEncoders() {
+    rightBackE.setPosition(0);
+    rightFrontE.setPosition(0);
+    leftBackE.setPosition(0);
+    leftFrontE.setPosition(0);
   }
 
   public void tankDriveMethod(double leftJoystickAxis, double rightJoystickAxis) {
@@ -96,7 +111,9 @@ public class Drivetrain extends SubsystemBase {
    }
   
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
-    return new DifferentialDriveWheelSpeeds((((rightFrontE.getVelocity() + leftBackE.getVelocity())/2) * ((0.1524 * Math.PI)/(2.43 * 60))), (((leftFrontE.getVelocity()+leftBackE.getVelocity())/2) * ((0.1524 * Math.PI)/(2.43 * 60))));
+    double rightV = ((rightFrontE.getVelocity() + leftBackE.getVelocity())/2);
+    double leftV = ((leftFrontE.getVelocity()+leftBackE.getVelocity())/2);
+    return new DifferentialDriveWheelSpeeds((rightV * Constants.ROTATION_TO_METERS),(leftV * Constants.ROTATION_TO_METERS));
   }
 
   // public static double RPMToDistance(RelativeEncoder encoder)
@@ -113,9 +130,37 @@ public class Drivetrain extends SubsystemBase {
     return m_odometry.getPoseMeters();
   }
 
+  public void resetOdometry(Pose2d pose) {
+    resetEncoders();
+    m_odometry.resetPosition(pose, m_NavXMXP.getRotation2d());
+  }
+
   public void tankDriveVolts(double leftVolts, double rightVolts){
     leftGroup.setVoltage(leftVolts);
     rightGroup.setVoltage(rightVolts);
+    drive.feed();
+  }
+
+  public double getAverageEncoderDistance() {
+    double leftd = (leftBackE.getPosition() + leftFrontE.getPosition()) / 2.0;
+    double rightd = (rightBackE.getPosition() + rightFrontE.getPosition()) / 2.0;
+    return (leftd + rightd) / 2.0;
+  }
+
+  // public RelativeEncoder getLeftEncoder() {
+  //   return;    // What should this return?
+  // }
+
+  public void setMaxOutput(double maxOutput) {
+    drive.setMaxOutput(maxOutput);
+  }
+
+  public void zeroHeading() {
+    m_NavXMXP.reset();
+  }
+
+  public double getTurnRate() {
+    return -m_NavXMXP.getRate();
   }
 
   @Override
@@ -126,8 +171,12 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("RightFront", rightFrontE.getVelocity());
     SmartDashboard.putNumber("RightBack", rightBackE.getVelocity());
     
-    pcmCompressor.getPressure();
-    //m_odometry.update(m_NavXMXP.getRotation2d(), rightFrontE.getPosition(), leftFrontE.getPosition());
+    // pcmCompressor.getPressure();
+    m_odometry.update(
+      m_NavXMXP.getRotation2d(), 
+      (rightFrontE.getPosition() + rightBackE.getPosition()) /2.0, 
+      (leftFrontE.getPosition() + leftBackE.getPosition()) / 2.0
+    );
   }
 
   public static Drivetrain getInstance() {
