@@ -9,7 +9,6 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.Constants;
 import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID;
 
 
@@ -43,14 +42,14 @@ public class PIDShooter extends CommandBase {
 	    xboxTrigger.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
 	    xboxTrigger.setRumble(GenericHID.RumbleType.kRightRumble, 1);
     } else {
-    //m_time = (System.currentTimeMillis() - startTime) / 1000;
+    m_time = (System.currentTimeMillis() - startTime) / 1000;
     m_shooter.on(shootSpeed);
     }    
-    //if (m_time > 1.5) 
-    //{
-      //xboxTrigger.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
-			//xboxTrigger.setRumble(GenericHID.RumbleType.kRightRumble, 1);
-    //}
+    if (m_time > 1.5) 
+    {
+      xboxTrigger.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
+			xboxTrigger.setRumble(GenericHID.RumbleType.kRightRumble, 1);
+    }
   }
 
   // Called once the command ends or is interrupted.

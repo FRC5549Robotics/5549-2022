@@ -101,7 +101,7 @@ public final class Constants {
     
     //PID
     public static final int PID_SHOOTER = 6;
-    public static final double PIDB_CONSTANT = -2;
+    public static final double PIDB_CONSTANT = -2.3;
     public static final int PID_INTAKEANDINDEX = 5;
     
     //Ramsete Constants
