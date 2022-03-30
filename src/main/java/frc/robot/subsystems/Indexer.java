@@ -32,7 +32,7 @@ public class Indexer extends SubsystemBase {
     motor_indexer_1.set(0);
   }
   
-  public void indexer_set_speed(speed){
+  public void indexer_set_speed(double speed){
     motor_indexer_1.set(speed);
   }
 
