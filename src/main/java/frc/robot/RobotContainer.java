@@ -61,6 +61,7 @@ public class RobotContainer {
   //JoystickButton turnButton = new JoystickButton(xbox, 8);
   JoystickButton recordButton = new JoystickButton(joystickRight, 8);
   JoystickButton PIDButton = new JoystickButton(xbox, Constants.PID_SHOOTER);
+  JoystickButton PIDIntakeIndexButton = new JoystickButton(xbox, Constants.PID_INTAKEANDINDEX);
   Trigger highShoot = new JoystickButton(xbox, 2);
   Trigger lowShoot = new JoystickButton(xbox, 3);
   
@@ -94,6 +95,7 @@ public class RobotContainer {
     //turnButton.whenPressed(new TurnToAngle(limelight, drivetrain));
     recordButton.whenPressed(new InstantCommand(Record::toggle));
     PIDButton.whenHeld(new PIDShooter(shooter, limelight, xbox));
+    PIDIntakeIndexButton.whenHeld(new PIDIntake(intake, indexer));
   }
     
 
