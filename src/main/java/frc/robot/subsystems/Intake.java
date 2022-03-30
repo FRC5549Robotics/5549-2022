@@ -41,7 +41,7 @@ public class Intake extends SubsystemBase {
     motor_intake_1.set(-Constants.INTAKE_AUTON_SPEED);
   }
   
-  public void intake_set_speed(speed){
+  public void intake_set_speed(double speed){
     motor_intake_1.set(speed);
   }
 
