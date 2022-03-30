@@ -7,6 +7,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 import frc.robot.Constants;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,7 +36,7 @@ public class PIDIntake extends CommandBase {
   @Override
   public void execute() {
     m_intake.intake_set_speed(1);
-    m_indexer.indexer_set_speed(1):
+    m_indexer.indexer_set_speed(1);
   }
 
   // Called once the command ends or is interrupted.
