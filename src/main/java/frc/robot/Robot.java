@@ -46,7 +46,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     cam = CameraServer.startAutomaticCapture(0);
 
-    cameraNet = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelec3tion");
+    cameraNet = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
     //cameraServer.startAutomaticCapture(1);
    // cam.
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
