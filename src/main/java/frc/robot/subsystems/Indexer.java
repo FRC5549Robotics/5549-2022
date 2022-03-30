@@ -31,6 +31,10 @@ public class Indexer extends SubsystemBase {
   public void indexer_stop(){
     motor_indexer_1.set(0);
   }
+  
+  public void indexer_set_speed(speed){
+    motor_indexer_1.set(speed);
+  }
 
   @Override
   public void periodic() {
