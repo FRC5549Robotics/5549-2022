@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
@@ -19,21 +18,17 @@ public class IndexerRunForSpecificTime extends CommandBase {
   private final Limelight m_limelight;
   private double m_time;
   private double startTime;
-  private Double tx;
-  private final Drivetrain m_drivetrain;
   boolean isIndexerDone = false;
   private double m_maxTime;
   private final Shooter m_shooter;
   private double shootSpeed;
-  public IndexerRunForSpecificTime(Indexer indexer, Intake intake, double time, Shooter shooter, Limelight limelight, Drivetrain drivetrain) {
+  public IndexerRunForSpecificTime(Indexer indexer, Intake intake, double time, Shooter shooter, Limelight limelight) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_indexer = indexer;
     m_maxTime = time;
     m_intake = intake;
     m_shooter = shooter;
     m_limelight = limelight;
-    m_drivetrain = drivetrain;
-    tx = m_limelight.getAngle();
     addRequirements(indexer);
     addRequirements(intake);
     addRequirements(shooter);
