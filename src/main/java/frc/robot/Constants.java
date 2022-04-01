@@ -57,8 +57,8 @@ public final class Constants {
     public static final double tP = 1/27;
 
     //Joystick and Xbox Declaration
-    public static final int JOYSTICK_LEFT = 2;
-    public static final int JOYSTICK_RIGHT = 1;
+    public static final int JOYSTICK_LEFT = 1;
+    public static final int JOYSTICK_RIGHT = 2;
     public static final int XBOX_CONTROLLER = 0;
     
     //Solenoid Declaration
@@ -83,7 +83,7 @@ public final class Constants {
     public static final double HEIGHT_TARGET = 100;
     public static final int HEIGHT_CAMERA = 34;
 
-    //Indexer
+    //Indexer{}
     public static final int INDEXER_MOTOR = 5;
     public static final double INDEXER_SPEED = 0.8;//0.9 normally
     public static final int INDEXER_BUTTON = 2;
@@ -105,7 +105,7 @@ public final class Constants {
     public static final int PID_INTAKEANDINDEX = 5;
     
     //Ramsete Constants
-    public static final double kRamseteB = 2;
+    public static final double kRamseteB = 2; 
     public static final double kRamseteZeta = 0.7;
 
     // Differential Drive Kinematics
