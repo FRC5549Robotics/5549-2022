@@ -92,7 +92,7 @@ public class Shooter extends SubsystemBase {
 	public void periodic(){
 		if (xboxTrigger.getRawAxis(3) > 0.1)
 		{
-			runShooter(1);
+			runShooter(0.75);
 			//System.out.println("Distance" + limelight.getDistance());
 		}
 		else if (xboxTrigger.getRawAxis(2) > 0.1)
@@ -101,6 +101,8 @@ public class Shooter extends SubsystemBase {
 		} else {
 			off();
 		}
+		SmartDashboard.putNumber("Shooter 1", motor1_encoder.getVelocity());
+		SmartDashboard.putNumber("Shooter 2", motor1_encoder.getVelocity());
 	}
 
 	public void ShootHigh(){

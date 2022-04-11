@@ -17,6 +17,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.wpilibj.Joystick;
 
 
 import com.revrobotics.CANSparkMax;
@@ -37,10 +38,11 @@ public class Drivetrain extends SubsystemBase {
   Compressor pcmCompressor;
   AHRS m_NavXMXP;
   DifferentialDriveOdometry m_odometry;
+  Joystick left, right;
 
   DoubleSolenoid rightGearShift, leftGearShift;
 
-  public Drivetrain() {
+  public Drivetrain(Joystick left, Joystick right) {
     leftFront =  new CANSparkMax(Constants.LEFT_MOTOR1, MotorType.kBrushless);
     leftBack = new CANSparkMax(Constants.LEFT_MOTOR2, MotorType.kBrushless);
     leftBackE = leftBack.getEncoder();
@@ -87,9 +89,10 @@ public class Drivetrain extends SubsystemBase {
 
   public void tankDriveMethod(double leftJoystickAxis, double rightJoystickAxis) {
     Record.recordCall(this, leftJoystickAxis, rightJoystickAxis);
-    double rightScalingFactor = Constants.RIGHT_SCALING_FACTOR;
+    double rightScalingFactor = Constants.RIGHT_SCALING_FACTOR + 0.014;
     double leftScalingFactor = Constants.LEFT_SCALING_FACTOR;
-    drive.tankDrive(leftJoystickAxis * leftScalingFactor, rightJoystickAxis * rightScalingFactor);
+    drive.tankDrive(leftJoystickAxis, rightJoystickAxis);
+    // drive.tankDrive(leftJoystickAxis * left.getRawAxis(3), rightJoystickAxis * right.getRawAxis(3));
   }
 
   public void arcadeDriveMethod(double limelight_angletx) {
@@ -107,7 +110,7 @@ public class Drivetrain extends SubsystemBase {
   }
   
   public void autoDrive(double speed1, double speed2) {
-     drive.tankDrive(-speed1 * Constants.RIGHT_SCALING_FACTOR, -speed2 * Constants.LEFT_SCALING_FACTOR);
+     drive.tankDrive(-speed1 * 0.75, -speed2 * 0.83);
    }
   
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {

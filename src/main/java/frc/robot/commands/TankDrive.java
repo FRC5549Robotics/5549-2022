@@ -35,7 +35,7 @@ public class TankDrive extends CommandBase {
   public void execute() {
     //slide = Math.abs(m_axis1.getRawAxis(3));
     if(!xbox1.getRawButton(8)){
-      m_drivetrain.tankDriveMethod(m_axis2.getY(), m_axis1.getY());
+      m_drivetrain.tankDriveMethod(m_axis2.getY(), m_axis1.getY());///, m_axis1.getRawAxis(3), m_axis2.getRawAxis(3));
     }
   }
 

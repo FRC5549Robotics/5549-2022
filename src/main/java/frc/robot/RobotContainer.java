@@ -45,7 +45,7 @@ public class RobotContainer {
   public static Joystick joystickLeft = new Joystick(Constants.JOYSTICK_LEFT);
   public static Joystick joystickRight = new Joystick(Constants.JOYSTICK_RIGHT);
   // The robot's subsystems and commands are defined here...
-  public final Drivetrain drivetrain = new Drivetrain();
+  public final Drivetrain drivetrain = new Drivetrain(joystickLeft, joystickRight);
   public final Intake intake = new Intake();
   public final Limelight limelight = new Limelight(xbox, Constants.tP);
   public final Indexer indexer = new Indexer();
@@ -73,7 +73,7 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
-  /**
+  /** 
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
@@ -108,34 +108,34 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     // return new InstantCommand(() -> Replay.replay("recording.bin"));
     //return new AutoCommand(drivetrain, shooter);
-    // return new SequentialCommandGroup(
+    return new SequentialCommandGroup(
     //  //new AutoMove(drivetrain, Constants.BACK_TIME1, -1),
-    //  new IntakeRunForSpecificTime(drivetrain, Constants.BACK_TIME1, -1, intake, indexer, limelight, shooter),
-    //  new AutoMove(drivetrain, Constants.BACK_TIME, 1),
+      new IntakeRunForSpecificTime(drivetrain, Constants.BACK_TIME1, -1, intake, indexer, limelight, shooter),
+      new AutoMove(drivetrain, Constants.BACK_TIME, 1),
      
     //  // new TurnToAngle(limelight, drivetrain),
     //   //new GetFlywheelUpToSpeed(shooter, 2),
-    //   new IndexerRunForSpecificTime(indexer, intake, Constants.SHOOT_TIME, shooter, limelight, drivetrain)
+       new IndexerRunForSpecificTime(indexer, intake, Constants.SHOOT_TIME, shooter, limelight)
     //   //new TurnFlywheelOff(shooter)
-    //  );
+      );
 
-    RamseteCommand ramseteCommand =
-    new RamseteCommand(
-      Robot.exampleTrajectory,
-      drivetrain::getPose,
-      new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta),
-      new SimpleMotorFeedforward(
-        Constants.DRIVE_kS,
-        Constants.DRIVE_kV,
-        Constants.DRIVE_kA),
-      Constants.kDriveKinematics,
-      drivetrain::getWheelSpeeds,
-      new PIDController(Constants.DRIVE_kP, Constants.DRIVE_kI, Constants.DRIVE_kD),
-      new PIDController(Constants.DRIVE_kP, Constants.DRIVE_kI, Constants.DRIVE_kD),
-      drivetrain::tankDriveVolts,
-      drivetrain);
-    drivetrain.resetOdometry(Robot.exampleTrajectory.getInitialPose());
-    return ramseteCommand.andThen(() -> drivetrain.tankDriveVolts(0, 0));
+    // RamseteCommand ramseteCommand =
+    // new RamseteCommand(
+    //   Robot.exampleTrajectory,
+    //   drivetrain::getPose,
+    //   new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta),
+    //   new SimpleMotorFeedforward(
+    //     Constants.DRIVE_kS,
+    //     Constants.DRIVE_kV,
+    //     Constants.DRIVE_kA),
+    //   Constants.kDriveKinematics,
+    //   drivetrain::getWheelSpeeds,
+    //   new PIDController(Constants.DRIVE_kP, Constants.DRIVE_kI, Constants.DRIVE_kD),
+    //   new PIDController(Constants.DRIVE_kP, Constants.DRIVE_kI, Constants.DRIVE_kD),
+    //   drivetrain::tankDriveVolts,
+    //   drivetrain);
+    // drivetrain.resetOdometry(Robot.exampleTrajectory.getInitialPose());
+    // return ramseteCommand.andThen(() -> drivetrain.tankDriveVolts(0, 0));
   }
 
   // public Command getPathweaverCommand() {

@@ -57,8 +57,8 @@ public final class Constants {
     public static final double tP = 1/27;
 
     //Joystick and Xbox Declaration
-    public static final int JOYSTICK_LEFT = 1;
-    public static final int JOYSTICK_RIGHT = 2;
+    public static final int JOYSTICK_LEFT = 2;
+    public static final int JOYSTICK_RIGHT = 1;
     public static final int XBOX_CONTROLLER = 0;
     
     //Solenoid Declaration
@@ -70,7 +70,7 @@ public final class Constants {
 
     //Intake Motor Declaration
     public static final int MOTOR_INTAKE = 11;
-    public static final double INTAKE_SPEED = 0.5;
+    public static final double INTAKE_SPEED = 0.39;
     public static final int INTAKE_BUTTON = 3;
 
     //Climber
@@ -101,7 +101,7 @@ public final class Constants {
     
     //PID
     public static final int PID_SHOOTER = 6;
-    public static final double PIDB_CONSTANT = -2.3;
+    public static final double PIDB_CONSTANT = -1.05;
     public static final int PID_INTAKEANDINDEX = 5;
     
     //Ramsete Constants
