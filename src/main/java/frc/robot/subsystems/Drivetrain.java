@@ -89,8 +89,6 @@ public class Drivetrain extends SubsystemBase {
 
   public void tankDriveMethod(double leftJoystickAxis, double rightJoystickAxis) {
     Record.recordCall(this, leftJoystickAxis, rightJoystickAxis);
-    double rightScalingFactor = Constants.RIGHT_SCALING_FACTOR + 0.014;
-    double leftScalingFactor = Constants.LEFT_SCALING_FACTOR;
     drive.tankDrive(leftJoystickAxis, rightJoystickAxis);
     // drive.tankDrive(leftJoystickAxis * left.getRawAxis(3), rightJoystickAxis * right.getRawAxis(3));
   }

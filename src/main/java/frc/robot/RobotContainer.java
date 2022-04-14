@@ -4,12 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.RamseteController;
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
-import edu.wpi.first.math.trajectory.constraint.DifferentialDriveVoltageConstraint;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
@@ -26,13 +20,9 @@ import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
 
-import java.io.IOException;
-import java.nio.file.Path;
 import r3.Record;
 
-import edu.wpi.first.math.trajectory.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -105,68 +95,11 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    // return new InstantCommand(() -> Replay.replay("recording.bin"));
-    //return new AutoCommand(drivetrain, shooter);
     return new SequentialCommandGroup(
-    //  //new AutoMove(drivetrain, Constants.BACK_TIME1, -1),
       new IntakeRunForSpecificTime(drivetrain, Constants.BACK_TIME1, -1, intake, indexer, limelight, shooter),
       new AutoMove(drivetrain, Constants.BACK_TIME, 1),
-     
-    //  // new TurnToAngle(limelight, drivetrain),
-    //   //new GetFlywheelUpToSpeed(shooter, 2),
-       new IndexerRunForSpecificTime(indexer, intake, Constants.SHOOT_TIME, shooter, limelight)
-    //   //new TurnFlywheelOff(shooter)
+      new IndexerRunForSpecificTime(indexer, intake, Constants.SHOOT_TIME, shooter, limelight)
       );
-
-    // RamseteCommand ramseteCommand =
-    // new RamseteCommand(
-    //   Robot.exampleTrajectory,
-    //   drivetrain::getPose,
-    //   new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta),
-    //   new SimpleMotorFeedforward(
-    //     Constants.DRIVE_kS,
-    //     Constants.DRIVE_kV,
-    //     Constants.DRIVE_kA),
-    //   Constants.kDriveKinematics,
-    //   drivetrain::getWheelSpeeds,
-    //   new PIDController(Constants.DRIVE_kP, Constants.DRIVE_kI, Constants.DRIVE_kD),
-    //   new PIDController(Constants.DRIVE_kP, Constants.DRIVE_kI, Constants.DRIVE_kD),
-    //   drivetrain::tankDriveVolts,
-    //   drivetrain);
-    // drivetrain.resetOdometry(Robot.exampleTrajectory.getInitialPose());
-    // return ramseteCommand.andThen(() -> drivetrain.tankDriveVolts(0, 0));
   }
-
-  // public Command getPathweaverCommand() {
-  //   DifferentialDriveVoltageConstraint autoVoltageConstraint =
-  //     new DifferentialDriveVoltageConstraint(
-  //       new SimpleMotorFeedforward(
-  //         Constants.kS,
-  //         Constants.kV,
-  //         Constants.kA),
-  //       Constants.kDriveKinematics,10
-  //     );   // Find out what this is
-    
-  //   TrajectoryConfig config =
-  //   new TrajectoryConfig(
-  //     Constants.kMaxSpeedMetersPerSecond,
-  //     Constants.kMaxAccelerationMetersPerSecondSquared)
-  //     // Add kinematics to ensure max speed is actually obeyed
-  //     .setKinematics(Constants.kDriveKinematics)
-  //     // Apply the voltage constraint
-  //     .addConstraint(autoVoltageConstraint);
-      
-  //   Trajectory exampleTrajectory =
-  //   TrajectoryGenerator.generateTrajectory(
-  //       // Start at the origin facing the +X direction
-  //       new Pose2d(0, 0, new Rotation2d(0)),
-  //       // Pass through these two interior waypoints, making an 's' curve path
-  //       List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-  //       // End 3 meters straight ahead of where we started, facing forward
-  //       new Pose2d(3, 0, new Rotation2d(0)),
-  //       // Pass config
-  //       config);
-  //}
   
 }
