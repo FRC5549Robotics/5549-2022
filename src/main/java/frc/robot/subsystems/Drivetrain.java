@@ -42,7 +42,7 @@ public class Drivetrain extends SubsystemBase {
 
   DoubleSolenoid rightGearShift, leftGearShift;
 
-  public Drivetrain(Joystick left, Joystick right) {
+  public Drivetrain() {
     leftFront =  new CANSparkMax(Constants.LEFT_MOTOR1, MotorType.kBrushless);
     leftBack = new CANSparkMax(Constants.LEFT_MOTOR2, MotorType.kBrushless);
     leftBackE = leftBack.getEncoder();
